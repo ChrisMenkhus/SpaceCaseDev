@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+input,
+textarea,
+button {
+  font-family: inherit;
+}
+
+.gradientbg {
+  @apply bg-gradient-to-br from-primary to-secondary;
+}
+
+.flexcenter {
+  @apply flex justify-center items-center h-full w-full;
+}
+
+.flexleft {
+  @apply flex justify-start items-start h-full w-full;
+}
+
+.flexright {
+  @apply flex justify-end items-end h-full w-full;
+}
+
+.gridcenter {
+  @apply grid place-content-center w-full h-full;
+}
