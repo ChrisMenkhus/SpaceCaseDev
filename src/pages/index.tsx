@@ -11,10 +11,8 @@ import * as Contact from '@components/home/Contact'
 import Button from '@components/ui/Button'
 import ButtonGroup from '@components/ui/ButtonGroup'
 import ProjectCard from '@components/home/ProjectCard'
-import Navbar from '@components/ui/Navbar'
-import ShootingStar from '@components/home/ShootingStar'
-import Navbar2 from '@components/ui/Navbar2'
 import IconButton from '@components/ui/IconButton'
+import Navbar from '@components/ui/Navbar'
 
 const Home: NextPage = () => {
   return (
@@ -27,8 +25,7 @@ const Home: NextPage = () => {
         />
       </Head>
       <PageContainer>
-        {/* <Navbar /> */}
-        <Navbar2 />
+        <Navbar />
         <Section.Container name="Intro" className="min-h-[calc(100vh-12rem)] ">
           <Intro.HeaderContainer>
             <Intro.Header
@@ -39,24 +36,6 @@ const Home: NextPage = () => {
           </Intro.HeaderContainer>
           <Section.Footer>
             <ButtonGroup>
-              {/* <Button
-                handleClick={() => null}
-                alt="click"
-                size="big"
-                variant="primary"
-                imgSrc="/scroll-down.svg"
-              >
-                {data.Intro.button as string}
-              </Button>
-              <Button
-                handleClick={() => null}
-                alt="click"
-                size="big"
-                variant="secondary"
-                imgSrc="/icon/calendar_dark.svg"
-              >
-                {data.Intro.button2 as string}
-              </Button> */}
               <Button
                 handleClick={() => null}
                 alt="click"
@@ -187,7 +166,7 @@ const Home: NextPage = () => {
               {
                 title: 'Deployment',
                 description:
-                  'Lorem ipsum dolor sit amet, autem ridens ceteros ex pri. Has et quis audiam copiosae, mutat scripta duo id. Mea tantas saperet posidonium in.',
+                  'Lorem ipsum dolor sit amet, autem ridens ceteros dolor autem ridens ceteros ex pri. Has et quis audiam copiosae, mutat scripta duo id. Mea tantas saperet posidonium in.',
               },
             ]}
           />
