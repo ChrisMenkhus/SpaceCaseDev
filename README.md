@@ -1,34 +1,35 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+-GIT WORKFLOW-
 
-## Getting Started
+create issues on github
 
-First, run the development server:
+move issues into the project board's To Do column
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+move issue to be fixed to the In Progress column
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- git checkout -b issue-[issue#]
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- code .
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+make changes to project
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- git status
 
-## Learn More
+- git add [modified files]
 
-To learn more about Next.js, take a look at the following resources:
+- git commit -m "[#[issue#] short concise commit]"
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- git push -u origin issue-[issue#]
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- git pull origin main
 
-## Deploy on Vercel
+Create a pull request from the branches tab of the github project and link the issue you are working on.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If no conflicts then merge the ticket branch with the main branch.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+move issue that was fixed from the In Progress column of the Github project board to the Done column.
+
+- git checkout main
+
+- git pull
+
+- git branch -D issue-[issue#]
