@@ -1,8 +1,9 @@
-import Button from '@components/ui/Button'
+import { Button } from '@components/Elements/Button'
 import createClassName from '@utils/createClassName'
 import truncateString from '@utils/truncateString'
 import Image from 'next/image'
 import { FC } from 'react'
+import { BookOpenIcon } from '@heroicons/react/outline'
 
 const BlogCardsGroup: FC = ({ children }) => {
   return <div className="flex-row flex-wrap pb-8 flexleft">{children}</div>
@@ -66,12 +67,7 @@ function BlogArticleCard({
           {truncateString(text as string, variant === 'large' ? 212 : 112)}
         </p>
         <div className="flex ">
-          <Button
-            variant="secondary"
-            alt={'Go to article page'}
-            handleClick={() => {}}
-            imgSrc="/icon/book.svg"
-          >
+          <Button variant="secondary" size="md" icon={<BookOpenIcon />}>
             Read More
           </Button>
         </div>
