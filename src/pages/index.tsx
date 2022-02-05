@@ -8,11 +8,13 @@ import * as About from '@components/home/About'
 import * as Insights from '@components/home/Insights'
 import * as DevProcess from '@components/home/DevProcess'
 import * as Contact from '@components/home/Contact'
-import Button from '@components/ui/Button'
+import { Button } from '@components/Elements/Button'
 import ButtonGroup from '@components/ui/ButtonGroup'
 import ProjectCard from '@components/home/ProjectCard'
 import IconButton from '@components/ui/IconButton'
 import Navbar from '@components/ui/Navbar'
+import { CalendarIcon } from '@heroicons/react/outline'
+import { CollectionIcon } from '@heroicons/react/outline'
 
 const Home: NextPage = () => {
   return (
@@ -37,11 +39,11 @@ const Home: NextPage = () => {
           <Section.Footer>
             <ButtonGroup>
               <Button
-                handleClick={() => null}
-                alt="click"
-                size="big"
+                // handleClick={() => null}
+                // alt="click"
+                size="lg"
                 variant="secondary"
-                imgSrc="/icon/calendar_dark.svg"
+                icon={<CalendarIcon />}
                 className="mb-4"
               >
                 {data.Intro.button2 as string}
@@ -99,13 +101,7 @@ const Home: NextPage = () => {
           </Section.Content>
           <Section.Footer>
             <ButtonGroup variant="right">
-              <Button
-                handleClick={() => null}
-                alt="click"
-                size="big"
-                variant="primary"
-                imgSrc="/icon/app_menu.svg"
-              >
+              <Button size="lg" variant="primary" icon={<CollectionIcon />}>
                 {data.Insights.button || ''}
               </Button>
             </ButtonGroup>
@@ -123,13 +119,7 @@ const Home: NextPage = () => {
           </Section.Content>
           <Section.Footer>
             <ButtonGroup variant="right">
-              <Button
-                handleClick={() => null}
-                alt="click"
-                size="big"
-                variant="primary"
-                imgSrc="/icon/app_menu.svg"
-              >
+              <Button size="lg" variant="primary" icon={<CollectionIcon />}>
                 {data.Portfolio.button || ''}
               </Button>
             </ButtonGroup>
@@ -187,13 +177,7 @@ const Home: NextPage = () => {
               <Contact.SimpleCardText>
                 {data.Contact.text3 as string}
               </Contact.SimpleCardText>
-              <Button
-                handleClick={() => null}
-                alt="click"
-                size="big"
-                variant="primary"
-                imgSrc="/icon/calendar_dark.svg"
-              >
+              <Button size="lg" variant="primary" icon={<CalendarIcon />}>
                 {data.Contact.button2 as string}
               </Button>
             </Contact.SimpleCard>

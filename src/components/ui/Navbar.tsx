@@ -1,7 +1,8 @@
 import createClassName from '@utils/createClassName'
 import Image from 'next/image'
 import { FC, useState } from 'react'
-import Button from './Button'
+import { Button } from '@components/Elements/Button'
+import { MailIcon } from '@heroicons/react/outline'
 // import {ReactComponent as logoIcon} from './public/icon/logo_black.svg'
 
 const Navbar: FC = () => {
@@ -86,11 +87,10 @@ const Navbar: FC = () => {
 
             <div className="pr-4 mx-6 mt-8 mb-20 md:m-auto md:mx-4">
               <Button
-                alt="scroll to contact form"
-                handleClick={() => {}}
-                imgSrc="/icon/mail_dark.svg"
-                size="big"
-                className="mt-6 ml-6 scale-150 md:mt-auto md:scale-100"
+                icon={<MailIcon />}
+                variant="primary"
+                size="sm"
+                className="mt-6 ml-6 md:mt-auto"
               >
                 Contact
               </Button>
