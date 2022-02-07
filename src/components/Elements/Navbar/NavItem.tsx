@@ -2,6 +2,7 @@ import { Button } from '../Button'
 import { ActiveLink } from './ActiveLink'
 
 import Router from 'next/router'
+import { cloneElement } from 'react'
 
 const variants = {
   link: 'mx-4 my-4 md:my-auto',
@@ -11,7 +12,7 @@ const variants = {
 export type NavItemProps = React.BaseHTMLAttributes<HTMLElement> & {
   name: string
   to: string
-  icon?: React.ReactElement
+  icon?: React.ReactType
   variant: keyof typeof variants
 }
 

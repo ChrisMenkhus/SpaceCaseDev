@@ -1,5 +1,6 @@
 import { Button } from '@components/Elements/Button'
 import { Navbar } from '@components/Elements/Navbar'
+import ScrollDownIcon from '@components/Icons/ScrollDownIcon'
 import * as About from '@components/home/About'
 import * as Contact from '@components/home/Contact'
 import * as DevProcess from '@components/home/DevProcess'
@@ -7,10 +8,15 @@ import * as Insights from '@components/home/Insights'
 import * as Intro from '@components/home/Intro'
 import ProjectCard from '@components/home/ProjectCard'
 import ButtonGroup from '@components/ui/ButtonGroup'
-import IconButton from '@components/ui/IconButton'
+import IconButton from '@components/ui/ElipseButton'
+import ElipseButton from '@components/ui/ElipseButton'
 import PageContainer from '@components/ui/PageContainer'
 import * as Section from '@components/ui/Section'
-import { CalendarIcon } from '@heroicons/react/outline'
+import {
+  CalendarIcon,
+  CursorClickIcon,
+  MenuAlt1Icon,
+} from '@heroicons/react/outline'
 import { CollectionIcon } from '@heroicons/react/outline'
 import type { NextPage } from 'next'
 import Head from 'next/head'
@@ -39,20 +45,17 @@ const Home: NextPage = () => {
           <Section.Footer>
             <ButtonGroup>
               <Button
-                // handleClick={() => null}
-                // alt="click"
                 size="lg"
                 variant="secondary"
-                icon={<CalendarIcon />}
+                icon={CalendarIcon}
                 className="mb-4"
               >
                 {data.Intro.button2 as string}
               </Button>
-              <IconButton
-                imgSrc="/icon/scroll-down.svg"
-                alt="read more button"
-                handleClick={() => {}}
-                className="hidden sm:flex md:py-2"
+              <ElipseButton
+                size="md"
+                className="hidden sm:flex w-full md:py-2 "
+                Icon={ScrollDownIcon}
               />
             </ButtonGroup>
           </Section.Footer>
@@ -101,7 +104,7 @@ const Home: NextPage = () => {
           </Section.Content>
           <Section.Footer>
             <ButtonGroup variant="right">
-              <Button size="lg" variant="primary" icon={<CollectionIcon />}>
+              <Button size="lg" variant="primary" icon={CollectionIcon}>
                 {data.Insights.button || ''}
               </Button>
             </ButtonGroup>
@@ -119,7 +122,7 @@ const Home: NextPage = () => {
           </Section.Content>
           <Section.Footer>
             <ButtonGroup variant="right">
-              <Button size="lg" variant="primary" icon={<CollectionIcon />}>
+              <Button size="lg" variant="primary" icon={CollectionIcon}>
                 {data.Portfolio.button || ''}
               </Button>
             </ButtonGroup>
@@ -177,7 +180,7 @@ const Home: NextPage = () => {
               <Contact.SimpleCardText>
                 {data.Contact.text3 as string}
               </Contact.SimpleCardText>
-              <Button size="lg" variant="primary" icon={<CalendarIcon />}>
+              <Button size="lg" variant="primary" icon={CalendarIcon}>
                 {data.Contact.button2 as string}
               </Button>
             </Contact.SimpleCard>

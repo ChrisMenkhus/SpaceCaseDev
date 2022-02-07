@@ -1,4 +1,4 @@
-import clsx from 'clsx'
+import makeStyles from '@utils/makeStyles'
 import React from 'react'
 
 const variants = {
@@ -16,7 +16,7 @@ const sizes = {
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant: keyof typeof variants
   size: keyof typeof sizes
-  icon?: React.ReactElement
+  icon?: React.ElementType
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -31,20 +31,21 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
+    const Icon = icon
     return (
       <button
         ref={ref}
         type={type}
-        className={clsx(
+        className={makeStyles([
           'flex justify-center items-center rounded border shadow-sm',
           variants[variant],
           sizes[size],
-          className
-        )}
+          className,
+        ])}
         {...props}
       >
         <span className="mx-1">{props.children}</span>
-        {icon && React.cloneElement(icon, { className: 'h-4 w-4 mx-1' })}
+        {Icon && <Icon className="h-4 w-4 mx-1" />}
       </button>
     )
   }

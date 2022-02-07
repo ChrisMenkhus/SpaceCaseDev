@@ -1,4 +1,4 @@
-import MakeStyles from '@utils/MakeStyles'
+import makeStyles from '@utils/makeStyles'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -13,7 +13,7 @@ export const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
 
   let isActiveLink = router.pathname === to
 
-  const styles = MakeStyles([
+  const styles = makeStyles([
     className,
     'border-b-2 border-dark',
     isActiveLink && 'border-primary text-primary',
