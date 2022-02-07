@@ -1,5 +1,5 @@
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
-import MakeStyles from '@utils/MakeStyles'
+import makeStyles from '@utils/makeStyles'
 import Image from 'next/image'
 import Router from 'next/router'
 import { useState } from 'react'
@@ -46,7 +46,7 @@ export const NavWrapper = ({
           </button>
         </div>
         <div
-          className={MakeStyles([
+          className={makeStyles([
             styles.links,
             !mobileNavMenuToggled && 'hidden md:flex',
           ])}

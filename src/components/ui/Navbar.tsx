@@ -1,8 +1,9 @@
+import { Button } from '@components/Elements/Button'
+import { MailIcon } from '@heroicons/react/outline'
 import createClassName from '@utils/createClassName'
 import Image from 'next/image'
 import { FC, useState } from 'react'
-import { Button } from '@components/Elements/Button'
-import { MailIcon } from '@heroicons/react/outline'
+
 // import {ReactComponent as logoIcon} from './public/icon/logo_black.svg'
 
 const Navbar: FC = () => {
@@ -87,7 +88,7 @@ const Navbar: FC = () => {
 
             <div className="pr-4 mx-6 mt-8 mb-20 md:m-auto md:mx-4">
               <Button
-                icon={<MailIcon />}
+                icon={MailIcon}
                 variant="primary"
                 size="sm"
                 className="mt-6 ml-6 md:mt-auto"

@@ -1,7 +1,7 @@
 import { Button } from '@components/Elements/Button'
+import { MailIcon } from '@heroicons/react/outline'
 import createClassName from '@utils/createClassName'
 import { FC } from 'react'
-import { MailIcon } from '@heroicons/react/outline'
 
 function Form({}: {}) {
   return (
@@ -36,12 +36,7 @@ function Form({}: {}) {
         required
         className="mb-4 w-full h-24 min-h-full align-text-top border-2 border-primary"
       />
-      <Button
-        size="lg"
-        variant="secondary"
-        icon={<MailIcon />}
-        className="mt-4"
-      >
+      <Button size="lg" variant="secondary" icon={MailIcon} className="mt-4">
         Send message
       </Button>
     </form>
