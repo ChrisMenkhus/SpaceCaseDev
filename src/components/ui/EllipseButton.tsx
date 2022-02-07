@@ -7,16 +7,16 @@ const sizes = {
   lg: 'h-36 w-36 text-lg',
 }
 
-type ElipseButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
+type EllipseButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   size: keyof typeof sizes
   Icon: React.ElementType
 }
 
-export default function ElipseButton({
+export default function EllipseButton({
   className = '',
   size,
   Icon,
-}: ElipseButtonProps) {
+}: EllipseButtonProps) {
   return (
     <button
       className={makeStyles([
@@ -35,4 +35,4 @@ export default function ElipseButton({
   )
 }
 
-ElipseButton.displayName = 'ElipseButton'
+EllipseButton.displayName = 'ElipseButton'

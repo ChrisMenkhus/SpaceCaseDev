@@ -8,8 +8,7 @@ import * as Insights from '@components/home/Insights'
 import * as Intro from '@components/home/Intro'
 import ProjectCard from '@components/home/ProjectCard'
 import ButtonGroup from '@components/ui/ButtonGroup'
-import IconButton from '@components/ui/ElipseButton'
-import ElipseButton from '@components/ui/ElipseButton'
+import EllipseButton from '@components/ui/EllipseButton'
 import PageContainer from '@components/ui/PageContainer'
 import * as Section from '@components/ui/Section'
 import {
@@ -52,7 +51,7 @@ const Home: NextPage = () => {
               >
                 {data.Intro.button2 as string}
               </Button>
-              <ElipseButton
+              <EllipseButton
                 size="md"
                 className="hidden sm:flex w-full md:py-2 "
                 Icon={ScrollDownIcon}
