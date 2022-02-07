@@ -2,5 +2,14 @@
   "tabWidth": 2,
   "useTabs": false,
   "semi": false,
-  "singleQuote": true
+  "singleQuote": true,
+  "importOrder": [
+    "^@core/(.*)$",
+    "^@server/(.*)$",
+    "^@ui/(.*)$",
+    "^[./]",
+    "<THIRD_PARTY_MODULES>"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
