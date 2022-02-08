@@ -16,6 +16,7 @@ export default function EllipseButton({
   className = '',
   size,
   Icon,
+  ...props
 }: EllipseButtonProps) {
   return (
     <button
@@ -23,6 +24,7 @@ export default function EllipseButton({
         'grid place-items-center w-auto h-auto group ',
         className,
       ])}
+      {...props}
     >
       <div className="p-[0.05rem] w-auto h-auto m-auto rounded-full bg-white hover:bg-dark transition-all hover:shadow-lg">
         <div

@@ -17,11 +17,17 @@ import {
   MenuAlt1Icon,
 } from '@heroicons/react/outline'
 import { CollectionIcon } from '@heroicons/react/outline'
+import OpenCalendlyPopup from '@utils/openCalendlyPopup'
+import scrollToRef from '@utils/scrollToRef'
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import React, { ReactElement, useRef } from 'react'
 import * as data from 'src/data/home'
 
 const Home: NextPage = () => {
+  const contactSectionRef = useRef<null | HTMLDivElement>(null)
+  const aboutSectionRef = useRef<null | HTMLDivElement>(null)
+
   return (
     <>
       <Head>
@@ -48,6 +54,7 @@ const Home: NextPage = () => {
                 variant="secondary"
                 icon={CalendarIcon}
                 className="mb-4"
+                onClick={() => scrollToRef(contactSectionRef)}
               >
                 {data.Intro.button2 as string}
               </Button>
@@ -55,11 +62,12 @@ const Home: NextPage = () => {
                 size="md"
                 className="hidden sm:flex w-full md:py-2 "
                 Icon={ScrollDownIcon}
+                onClick={() => scrollToRef(aboutSectionRef)}
               />
             </ButtonGroup>
           </Section.Footer>
         </Section.Container>
-        <Section.Container name="About">
+        <Section.Container name="About" ref={aboutSectionRef}>
           <Section.Header
             title={data.About.section.name}
             subtitle={data.About.section.altname || ''}
@@ -163,7 +171,7 @@ const Home: NextPage = () => {
             ]}
           />
         </Section.Container>
-        <Section.Container name="Contact" variant="fullheight">
+        <Section.Container id="Contact" name="Contact" ref={contactSectionRef}>
           <Section.Header
             title={data.Contact.section.name}
             subtitle={data.Contact.section.altname || ''}
@@ -179,7 +187,12 @@ const Home: NextPage = () => {
               <Contact.SimpleCardText>
                 {data.Contact.text3 as string}
               </Contact.SimpleCardText>
-              <Button size="lg" variant="primary" icon={CalendarIcon}>
+              <Button
+                size="lg"
+                variant="primary"
+                icon={CalendarIcon}
+                onClick={OpenCalendlyPopup}
+              >
                 {data.Contact.button2 as string}
               </Button>
             </Contact.SimpleCard>
