@@ -1,10 +1,9 @@
 import createClassName from '@utils/createClassName'
-import { FC } from 'react'
+import { FC, forwardRef } from 'react'
 
-interface ContainerInterface {
+type ContainerInterface = React.HTMLAttributes<HTMLDivElement> & {
   children: JSX.Element | JSX.Element[]
   name: string
-  variant?: 'fullheight' | 'regular' | 'fullwidth'
   className?: string
 }
 
@@ -13,24 +12,22 @@ interface HeaderInterface {
   subtitle: string
 }
 
-function Container({
-  children,
-  name,
-  variant = 'regular',
-  className = '',
-}: ContainerInterface) {
-  return (
-    <div
-      id={name}
-      className={createClassName([
-        'flex-col gap-4 px-0 mt-8 pb-0 flexcenter',
-        className,
-      ])}
-    >
-      {children}
-    </div>
-  )
-}
+const Container = forwardRef<HTMLDivElement, ContainerInterface>(
+  ({ children, name, className = '' }, ref?) => {
+    return (
+      <div
+        ref={ref}
+        id={name}
+        className={createClassName([
+          'flex-col gap-4 px-0 mt-8 pb-0 flexcenter',
+          className,
+        ])}
+      >
+        {children}
+      </div>
+    )
+  }
+)
 
 function Header({ title, subtitle }: HeaderInterface) {
   return (

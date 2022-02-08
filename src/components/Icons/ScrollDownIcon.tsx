@@ -4,7 +4,6 @@ import React from 'react'
 export default function ScrollDownIcon({
   ...props
 }: SVGElement & JSX.IntrinsicElements): JSX.Element {
-  console.log(props.className)
   return (
     <SvgWrapper className={props.className}>
       <path

@@ -29,7 +29,7 @@ export const Navbar = () => {
     {
       name: 'Contact',
       variant: 'button',
-      to: '/Contact',
+      to: '/#Contact',
       icon: MailIcon,
     },
   ]

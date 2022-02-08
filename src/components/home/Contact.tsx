@@ -36,7 +36,13 @@ function Form({}: {}) {
         required
         className="mb-4 w-full h-24 min-h-full align-text-top border-2 border-primary"
       />
-      <Button size="lg" variant="secondary" icon={MailIcon} className="mt-4">
+      <Button
+        type="submit"
+        size="lg"
+        variant="secondary"
+        icon={MailIcon}
+        className="mt-4"
+      >
         Send message
       </Button>
     </form>
