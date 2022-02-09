@@ -11,22 +11,44 @@ import ButtonGroup from '@components/ui/ButtonGroup'
 import EllipseButton from '@components/ui/EllipseButton'
 import PageContainer from '@components/ui/PageContainer'
 import * as Section from '@components/ui/Section'
-import {
-  CalendarIcon,
-  CursorClickIcon,
-  MenuAlt1Icon,
-} from '@heroicons/react/outline'
-import { CollectionIcon } from '@heroicons/react/outline'
+import { CalendarIcon, CollectionIcon } from '@heroicons/react/outline'
 import OpenCalendlyPopup from '@utils/openCalendlyPopup'
+import queryContentful from '@utils/queryContentful'
 import scrollToRef from '@utils/scrollToRef'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import React, { ReactElement, useRef } from 'react'
+import React, { useRef } from 'react'
 import * as data from 'src/data/home'
+import Post from 'src/types/Post'
 
-const Home: NextPage = () => {
+export async function getStaticProps() {
+  const { data } = await queryContentful(
+    `	query {
+      blogPostCollection{
+        items {
+          title
+          description
+          date
+          slug
+          post {
+            json
+          }
+        }
+      }
+    }`
+  )
+  const posts: Post[] = data.blogPostCollection.items
+  return {
+    props: {
+      posts,
+    },
+  }
+}
+
+const Home: NextPage<{ posts: Post[] }> = ({ posts }) => {
   const contactSectionRef = useRef<null | HTMLDivElement>(null)
   const aboutSectionRef = useRef<null | HTMLDivElement>(null)
+  const insightsSectionRef = useRef<null | HTMLDivElement>(null)
 
   return (
     <>
@@ -81,32 +103,25 @@ const Home: NextPage = () => {
             <About.ListCards lists={data.About.lists} />
           </Section.Content>
         </Section.Container>
-        <Section.Container name="Insights">
+        <Section.Container name="Insights" ref={insightsSectionRef}>
           <Section.Header
             title={data.Insights.section.name}
             subtitle={data.Insights.section.altname || ''}
           />
           <Section.Content>
             <Insights.BlogCardsGroup>
-              <Insights.BlogArticleCard
-                title={data.Insights.blogArticles[0].title}
-                text={data.Insights.blogArticles[0].text}
-                date={data.Insights.blogArticles[0].date}
-                imgSrc={data.Insights.blogArticles[0].imgSrc}
-                variant="large"
-              />
-              <Insights.BlogArticleCard
-                title={data.Insights.blogArticles[1].title}
-                text={data.Insights.blogArticles[1].text}
-                date={data.Insights.blogArticles[1].date}
-                imgSrc={data.Insights.blogArticles[1].imgSrc}
-              />
-              <Insights.BlogArticleCard
-                title={data.Insights.blogArticles[2].title}
-                text={data.Insights.blogArticles[2].text}
-                date={data.Insights.blogArticles[2].date}
-                imgSrc={data.Insights.blogArticles[2].imgSrc}
-              />
+              {posts.map((element, i) => {
+                return (
+                  <Insights.BlogArticleCard
+                    title={element.title}
+                    text={element.description}
+                    date={element.date}
+                    slug={element.slug}
+                    imgSrc={data.Insights.blogArticles[0].imgSrc}
+                    variant={i === 0 ? 'large' : 'regular'}
+                  />
+                )
+              })}
             </Insights.BlogCardsGroup>
           </Section.Content>
           <Section.Footer>
