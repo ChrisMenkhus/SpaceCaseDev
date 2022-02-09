@@ -3,6 +3,7 @@ import { BookOpenIcon } from '@heroicons/react/outline'
 import createClassName from '@utils/createClassName'
 import truncateString from '@utils/truncateString'
 import Image from 'next/image'
+import Router from 'next/router'
 import { FC } from 'react'
 
 const BlogCardsGroup: FC = ({ children }) => {
@@ -16,6 +17,7 @@ function BlogArticleCard({
   className = '',
   variant = 'regular',
   imgSrc,
+  slug,
 }: {
   title?: string
   text?: string
@@ -23,9 +25,14 @@ function BlogArticleCard({
   className?: string
   variant?: 'regular' | 'large'
   imgSrc?: string
+  slug: string
 }) {
   return (
     <article
+      onClick={(e) => {
+        e.preventDefault()
+        Router.push('/' + slug)
+      }}
       className={createClassName([
         'mx-4 my-8 flex flex-col w-full min-h-[14rem] max-w-sm bg-white shadow-lg sm:flex-row md:my-4 rounded',
         variant === 'regular' ? 'sm:max-w-sm sm:flex-col' : null,
@@ -60,7 +67,9 @@ function BlogArticleCard({
           </div>
           <div className="flex flex-col justify-center items-center pl-1 leading-none">
             <h2 className="h-full text-sm leading-none">Chris Menkhus</h2>
-            <h3 className="h-full text-sm leading-none">{date}</h3>
+            <h3 className="h-full text-sm leading-none  ml-0 mr-auto">
+              {date}
+            </h3>
           </div>
         </div>
         <p className="my-2">
