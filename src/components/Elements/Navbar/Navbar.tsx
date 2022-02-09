@@ -19,7 +19,7 @@ export const Navbar = () => {
     {
       name: 'Insights',
       variant: 'link',
-      to: '/Insights',
+      to: '/Blog',
     },
     {
       name: 'Workspace',
