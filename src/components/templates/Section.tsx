@@ -25,6 +25,8 @@ const Container = forwardRef<HTMLDivElement, ContainerInterface>(
   }
 )
 
+Container.displayName = 'DisplayContainer'
+
 interface HeaderInterface {
   title: string
   subtitle: string
