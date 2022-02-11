@@ -1,6 +1,6 @@
 import Post from '../types/Post'
 
-import { Navbar } from '@components/Elements/Navbar'
+import { Navbar } from '@components/organisms/Navbar'
 import {
   Options,
   documentToReactComponents,
@@ -16,7 +16,7 @@ const Blog: NextPage<{ post: Post }> = ({ post }) => {
   const options: Options = {
     renderMark: {
       [MARKS.CODE]: (text) => (
-        <pre className="my-2 px-4 py-2 bg-dark text-white whitespace-pre-wrap">
+        <pre className="py-2 px-4 my-2 text-white whitespace-pre-wrap bg-dark">
           {text}
         </pre>
       ),
@@ -46,7 +46,7 @@ const Blog: NextPage<{ post: Post }> = ({ post }) => {
   return (
     <div className="grid place-items-center">
       <Navbar />
-      <div className="mt-16 max-w-screen-lg text-left  flex flex-wrap">
+      <div className="flex flex-wrap mt-16 max-w-screen-lg text-left">
         <h1 className="my-2 text-7xl ">{post.title}</h1>
         <p className="my-2 text-xl ">{post.description}</p>
         <h2>hello world</h2>
@@ -58,9 +58,9 @@ const Blog: NextPage<{ post: Post }> = ({ post }) => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params && params.slug
-  const { data } = await queryContentful(
-    `
-    query {
+
+  console.log('PARAMS: ', params)
+  const queryForPost = ` query {
       blogPostCollection(where: {
         slug: "${slug}"
       },
@@ -79,9 +79,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
     
     `
-  )
 
-  const post: Post = data.blogPostCollection.items[0]
+  const postData = await queryContentful(queryForPost)
+  const post: Post = postData.blogPostCollection.items[0]
+
   return {
     props: {
       post,
@@ -90,23 +91,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 export async function getStaticPaths() {
-  const { data } = await queryContentful(
-    `
-      query {
-        blogPostCollection {
-          items {
-            slug
-          }
+  const queryForSlugs = ` query {
+      blogPostCollection{
+        items {
+          slug
         }
       }
-    `
-  )
+    }`
 
-  const slugs = data.blogPostCollection.items
+  const slugsData = await queryContentful(queryForSlugs)
+  const slugs: { slug: string }[] = slugsData.blogPostCollection.items
+  console.log('SLUGS: ', slugs)
 
-  const paths = slugs.map(({ slug }: { slug: string }) => {
+  const paths = slugs.map((element, index) => {
+    console.log('SLUG: ', element.slug)
     return {
-      params: { slug: slug },
+      params: { slug: element.slug },
     }
   })
 

@@ -1,4 +1,4 @@
-async function queryContentful(query: string) {
+async function queryContentful(query: string): Promise<any> {
   const result = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
     {
@@ -12,12 +12,13 @@ async function queryContentful(query: string) {
       }),
     }
   )
-  // console.log('RESULT: ', result)
   if (result.ok) {
-    return await result.json()
+    // console.log('RESULT: ', result)
+    const { data } = await result.json()
+    return data
   } else {
     console.error('ERROR: ', result)
-    return {}
+    return null
   }
 }
 
