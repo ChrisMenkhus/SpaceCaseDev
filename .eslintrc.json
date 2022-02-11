@@ -4,6 +4,6 @@
     "semi": [2, "never"],
     "quotes": [2, "single", { "avoidEscape": true }],
     "semi-spacing": 2,
-    "next/link-passhref": true
+    "next/link-passhref": 0
   }
 }

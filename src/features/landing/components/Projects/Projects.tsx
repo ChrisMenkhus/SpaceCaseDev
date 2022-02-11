@@ -19,7 +19,7 @@ export default function Projects({ projects }: ProjectsInterface) {
       />
       <Section.Content>
         {projects.map((v, i) => (
-          <ProjectCard title={v.title} />
+          <ProjectCard key={v.title + i} title={v.title} />
         ))}
       </Section.Content>
       <Section.Footer>

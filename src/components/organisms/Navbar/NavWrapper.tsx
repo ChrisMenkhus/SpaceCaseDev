@@ -59,27 +59,31 @@ export const NavWrapper = ({
           ])}
         >
           {children}
-          <div className="m-auto ml-8 flex ">
+          <div className="flex m-auto ml-8">
             <label
               htmlFor="darktoggle"
-              className="relative bg-[#333] w-24 h-8 rounded-full transition-all "
+              className="relative w-24 h-8 text-white bg-[#333] rounded-full transition-all"
             >
               <input
                 type="checkbox"
                 name="darktoggle"
                 id="darktoggle"
-                className="sr-only peer"
+                className="peer sr-only"
                 onClick={() => {
                   setTheme(theme === 'dark' ? 'light' : 'dark')
                 }}
               />
-              <span className="w-8 h-8 bg-light absolute rounded-full border-2 border-dark peer-checked:left-16  transition-all flex">
-                <div className="w-6 h-6 m-auto">
+              <span className="flex absolute peer-checked:left-16 w-8 h-8 text-dark bg-light rounded-full border-2 border-dark transition-all">
+                <div className="block dark:hidden m-auto w-6 h-6 ">
+                  <SunIcon className="" />
+                </div>
+                <div className="hidden dark:block m-auto w-6 h-6 ">
                   <MoonIcon className="" />
                 </div>
               </span>
-              <div className="h-8 absolute top-2 left-8 text-center text-white text-xs peer-checked:left-1  transition-all">
-                Lightmode
+              <div className="absolute inset-x-8 top-2 peer-checked:right-full peer-checked:left-2 h-8 text-xs text-center transition-all">
+                <span className="block dark:hidden">Lightmode</span>
+                <span className="hidden dark:block">Darkmode</span>
               </div>
             </label>
           </div>
