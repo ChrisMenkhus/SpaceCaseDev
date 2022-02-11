@@ -1,4 +1,4 @@
-import { Navbar } from '@components/Elements/Navbar'
+import { Navbar } from '@components/organisms/Navbar'
 import type { NextPage } from 'next'
 import React from 'react'
 

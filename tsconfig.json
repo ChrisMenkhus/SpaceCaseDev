@@ -21,6 +21,12 @@
       "@utils/*": ["src/utils/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "src/features/landing/components/Process/components/particlesjs-config.js",
+    "src/components/molecules/ParticleBackground/ParticleBackground.jsx"
+  ],
   "exclude": ["node_modules"]
 }

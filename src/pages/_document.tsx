@@ -1,9 +1,9 @@
 import Document, {
-  Html,
+  DocumentContext,
   Head,
+  Html,
   Main,
   NextScript,
-  DocumentContext,
 } from 'next/document'
 
 class MyDocument extends Document {
@@ -23,7 +23,7 @@ class MyDocument extends Document {
           rel="stylesheet"
         />
       </Head>
-      <body>
+      <body className="">
         <Main />
         <NextScript />
       </body>

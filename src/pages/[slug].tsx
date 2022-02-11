@@ -1,6 +1,6 @@
 import Post from '../types/Post'
 
-import { Navbar } from '@components/Elements/Navbar'
+import { Navbar } from '@components/organisms/Navbar'
 import {
   Options,
   documentToReactComponents,

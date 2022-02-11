@@ -1,8 +1,6 @@
 module.exports = {
-  content: [
-    './src/pages/**/*.{js,ts,jsx,tsx}',
-    './src/components/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
+  darkMode: 'class',
   theme: {
     fontFamily: {
       ibm: ['IBM Plex Sans', 'sans-serif'],
@@ -26,10 +24,3 @@ module.exports = {
   },
   plugins: [],
 }
-
-// primary: '#0276FF',
-// secondary: '#8002FF',
-// dark: '#999',
-// light: '#111',
-// black: '#fff',
-// white: '#000',
