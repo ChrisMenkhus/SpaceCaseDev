@@ -3,7 +3,7 @@ import makeStyles from '@utils/makeStyles'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Router from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const styles = {
   container:
@@ -26,8 +26,15 @@ export const NavWrapper = ({
     setMobileNavMenuToggled(!mobileNavMenuToggled)
   }
 
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, systemTheme } = useTheme()
   console.log('THEME: ', theme)
+
+  useEffect(() => {
+    // systemTheme === 'dark' ? setTheme('dark') : setTheme('light')
+    // setTheme(systemTheme === 'dark' ? 'dark' : 'light')
+
+    console.log('SYSTEM THEME: ', systemTheme)
+  })
 
   return (
     <nav className={styles.container}>
@@ -71,6 +78,7 @@ export const NavWrapper = ({
                 className="peer sr-only"
                 onClick={() => {
                   setTheme(theme === 'dark' ? 'light' : 'dark')
+                  console.log('THEME UPDATED')
                 }}
               />
               <span className="flex absolute peer-checked:left-16 w-8 h-8 text-dark bg-light rounded-full border-2 border-dark transition-all">
