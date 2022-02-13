@@ -1,12 +1,11 @@
-import { Navbar } from '@components/organisms/Navbar'
-import type { NextPage } from 'next'
-import React from 'react'
+import Layout from '@components/templates/Layout'
+import { NextPage } from 'next'
 
-const Workspace: NextPage = () => {
+const Workspace: NextPage<{}> = ({ ...props }) => {
   return (
-    <div className="grid place-items-center w-screen h-screen">
-      <Navbar />
-    </div>
+    <Layout title="Workspace" description="Workspace">
+      <></>
+    </Layout>
   )
 }
 
