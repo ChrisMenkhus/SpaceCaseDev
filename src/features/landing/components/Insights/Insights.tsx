@@ -35,7 +35,7 @@ function BlogArticleCard({
     <article
       onClick={(e) => {
         e.preventDefault()
-        Router.push('/' + slug)
+        Router.push('/Insights/' + slug)
       }}
       className={makeStyles([
         'mx-4 my-8 flex flex-col w-full min-h-[14rem] max-w-sm bg-white dark:bg-dark dark:text-white text-black shadow-lg sm:flex-row md:my-4 rounded overflow-hidden',
@@ -71,9 +71,7 @@ function BlogArticleCard({
           </div>
           <div className="flex flex-col justify-center items-center pl-1 leading-none">
             <h2 className="h-full text-sm leading-none">Chris Menkhus</h2>
-            <h3 className="h-full text-sm leading-none  ml-0 mr-auto">
-              {date}
-            </h3>
+            <h3 className="mr-auto ml-0 h-full text-sm leading-none">{date}</h3>
           </div>
         </div>
         <p className="my-2">

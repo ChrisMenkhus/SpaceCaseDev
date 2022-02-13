@@ -11,7 +11,9 @@ type ActiveLinkProps = {
 export const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
   const router = useRouter()
 
-  let isActiveLink = router.pathname === to
+  let currentPathName = router.pathname.split('/')[1]
+  let nextPathName = to.substring(1)
+  let isActiveLink = currentPathName === nextPathName
 
   const styles = makeStyles([
     className,

@@ -43,7 +43,7 @@ function ListCard({
     )
   })
   return (
-    <div className="flex flex-col my-8 mx-4 w-64 h-full bg-white dark:bg-dark dark:text-white text-black rounded shadow-lg md:m-auto md:my-8 md:mx-4">
+    <div className="flex flex-col my-8 mx-4 w-64 h-full text-black dark:text-white bg-white dark:bg-dark rounded shadow-lg md:m-auto md:my-8 md:mx-4">
       <div className="p-4 m-auto -mt-5 mb-0 w-14 h-14 text-white bg-gradient-to-b from-dark to-[#111] rounded-full">
         <Image
           src={imgSrc}
@@ -93,6 +93,7 @@ export default function About() {
     <Section.Container
       name="About"
       // ref={aboutSectionRef}
+      className="px-4"
     >
       <Section.Header
         title={data.About.section.name}

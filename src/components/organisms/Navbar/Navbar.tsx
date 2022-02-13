@@ -14,17 +14,17 @@ export const Navbar = () => {
     {
       name: 'Portfolio',
       variant: 'link',
-      to: '/portfolio',
+      to: '/Portfolio',
     },
     {
       name: 'Insights',
       variant: 'link',
-      to: '/blog',
+      to: '/Insights',
     },
     {
       name: 'Workspace',
       variant: 'link',
-      to: '/workspace',
+      to: '/Workspace',
     },
     {
       name: 'Contact',
