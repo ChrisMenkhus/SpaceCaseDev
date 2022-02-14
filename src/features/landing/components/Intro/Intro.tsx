@@ -3,40 +3,57 @@ import Section from '@components/templates/Section'
 import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 
+export const s = {
+  background: {
+    main: 'flex w-full h-[calc(100vh-4rem)] flex-col md:flex-row',
+    left: 'w-1/2 h-full',
+    right: 'bg-secondary h-4/6 md:h-5/6 md:m-auto md:w-1/2 ',
+  },
+  content: {
+    main: 'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-[calc(100vh-4rem)] md:flex-row',
+    textContainer: {
+      main: 'flex justify-center items-center m-auto w-full h-fit md:pt-0 md:w-1/2 bg-transparent',
+      header1:
+        'p-4 w-full max-w-fit text-2xl sm:m-auto sm:text-3xl md:pt-0 md:pb-16',
+      span1: 'block text-left',
+      span2:
+        'block text-6xl text-left text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary sm:text-6xl ',
+      span3: 'block text-right',
+      button: 'hidden m-auto my-8 mt-16 md:flex',
+    },
+    imageContainer: {
+      main: 'flex overflow-hidden relative justify-center items-center w-full h-[31rem] md:h-full md:w-1/2',
+      button: 'z-10 mt-auto mb-32 md:hidden',
+      figure:
+        'absolute -bottom-1 -left-1 w-[10rem] h-[30rem] md:relative md:m-auto md:ml-0 md:w-56 md:h-full md:max-h-[42rem] ',
+      image: '',
+    },
+  },
+}
+
 export default function Intro({
   scrollFunction,
 }: {
   scrollFunction: () => void
 }) {
-  const styles = {
-    background: 'flex w-full h-[calc(100vh-4rem)] flex-col md:flex-row',
-    background__left: 'w-1/2 h-full',
-    background__right: 'bg-secondary h-[30vh] md:h-5/6 md:m-auto md:w-1/2 ',
-    content: '',
-  }
-
   return (
-    <Section.Container name="Intro" className={'relative mt-0'}>
-      <div className={styles.background}>
-        <div className={styles.background__left} />
-        <div className={styles.background__right} />
+    <Section.Container name="Intro" className={'relative mt-20'}>
+      <div className={s.background.main}>
+        <div className={s.background.left} />
+        <div className={s.background.right} />
       </div>
-      <div
-        className={
-          'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-[calc(100vh-5rem)] md:flex-row'
-        }
-      >
-        <div className=" flex justify-center items-center m-auto w-full h-fit md:pt-0 md:w-1/2">
-          <h1 className="p-4 pt-16 w-full max-w-fit text-2xl sm:m-auto sm:text-3xl md:pt-0 md:pb-16">
-            <span className="block text-left">{"Hey, I'm"}</span>
-            <span className="block text-5xl text-left text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary sm:text-6xl">
-              Chris Menkhus
+      <div className={s.content.main}>
+        <div className={s.content.textContainer.main}>
+          <h1 className={s.content.textContainer.header1}>
+            <span className={s.content.textContainer.span1}>{"Hey, I'm"}</span>
+            <span className={s.content.textContainer.span2}>Chris Menkhus</span>
+            <span className={s.content.textContainer.span3}>
+              Front End Web-Stronaut
             </span>
-            <span className="block text-right">Front End Web-Stronaut</span>
             <Button
               variant="primary"
               size="lg"
-              className="m-auto my-8 md:mt-16"
+              className={s.content.textContainer.button}
               icon={ChevronDoubleDownIcon}
               onClick={scrollFunction}
             >
@@ -44,12 +61,22 @@ export default function Intro({
             </Button>
           </h1>
         </div>
-        <div className="flex overflow-hidden relative justify-center items-center w-full h-full md:w-1/2">
-          <figure className="absolute bottom-0 -left-1 w-36 h-full max-h-[32rem] md:relative md:m-auto md:ml-0 md:w-56 md:max-h-[42rem]">
+        <div className={s.content.imageContainer.main}>
+          <Button
+            variant="inverse"
+            size="lg"
+            className={s.content.imageContainer.button}
+            icon={ChevronDoubleDownIcon}
+            onClick={scrollFunction}
+          >
+            Learn More
+          </Button>
+          <figure className={s.content.imageContainer.figure}>
             <Image
               src="/icon/chris-illustration.svg"
               alt="starship image"
               layout="fill"
+              className={s.content.imageContainer.image}
             />
           </figure>
         </div>
