@@ -15,7 +15,6 @@ export default function Layout({ ...props }: PageInterface) {
       className={makeStyles([
         'flex flex-col justify-center items-center  m-auto',
         'bg-light text-black dark:bg-[#111] dark:text-white',
-        'mt-[5rem]',
         props.className ? props.className : '',
       ])}
     >
