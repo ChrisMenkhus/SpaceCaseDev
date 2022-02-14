@@ -13,8 +13,9 @@ export default function Layout({ ...props }: PageInterface) {
   return (
     <div
       className={makeStyles([
-        'flex-col min-h-screen flexcenter',
+        'flex flex-col justify-center items-center min-h-screen m-auto',
         'bg-light text-black dark:bg-[#111] dark:text-white',
+        'pt-24',
         props.className ? props.className : '',
       ])}
     >
@@ -23,7 +24,7 @@ export default function Layout({ ...props }: PageInterface) {
         <meta name="description" content={props.description} />
       </Head>
       <Navbar />
-      {props.children}
+      <div>{props.children}</div>
     </div>
   )
 }

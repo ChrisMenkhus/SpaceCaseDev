@@ -3,19 +3,21 @@ import makeStyles from '@utils/makeStyles'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Router from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const styles = {
   container:
-    'bg-white w-full mb-auto mt-0 shadow-md text-black bg-white dark:bg-dark dark:text-white',
-  layout: 'max-w-screen-lg mx-auto flex flex-wrap md:flex-nowrap px-4 py-6',
+    'bg-white w-full fixed top-0 z-50 shadow-md text-black bg-white dark:bg-dark dark:text-white',
+  topLine: 'w-full h-1 bg-light',
+  layout:
+    'max-w-screen-lg mx-auto flex flex-wrap md:flex-nowrap px-4 py-2 md:py-4 ',
   layout_top: 'flex flex-row items-center w-full h-auto md:w-auto',
   logoButton: 'relative w-12 h-12 ',
   name: 'pr-8 pl-4 text-xl',
   menuButton: 'relative ml-auto p-1 w-10 h-10 md:hidden',
+  links: 'flex flex-col w-auto text-center m-auto md:mr-0 md:flex-row',
   darkModeButton:
-    'relative rounded h-10 w-fit border-2 border-dark p-0 ml-8 mr-0 flex flex-row',
-  links: 'flex flex-col w-auto m-auto md:mr-0 md:flex-row',
+    'relative m-auto mt-8 md:mt-auto md:ml-8 md:mr-0 grid place-items-center',
 }
 
 export const NavWrapper = ({
@@ -26,10 +28,22 @@ export const NavWrapper = ({
     setMobileNavMenuToggled(!mobileNavMenuToggled)
   }
 
-  const { theme, setTheme } = useTheme()
+
+  const { theme, setTheme, systemTheme } = useTheme()
+
+
+
+
+  useEffect(() => {
+    // systemTheme === 'dark' ? setTheme('dark') : setTheme('light')
+    // setTheme(systemTheme === 'dark' ? 'dark' : 'light')
+
+    console.log('SYSTEM THEME: ', systemTheme)
+  })
 
   return (
     <nav className={styles.container}>
+      <div className={styles.topLine}></div>
       <div className={styles.layout}>
         <div className={styles.layout_top}>
           <button
@@ -58,10 +72,10 @@ export const NavWrapper = ({
           ])}
         >
           {children}
-          <div className="flex m-auto ml-8">
+          <div className={styles.darkModeButton}>
             <label
               htmlFor="darktoggle"
-              className="relative w-24 h-8 text-white bg-[#333] rounded-full transition-all"
+              className="relative w-28 h-8 text-white bg-[#333] rounded-full transition-all"
             >
               <input
                 type="checkbox"
@@ -70,9 +84,10 @@ export const NavWrapper = ({
                 className="peer sr-only"
                 onClick={() => {
                   setTheme(theme === 'dark' ? 'light' : 'dark')
+                  console.log('THEME UPDATED')
                 }}
               />
-              <span className="flex absolute peer-checked:left-16 w-8 h-8 text-dark bg-light rounded-full border-2 border-dark transition-all">
+              <span className="flex absolute peer-checked:left-20 w-8 h-8 text-dark bg-light rounded-full border-2 border-dark transition-all">
                 <div className="block dark:hidden m-auto w-6 h-6 ">
                   <SunIcon className="" />
                 </div>
@@ -80,9 +95,9 @@ export const NavWrapper = ({
                   <MoonIcon className="" />
                 </div>
               </span>
-              <div className="absolute inset-x-8 top-2 peer-checked:right-full peer-checked:left-2 h-8 text-xs text-center transition-all">
-                <span className="block dark:hidden">Lightmode</span>
-                <span className="hidden dark:block">Darkmode</span>
+              <div className="absolute top-2 left-7 peer-checked:left-1 w-20 h-8 text-xs text-center transition-all">
+                <span className="hidden dark:block">Lightmode</span>
+                <span className="block dark:hidden">Darkmode</span>
               </div>
             </label>
           </div>

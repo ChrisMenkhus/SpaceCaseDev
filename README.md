@@ -16,7 +16,9 @@ make changes to project
 
 - git add [modified files]
 
-- git commit -m "[#[issue#] short concise commit]"
+- git commit -m "[#[issue#] 👌 short concise commit]"
+  Add issue number to commit (example.. #1)
+  Add Emoji to commit (Win + .)
 
 - git push -u origin issue-[issue#]
 

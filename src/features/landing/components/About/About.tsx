@@ -90,6 +90,7 @@ function CallToActionImage() {
 
 type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
+
 }
 
 const About = forwardRef<HTMLDivElement, AboutInterface>(

@@ -1,6 +1,7 @@
-import Post from '../types/Post'
+import Post from '../../types/Post'
 
 import { Navbar } from '@components/organisms/Navbar'
+import Layout from '@components/templates/Layout'
 import {
   Options,
   documentToReactComponents,
@@ -16,20 +17,20 @@ const Blog: NextPage<{ post: Post }> = ({ post }) => {
   const options: Options = {
     renderMark: {
       [MARKS.CODE]: (text) => (
-        <pre className="py-2 px-4 my-2 text-white whitespace-pre-wrap bg-dark">
+        <pre className="py-2 px-4 my-4 text-white whitespace-pre-wrap bg-dark">
           {text}
         </pre>
       ),
     },
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 className="my-4 text-3xl">{children}</h1>
+        <h1 className="mt-8 mb-4 text-4xl font-medium">{children}</h1>
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
-        <h1 className="my-2 text-3xl text-primary">{children}</h1>
+        <h1 className="my-4 text-5xl text-primary">{children}</h1>
       ),
       [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className="my-2">{children}</p>
+        <p className="mb-4">{children}</p>
       ),
     },
   }
@@ -38,21 +39,24 @@ const Blog: NextPage<{ post: Post }> = ({ post }) => {
 
   const BlogPost = () => (
     <div className="w-full">
-      {' '}
       {documentToReactComponents(document, options)}{' '}
     </div>
   )
 
   return (
-    <div className="grid place-items-center">
-      <Navbar />
-      <div className="flex flex-wrap mt-16 max-w-screen-lg text-left">
-        <h1 className="my-2 text-7xl ">{post.title}</h1>
+    <Layout title="Insights" description="Insights" className="px-8">
+      <div className="flex flex-wrap m-auto max-w-screen-md text-left">
+        <div className="flex flex-col-reverse my-4 w-full md:flex-row">
+          <div className="my-8 mr-4 w-full h-64 bg-dark md:my-0 md:max-w-xs md:h-full" />
+
+          <h1 className="w-full text-7xl">{post.title}</h1>
+        </div>
         <p className="my-2 text-xl ">{post.description}</p>
-        <h2>hello world</h2>
+      </div>
+      <div className="flex flex-wrap mb-36 max-w-screen-sm">
         <BlogPost />
       </div>
-    </div>
+    </Layout>
   )
 }
 

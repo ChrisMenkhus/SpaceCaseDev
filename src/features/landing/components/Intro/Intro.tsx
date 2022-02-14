@@ -1,6 +1,7 @@
 import { Button } from '@components/atoms/Button'
 import Section from '@components/templates/Section'
 import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
+
 import Image from 'next/image'
 
 export default function Intro({
@@ -54,20 +55,6 @@ export default function Intro({
           </figure>
         </div>
       </div>
-      {/* <div className="flex w-full">
-        <div className="flex justify-center items-center pb-36 m-auto w-full h-screen bg-none">
-
-        </div>
-        <div className="flex m-auto w-full h-screen bg-secondary">
-          <div className="relative m-auto ml-0 w-56 h-[42rem]">
-            <Image
-              src="/icon/chris-illustration.svg"
-              alt="starship image"
-              layout="fill"
-            />
-          </div>
-        </div> */}
-      {/* </div> */}
     </Section.Container>
   )
 }
