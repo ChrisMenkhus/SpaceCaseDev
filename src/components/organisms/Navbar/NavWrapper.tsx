@@ -27,7 +27,6 @@ export const NavWrapper = ({
   }
 
   const { theme, setTheme } = useTheme()
-  console.log('THEME: ', theme)
 
   return (
     <nav className={styles.container}>

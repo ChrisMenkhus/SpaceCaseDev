@@ -15,7 +15,7 @@ const Container = forwardRef<HTMLDivElement, ContainerInterface>(
         ref={ref}
         id={name}
         className={makeStyles([
-          'flex-col gap-4 px-0 mt-8 pb-0 flexcenter',
+          'flex items-center justify-center flex-col gap-4 px-0 mt-8 pb-0 w-full',
           className,
         ])}
       >

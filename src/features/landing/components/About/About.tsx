@@ -1,7 +1,7 @@
 import Section from '@components/templates/Section'
 import Image from 'next/image'
 import * as data from 'public/data/home'
-import { FC } from 'react'
+import { FC, RefAttributes, RefObject, forwardRef } from 'react'
 
 type ListsType = {
   name: string
@@ -43,7 +43,7 @@ function ListCard({
     )
   })
   return (
-    <div className="flex flex-col my-8 mx-4 w-64 h-full bg-white dark:bg-dark dark:text-white text-black rounded shadow-lg md:m-auto md:my-8 md:mx-4">
+    <div className="flex flex-col my-8 mx-4 w-64 h-full text-black dark:text-white bg-white dark:bg-dark rounded shadow-lg md:m-auto md:my-8 md:mx-4">
       <div className="p-4 m-auto -mt-5 mb-0 w-14 h-14 text-white bg-gradient-to-b from-dark to-[#111] rounded-full">
         <Image
           src={imgSrc}
@@ -88,26 +88,30 @@ function CallToActionImage() {
   )
 }
 
-export default function About() {
-  return (
-    <Section.Container
-      name="About"
-      // ref={aboutSectionRef}
-    >
-      <Section.Header
-        title={data.About.section.name}
-        subtitle={data.About.section.altname || ''}
-      />
-      <Section.Content>
-        <TextBlockGroup>
-          <TextBlock text={data.About.text || ''} />
-          <TextBlock text={data.About.text2 || ''} />
-        </TextBlockGroup>
-        <CallToActionImage />
-        <ListCards lists={data.About.lists} />
-      </Section.Content>
-    </Section.Container>
-  )
+type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
+  className?: string
 }
 
-export { TextBlock, CallToActionImage, ListCards, TextBlockGroup }
+const About = forwardRef<HTMLDivElement, AboutInterface>(
+  ({ className = '' }, ref?) => {
+    return (
+      <Section.Container name="About" ref={ref}>
+        <Section.Header
+          title={data.About.section.name}
+          subtitle={data.About.section.altname || ''}
+        />
+        <Section.Content>
+          <TextBlockGroup>
+            <TextBlock text={data.About.text || ''} />
+            <TextBlock text={data.About.text2 || ''} />
+          </TextBlockGroup>
+          <CallToActionImage />
+          <ListCards lists={data.About.lists} />
+        </Section.Content>
+      </Section.Container>
+    )
+  }
+)
+
+About.displayName = 'AboutSection'
+export default About

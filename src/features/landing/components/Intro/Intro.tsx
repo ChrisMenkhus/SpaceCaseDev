@@ -1,82 +1,73 @@
 import { Button } from '@components/atoms/Button'
-import ScrollDownIcon from '@components/molecules/Icons/ScrollDownIcon'
 import Section from '@components/templates/Section'
-import { CalendarIcon } from '@heroicons/react/outline'
+import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
-import * as data from 'public/data/home'
 
-type HeaderContainerInterface = { children: JSX.Element | JSX.Element[] }
+export default function Intro({
+  scrollFunction,
+}: {
+  scrollFunction: () => void
+}) {
+  const styles = {
+    background: 'flex w-full h-[calc(100vh-6rem)] flex-col md:flex-row',
+    background__left: 'w-1/2 h-full',
+    background__right: 'bg-secondary h-[30vh] md:h-full md:w-1/2 ',
+    content: '',
+  }
 
-function HeaderContainer({ children }: HeaderContainerInterface) {
   return (
-    <div className="flex-col-reverse mb-4 max-w-screen-lg sm:flex-row flexcenter">
-      {children}
-    </div>
-  )
-}
-
-interface HeaderInterface {
-  title: string
-  subtitle: string
-}
-
-function Header({ title, subtitle }: HeaderInterface) {
-  return (
-    <header className="flex-col flexleft ">
-      <h1 className="pt-0 pb-2 text-6xl font-bold md:text-8xl leading-none text-center sm:text-left md:pl-0 md:m-0 lg:text-9xl">
-        {title}
-      </h1>
-      <h2 className="m-auto w-8/12 text-lg font-light leading-none text-center text-transparent bg-clip-text sm:ml-0 sm:text-left 2xl:text-xl gradientbg">
-        {subtitle}
-      </h2>
-    </header>
-  )
-}
-
-function SpaceShipImage() {
-  return (
-    <div className="gap-4 w-full max-w-xs h-full ">
-      <Image
-        src="/starship.svg"
-        alt="starship image"
-        width="380px"
-        height="520px"
-        layout="responsive"
-      />
-    </div>
-  )
-}
-
-export default function Intro() {
-  return (
-    <Section.Container name="Intro" className="min-h-[calc(100vh-12rem)] ">
-      <HeaderContainer>
-        <Header
-          title={data.Intro.text as string}
-          subtitle={data.Intro.text2 as string}
-        />
-        <SpaceShipImage />
-      </HeaderContainer>
-      <Section.Footer>
-        <div className="flex-row flex-wrap px-8 py-2 md:py-0">
-          <Button
-            size="lg"
-            variant="secondary"
-            icon={CalendarIcon}
-            className="mb-4"
-            // onClick={() => scrollToRef(contactSectionRef)}
-          >
-            {data.Intro.button2 as string}
-          </Button>
-          <Button
-            size="xl"
-            variant="borderless"
-            icon={ScrollDownIcon}
-            className="mx-auto my-16 animate-bounce"
-            // onClick={() => scrollToRef(contactSectionRef)}
-          />
+    <Section.Container name="Intro" className={'relative mt-0'}>
+      <div className={styles.background}>
+        <div className={styles.background__left} />
+        <div className={styles.background__right} />
+      </div>
+      <div
+        className={
+          'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-[calc(100vh-6rem)] md:flex-row'
+        }
+      >
+        <div className=" flex justify-center items-center m-auto w-full h-fit md:pt-0 md:w-1/2">
+          <h1 className="p-4 pt-16 w-full max-w-fit text-2xl sm:m-auto sm:text-3xl md:pt-0 md:pb-16">
+            <span className="block text-left">{"Hey, I'm"}</span>
+            <span className="block text-5xl text-left text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary sm:text-6xl">
+              Chris Menkhus
+            </span>
+            <span className="block text-right">Front End Web-Stronaut</span>
+            <Button
+              variant="primary"
+              size="lg"
+              className="m-auto my-8 md:mt-16"
+              icon={ChevronDoubleDownIcon}
+              onClick={scrollFunction}
+            >
+              Learn More
+            </Button>
+          </h1>
         </div>
-      </Section.Footer>
+        <div className="flex overflow-hidden relative justify-center items-center w-full h-full md:w-1/2">
+          <figure className="absolute bottom-0 -left-1 w-36 h-full max-h-[32rem] md:relative md:m-auto md:ml-0 md:w-56 md:max-h-[42rem]">
+            <Image
+              src="/icon/chris-illustration.svg"
+              alt="starship image"
+              layout="fill"
+            />
+          </figure>
+        </div>
+      </div>
+      {/* <div className="flex w-full">
+        <div className="flex justify-center items-center pb-36 m-auto w-full h-screen bg-none">
+
+        </div>
+        <div className="flex m-auto w-full h-screen bg-secondary">
+          <div className="relative m-auto ml-0 w-56 h-[42rem]">
+            <Image
+              src="/icon/chris-illustration.svg"
+              alt="starship image"
+              layout="fill"
+            />
+          </div>
+        </div> */}
+      {/* </div> */}
     </Section.Container>
   )
 }
