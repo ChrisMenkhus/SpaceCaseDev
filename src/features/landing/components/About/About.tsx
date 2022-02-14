@@ -71,12 +71,12 @@ const TextBlockGroup: FC = ({ children }) => {
 }
 
 function TextBlock({ text }: { text: string }) {
-  return <p className="py-1 pb-4 mb-auto indent-6">{text}</p>
+  return <p className="px-4 pb-2 mb-auto w-auto indent-6">{text}</p>
 }
 
 function CallToActionImage() {
   return (
-    <div className="pr-8 m-auto w-96 h-full md:ml-0">
+    <div className="pr-8 m-auto w-full max-w-[15rem] h-full md:ml-0">
       <div className="relative m-auto w-80 h-80">
         <Image
           src="/thinking-about-space.svg"
@@ -90,7 +90,6 @@ function CallToActionImage() {
 
 type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
-
 }
 
 const About = forwardRef<HTMLDivElement, AboutInterface>(
