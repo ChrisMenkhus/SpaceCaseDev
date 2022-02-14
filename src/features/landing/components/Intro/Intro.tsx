@@ -1,7 +1,6 @@
 import { Button } from '@components/atoms/Button'
 import Section from '@components/templates/Section'
 import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
-
 import Image from 'next/image'
 
 export default function Intro({
@@ -10,9 +9,9 @@ export default function Intro({
   scrollFunction: () => void
 }) {
   const styles = {
-    background: 'flex w-full h-[calc(100vh-6rem)] flex-col md:flex-row',
+    background: 'flex w-full h-[calc(100vh-4rem)] flex-col md:flex-row',
     background__left: 'w-1/2 h-full',
-    background__right: 'bg-secondary h-[30vh] md:h-full md:w-1/2 ',
+    background__right: 'bg-secondary h-[30vh] md:h-5/6 md:m-auto md:w-1/2 ',
     content: '',
   }
 
@@ -24,7 +23,7 @@ export default function Intro({
       </div>
       <div
         className={
-          'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-[calc(100vh-6rem)] md:flex-row'
+          'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-[calc(100vh-5rem)] md:flex-row'
         }
       >
         <div className=" flex justify-center items-center m-auto w-full h-fit md:pt-0 md:w-1/2">

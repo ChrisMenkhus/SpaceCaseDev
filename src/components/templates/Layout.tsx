@@ -13,9 +13,9 @@ export default function Layout({ ...props }: PageInterface) {
   return (
     <div
       className={makeStyles([
-        'flex flex-col justify-center items-center min-h-screen m-auto',
+        'flex flex-col justify-center items-center  m-auto',
         'bg-light text-black dark:bg-[#111] dark:text-white',
-        'pt-24',
+        'mt-[5rem]',
         props.className ? props.className : '',
       ])}
     >
