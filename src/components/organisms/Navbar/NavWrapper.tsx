@@ -28,8 +28,9 @@ export const NavWrapper = ({
     setMobileNavMenuToggled(!mobileNavMenuToggled)
   }
 
+
   const { theme, setTheme, systemTheme } = useTheme()
-  console.log('THEME: ', theme)
+
 
 
 

@@ -1,7 +1,7 @@
 import Section from '@components/templates/Section'
 import Image from 'next/image'
 import * as data from 'public/data/home'
-import { FC } from 'react'
+import { FC, RefAttributes, RefObject, forwardRef } from 'react'
 
 type ListsType = {
   name: string
@@ -88,27 +88,31 @@ function CallToActionImage() {
   )
 }
 
-export default function About() {
-  return (
-    <Section.Container
-      name="About"
-      // ref={aboutSectionRef}
-      className="px-4"
-    >
-      <Section.Header
-        title={data.About.section.name}
-        subtitle={data.About.section.altname || ''}
-      />
-      <Section.Content>
-        <TextBlockGroup>
-          <TextBlock text={data.About.text || ''} />
-          <TextBlock text={data.About.text2 || ''} />
-        </TextBlockGroup>
-        <CallToActionImage />
-        <ListCards lists={data.About.lists} />
-      </Section.Content>
-    </Section.Container>
-  )
+type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
+  className?: string
+
 }
 
-export { TextBlock, CallToActionImage, ListCards, TextBlockGroup }
+const About = forwardRef<HTMLDivElement, AboutInterface>(
+  ({ className = '' }, ref?) => {
+    return (
+      <Section.Container name="About" ref={ref}>
+        <Section.Header
+          title={data.About.section.name}
+          subtitle={data.About.section.altname || ''}
+        />
+        <Section.Content>
+          <TextBlockGroup>
+            <TextBlock text={data.About.text || ''} />
+            <TextBlock text={data.About.text2 || ''} />
+          </TextBlockGroup>
+          <CallToActionImage />
+          <ListCards lists={data.About.lists} />
+        </Section.Content>
+      </Section.Container>
+    )
+  }
+)
+
+About.displayName = 'AboutSection'
+export default About
