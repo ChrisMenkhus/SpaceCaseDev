@@ -3,7 +3,6 @@ import Section from '@components/templates/Section'
 import { CalendarIcon, MailIcon } from '@heroicons/react/outline'
 import makeStyles from '@utils/makeStyles'
 import OpenCalendlyPopup from '@utils/openCalendlyPopup'
-import * as data from 'public/data/home'
 
 function Form({}: {}) {
   return (
@@ -102,23 +101,20 @@ export default function Contact() {
         name="Contact"
         // ref={contactSectionRef}
       >
-        <Section.Header
-          title={data.Contact.section.name}
-          subtitle={data.Contact.section.altname || ''}
-        />
+        <Section.Header title="Contact" subtitle={'subtitle'} />
         <Section.Content>
-          <SimpleCard title={data.Contact.text || ''}>
+          <SimpleCard title={'contact'}>
             <Form />
           </SimpleCard>
-          <SimpleCard variant="secondary" title={data.Contact.text2 || ''}>
-            <SimpleCardText>{data.Contact.text3 as string}</SimpleCardText>
+          <SimpleCard variant="secondary" title="title">
+            <SimpleCardText>{'texttext'}</SimpleCardText>
             <Button
               size="lg"
               variant="primary"
               icon={CalendarIcon}
               onClick={OpenCalendlyPopup}
             >
-              {data.Contact.button2 as string}
+              more text
             </Button>
           </SimpleCard>
         </Section.Content>

@@ -50,12 +50,12 @@ function BlogArticleCard({
           variant === 'regular' && 'sm:h-56',
         ])}
       >
-        <Image
+        {/* <Image
           src={imgSrc || ''}
           alt="generic blog image"
           layout="fill"
           objectFit="cover"
-        />
+        /> */}
       </div>
       <div className="p-4 w-full max-w-md h-full">
         <div className="w-32 h-1 gradientbg" />
@@ -97,10 +97,7 @@ export default function Insights({ posts }: InsightsInterface) {
       name="Insights"
       // ref={insightsSectionRef}
     >
-      <Section.Header
-        title={data.Insights.section.name}
-        subtitle={data.Insights.section.altname || ''}
-      />
+      <Section.Header title="Insights" subtitle="blog" />
       <Section.Content>
         <BlogCardsGroup>
           {posts.map((element, i) => {
@@ -111,7 +108,7 @@ export default function Insights({ posts }: InsightsInterface) {
                 text={element.description}
                 date={element.date}
                 slug={element.slug}
-                imgSrc={data.Insights.blogArticles[0].imgSrc}
+                imgSrc={''}
                 variant={i === 0 ? 'large' : 'regular'}
               />
             )
@@ -126,7 +123,7 @@ export default function Insights({ posts }: InsightsInterface) {
             icon={CollectionIcon}
             className="mx-auto sm:mr-8"
           >
-            {data.Insights.button || ''}
+            BUTon text
           </Button>
         </div>
       </Section.Footer>

@@ -3,7 +3,6 @@ import ProjectCard from './components/ProjectCard'
 import { Button } from '@components/atoms/Button'
 import Section from '@components/templates/Section'
 import { CollectionIcon } from '@heroicons/react/outline'
-import * as data from 'public/data/home'
 import Project from 'src/types/Project'
 
 type ProjectsInterface = {
@@ -13,10 +12,7 @@ type ProjectsInterface = {
 export default function Projects({ projects }: ProjectsInterface) {
   return (
     <Section.Container name="Projects">
-      <Section.Header
-        title={data.Portfolio.section.name}
-        subtitle={data.Portfolio.section.altname || ''}
-      />
+      <Section.Header title="Projects" subtitle="subtitle" />
       <Section.Content>
         {projects.map((v, i) => (
           <ProjectCard key={v.title + i} title={v.title} />
@@ -30,7 +26,7 @@ export default function Projects({ projects }: ProjectsInterface) {
             icon={CollectionIcon}
             className="mx-auto sm:mr-8"
           >
-            {data.Portfolio.button || ''}
+            Portfolio
           </Button>
         </div>
       </Section.Footer>

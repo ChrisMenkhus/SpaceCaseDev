@@ -1,17 +1,13 @@
 import ListDisplay from './components/ListDisplay'
 
 import Section from '@components/templates/Section'
-import * as data from 'public/data/home'
 
 type ProcessInterface = {}
 
 export default function Process({ ...props }: ProcessInterface) {
   return (
     <Section.Container name="DevProcess" className="my-8">
-      <Section.Header
-        title={data.DevProcess.section.name}
-        subtitle={data.DevProcess.section.altname || ''}
-      />
+      <Section.Header title={'asdf'} subtitle={'adsf'} />
       <ListDisplay
         items={[
           {
