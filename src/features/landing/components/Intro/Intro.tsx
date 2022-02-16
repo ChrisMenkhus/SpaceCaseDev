@@ -5,16 +5,16 @@ import Image from 'next/image'
 
 export const s = {
   background: {
-    main: 'flex w-full h-[calc(100vh-4rem)] flex-col md:flex-row',
-    left: 'w-1/2 h-full',
+    main: 'flex w-full h-[calc(100vh-4rem)] max-h-[1050px] flex-col md:flex-row ',
+    left: 'w-1/2 h-full ',
     right: 'bg-secondary h-4/6 md:h-5/6 md:m-auto md:w-1/2 ',
   },
   content: {
-    main: 'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-[calc(100vh-4rem)] md:flex-row',
+    main: 'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-[calc(100vh-4rem)] max-h-[1050px] md:flex-row ',
     textContainer: {
       main: 'flex justify-center items-center m-auto w-full h-fit md:pt-0 md:w-1/2 bg-transparent',
       header1:
-        'p-4 w-full max-w-fit text-2xl sm:m-auto sm:text-3xl md:pt-0 md:pb-16',
+        'p-4 w-full max-w-fit text-2xl sm:m-auto sm:text-3xl md:pt-0 md:pb-16 ',
       span1: 'block text-left',
       span2:
         'block text-6xl text-left text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary sm:text-6xl ',
@@ -22,7 +22,7 @@ export const s = {
       button: 'hidden m-auto my-8 mt-16 md:flex',
     },
     imageContainer: {
-      main: 'flex overflow-hidden relative justify-center items-center w-full h-[31rem] md:h-full md:w-1/2',
+      main: 'flex relative justify-center items-center w-full h-[31rem] md:h-full md:w-1/2',
       button: 'z-10 mt-auto mb-32 md:hidden',
       figure:
         'absolute -bottom-1 -left-1 w-[10rem] h-[30rem] md:relative md:m-auto md:ml-0 md:w-56 md:h-full md:max-h-[42rem] ',
@@ -37,19 +37,23 @@ export default function Intro({
   scrollFunction: () => void
 }) {
   return (
-    <Section.Container name="Intro" className={'relative mt-20'}>
+    <Section.Container name="Intro" className={'relative'}>
       <div className={s.background.main}>
         <div className={s.background.left} />
         <div className={s.background.right} />
       </div>
       <div className={s.content.main}>
         <div className={s.content.textContainer.main}>
-          <h1 className={s.content.textContainer.header1}>
-            <span className={s.content.textContainer.span1}>{"Hey, I'm"}</span>
-            <span className={s.content.textContainer.span2}>Chris Menkhus</span>
-            <span className={s.content.textContainer.span3}>
-              Front End Web-Stronaut
-            </span>
+          <div className={s.content.textContainer.header1}>
+            <h1>
+              <span className={s.content.textContainer.span1}>Hey, I am</span>
+              <span className={s.content.textContainer.span2}>
+                Chris Menkhus
+              </span>
+              <span className={s.content.textContainer.span3}>
+                Front End Web-Stronaut
+              </span>
+            </h1>
             <Button
               variant="primary"
               size="lg"
@@ -59,7 +63,7 @@ export default function Intro({
             >
               Learn More
             </Button>
-          </h1>
+          </div>
         </div>
         <div className={s.content.imageContainer.main}>
           <Button

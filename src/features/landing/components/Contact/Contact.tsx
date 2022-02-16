@@ -1,10 +1,9 @@
 import { Button } from '@components/atoms/Button'
 import Section from '@components/templates/Section'
 import { CalendarIcon, MailIcon } from '@heroicons/react/outline'
-import createClassName from '@utils/createClassName'
+import makeStyles from '@utils/makeStyles'
 import OpenCalendlyPopup from '@utils/openCalendlyPopup'
 import * as data from 'public/data/home'
-import { FC } from 'react'
 
 function Form({}: {}) {
   return (
@@ -52,8 +51,8 @@ function Form({}: {}) {
   )
 }
 
-const BottomBackground: FC = ({ children }) => {
-  return <div className=" -mt-24 w-full h-56 gradientbg ">{children}</div>
+const BottomBackground = () => {
+  return <div className="-mt-24 w-full h-56 gradientbg " />
 }
 
 function SimpleCardText({ children }: { children: string }) {
@@ -73,17 +72,17 @@ function SimpleCard({
 }) {
   return (
     <div
-      className={createClassName([
-        'flex z-10 flex-col justify-center items-center m-auto mt-0  w-80 h-full bg-white shadow-lg sm:mt-auto md:mx-8 min-h-[30rem] rounded overflow-hidden',
-        variant === 'primary' ? '' : null,
-        variant === 'secondary' ? 'mt-16' : null,
+      className={makeStyles([
+        'flex z-10 flex-col justify-center items-center m-auto mt-0  w-80 h-full bg-white dark:bg-dark shadow-lg sm:mt-auto md:mx-8 min-h-[30rem] rounded overflow-hidden',
+        variant === 'primary' && '',
+        variant === 'secondary' && 'mt-16',
       ])}
     >
       <div
-        className={createClassName([
+        className={makeStyles([
           'mt-0 flex flex-col justify-center items-center w-full h-20',
-          variant === 'primary' ? 'bg-primary' : null,
-          variant === 'secondary' ? 'bg-secondary' : null,
+          variant === 'primary' && 'bg-primary',
+          variant === 'secondary' && 'bg-secondary',
         ])}
       >
         <h1 className="text-xl text-white">{title}</h1>
@@ -97,34 +96,34 @@ function SimpleCard({
 
 export default function Contact() {
   return (
-    <Section.Container
-      id="Contact"
-      name="Contact"
-      // ref={contactSectionRef}
-    >
-      <Section.Header
-        title={data.Contact.section.name}
-        subtitle={data.Contact.section.altname || ''}
-      />
-      <Section.Content>
-        <SimpleCard title={data.Contact.text || ''}>
-          <Form />
-        </SimpleCard>
-        <SimpleCard variant="secondary" title={data.Contact.text2 || ''}>
-          <SimpleCardText>{data.Contact.text3 as string}</SimpleCardText>
-          <Button
-            size="lg"
-            variant="primary"
-            icon={CalendarIcon}
-            onClick={OpenCalendlyPopup}
-          >
-            {data.Contact.button2 as string}
-          </Button>
-        </SimpleCard>
-      </Section.Content>
-      <BottomBackground>
-        <Section.Footer></Section.Footer>
-      </BottomBackground>
-    </Section.Container>
+    <div className="w-screen">
+      <Section.Container
+        id="Contact"
+        name="Contact"
+        // ref={contactSectionRef}
+      >
+        <Section.Header
+          title={data.Contact.section.name}
+          subtitle={data.Contact.section.altname || ''}
+        />
+        <Section.Content>
+          <SimpleCard title={data.Contact.text || ''}>
+            <Form />
+          </SimpleCard>
+          <SimpleCard variant="secondary" title={data.Contact.text2 || ''}>
+            <SimpleCardText>{data.Contact.text3 as string}</SimpleCardText>
+            <Button
+              size="lg"
+              variant="primary"
+              icon={CalendarIcon}
+              onClick={OpenCalendlyPopup}
+            >
+              {data.Contact.button2 as string}
+            </Button>
+          </SimpleCard>
+        </Section.Content>
+      </Section.Container>
+      <BottomBackground />
+    </div>
   )
 }

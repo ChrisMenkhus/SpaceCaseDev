@@ -1,7 +1,8 @@
-import { Button } from '../../atoms/Button'
 import { ActiveLink } from './ActiveLink'
 
+import { Button } from '@components/atoms/Button'
 import Router from 'next/router'
+import { ElementType } from 'react'
 
 const variants = {
   link: 'mx-4 my-4 md:my-auto',
@@ -11,7 +12,7 @@ const variants = {
 export type NavItemProps = React.BaseHTMLAttributes<HTMLElement> & {
   name: string
   to: string
-  icon?: React.ReactType
+  icon?: ElementType
   variant: keyof typeof variants
 }
 

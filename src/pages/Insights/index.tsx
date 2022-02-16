@@ -1,4 +1,5 @@
 import Layout from '@components/templates/Layout'
+import Section from '@components/templates/Section'
 import queryContentful from '@utils/queryContentful'
 import type { NextPage } from 'next'
 import Post from 'src/types/Post'
@@ -31,9 +32,11 @@ export async function getStaticProps() {
 const Insights: NextPage<{ posts: Post[] }> = ({ posts }) => {
   return (
     <Layout title="Insights" description="Insights">
-      {posts.map((element, i) => {
-        return <div key={element.slug + i}>{element.title}</div>
-      })}
+      <Section.Container name="Insights" className="mt-20">
+        {posts.map((element, i) => {
+          return <div key={element.slug + i}>{element.title}</div>
+        })}
+      </Section.Container>
     </Layout>
   )
 }

@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
-import 'src/styles/globals.css'
+import 'src/styles/global.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
