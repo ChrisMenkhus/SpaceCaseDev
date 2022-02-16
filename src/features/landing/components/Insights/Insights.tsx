@@ -28,7 +28,7 @@ function BlogArticleCard({
   date?: string
   className?: string
   variant?: 'regular' | 'large'
-  imgSrc?: string
+  imgSrc: string
   slug: string
 }) {
   return (
@@ -50,12 +50,12 @@ function BlogArticleCard({
           variant === 'regular' && 'sm:h-56',
         ])}
       >
-        {/* <Image
-          src={imgSrc || ''}
+        <Image
+          src={imgSrc}
           alt="generic blog image"
           layout="fill"
           objectFit="cover"
-        /> */}
+        />
       </div>
       <div className="p-4 w-full max-w-md h-full">
         <div className="w-32 h-1 gradientbg" />
@@ -64,7 +64,7 @@ function BlogArticleCard({
           <div className="relative w-6 h-6">
             <Image
               src="/icon/profile_image.svg"
-              alt="generic blog image"
+              alt="profile image"
               layout="fill"
               objectFit="cover"
             />
@@ -108,7 +108,7 @@ export default function Insights({ posts }: InsightsInterface) {
                 text={element.description}
                 date={element.date}
                 slug={element.slug}
-                imgSrc={''}
+                imgSrc={'/galaxy.jpg'}
                 variant={i === 0 ? 'large' : 'regular'}
               />
             )

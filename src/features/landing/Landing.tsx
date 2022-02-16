@@ -15,14 +15,10 @@ type LandingInterface = {
 }
 
 export default function Landing({ posts, projects }: LandingInterface) {
-  const aboutRef = useRef(null)
-  const scrollToAboutSection = () => {
-    scrollToRef(aboutRef)
-  }
   return (
     <>
-      <Intro scrollFunction={scrollToAboutSection} />
-      <About ref={aboutRef} />
+      <Intro />
+      <About />
       <Insights posts={posts} />
       <Projects projects={projects} />
       <Contact />
