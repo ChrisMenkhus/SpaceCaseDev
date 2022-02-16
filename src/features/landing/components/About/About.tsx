@@ -1,91 +1,24 @@
+import { Button } from '@components/atoms/Button'
 import Section from '@components/templates/Section'
+import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
-import * as data from 'public/data/home'
-import { FC, RefAttributes, RefObject, forwardRef } from 'react'
+import { forwardRef } from 'react'
 
-type ListsType = {
-  name: string
-  data: string | string[]
-  imgSrc?: string
-}[]
-
-function ListCards({ lists = [] }: { lists?: ListsType }) {
-  return (
-    <div className="flex flex-row flex-wrap justify-evenly items-start pt-16 pb-2">
-      {lists.map((e, i) => {
-        return (
-          <ListCard
-            key={e.name + i}
-            title={e.name}
-            items={typeof e.data === 'string' ? [e.data] : e.data}
-            imgSrc={e.imgSrc}
-          />
-        )
-      })}
-    </div>
-  )
-}
-
-function ListCard({
-  items,
-  title,
-  imgSrc = '/people-icon.svg',
-}: {
-  items: string[]
-  title: string
-  imgSrc?: string
-}) {
-  const ListItems = items.map((item, i) => {
-    return (
-      <li className="pb-3" key={item + i}>
-        {item}
-      </li>
-    )
-  })
-  return (
-    <div className="flex flex-col my-8 mx-4 w-64 h-full text-black dark:text-white bg-white dark:bg-dark rounded shadow-lg md:m-auto md:my-8 md:mx-4">
-      <div className="p-4 m-auto -mt-5 mb-0 w-14 h-14 text-white bg-gradient-to-b from-dark to-[#111] rounded-full">
-        <Image
-          src={imgSrc}
-          alt="starship image"
-          width="50px"
-          height="50px"
-          layout="responsive"
-          objectFit="scale-down"
-        />
-      </div>
-      <h1 className="flex-wrap px-4 my-4 text-lg font-bold text-center">
-        {title}
-      </h1>
-      <ul className="py-2 px-4 w-full text-left">{ListItems}</ul>
-    </div>
-  )
-}
-
-const TextBlockGroup: FC = ({ children }) => {
-  return (
-    <div className="flex-col flex-wrap m-auto w-full max-w-sm md:mr-0 lg:max-w-sm flexcenter">
-      {children}
-    </div>
-  )
-}
-
-function TextBlock({ text }: { text: string }) {
-  return <p className="px-4 pb-2 mb-auto w-auto indent-6">{text}</p>
-}
-
-function CallToActionImage() {
-  return (
-    <div className="pr-8 m-auto w-full max-w-[15rem] h-full md:ml-0">
-      <div className="relative m-auto w-80 h-80">
-        <Image
-          src="/thinking-about-space.svg"
-          alt="starship image"
-          layout="fill"
-        />
-      </div>
-    </div>
-  )
+export const s = {
+  content: {
+    main: 'flex flex-col w-full max-w-screen-lg h-full md:flex-row',
+    titleText: 'w-full text-lg font-medium text-left tracking-wide',
+    leftContainer: {
+      main: 'px-8 flex flex-col justify-center items-center m-auto w-full md:w-1/2 md:h-full',
+      paragraph: 'indent-4 pb-4',
+    },
+    rightContainer: {
+      main: 'px-8 flex flex-col justify-start items-center m-auto w-full md:w-1/2 md:h-full',
+      tagsGroup: 'flex flex-wrap pb-4',
+      tag: 'px-2 mr-2 my-1 text-white bg-secondary rounded',
+      tag2: 'px-2 mr-2 my-1 text-white bg-dark rounded',
+    },
+  },
 }
 
 type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
@@ -95,19 +28,93 @@ type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
 const About = forwardRef<HTMLDivElement, AboutInterface>(
   ({ className = '' }, ref?) => {
     return (
-      <Section.Container name="About" ref={ref}>
+      <Section.Container name="About" className="h-full" ref={ref}>
         <Section.Header
-          title={data.About.section.name}
-          subtitle={data.About.section.altname || ''}
+          title="About"
+          subtitle="Did I mention im obsessed with space? 🚀"
         />
-        <Section.Content>
-          <TextBlockGroup>
-            <TextBlock text={data.About.text || ''} />
-            <TextBlock text={data.About.text2 || ''} />
-          </TextBlockGroup>
-          <CallToActionImage />
-          <ListCards lists={data.About.lists} />
-        </Section.Content>
+        <div className={s.content.main}>
+          <div className={s.content.leftContainer.main}>
+            <h1 className={s.content.titleText}>Technical</h1>
+            <p className={s.content.leftContainer.paragraph}>
+              I’m Chris Menkhus a Colorado based web developer and designer. I
+              develop real-world web applications through modern web design
+              concepts, web development technologies, and search engine
+              optimization practices. I craft custom web solutions that are
+              tailored specifically to the clients needs.
+            </p>
+            <h2 className={s.content.titleText}>Personal</h2>
+            <p className={s.content.leftContainer.paragraph}>
+              When im not programming or spending time with my girlfriend im
+              dreaming of space, comic book movies, and my next crazy adventure.
+              Every weekend I go on an adventure wether that be finding a
+              beautiful new view of Colorado or slaying monsters and gaining EXP
+              in Dungeons & Dragons.
+            </p>
+          </div>
+          <div className={s.content.rightContainer.main}>
+            <div className="mr-auto">
+              <h3 className={s.content.titleText}>Current Tech Stack</h3>
+              <ul className={s.content.rightContainer.tagsGroup}>
+                <li className={s.content.rightContainer.tag}>Typescript</li>
+                <li className={s.content.rightContainer.tag}>React</li>
+                <li className={s.content.rightContainer.tag}>NextJs</li>
+                <li className={s.content.rightContainer.tag}>Graphql</li>
+                <li className={s.content.rightContainer.tag}>Tailwind</li>
+                <li className={s.content.rightContainer.tag}>Redux Toolkit</li>
+                <li className={s.content.rightContainer.tag}>Headless CMS</li>
+              </ul>
+            </div>
+            <div className="mr-auto">
+              <h3 className={s.content.titleText}>Other Skills</h3>
+              <ul className={s.content.rightContainer.tagsGroup}>
+                <li className={s.content.rightContainer.tag}>
+                  Javascript (ES6+)
+                </li>
+                <li className={s.content.rightContainer.tag}>HTML</li>
+                <li className={s.content.rightContainer.tag}>CSS</li>
+                <li className={s.content.rightContainer.tag}>Redux</li>
+                <li className={s.content.rightContainer.tag}>NodeJs</li>
+                <li className={s.content.rightContainer.tag}>React Router</li>
+                <li className={s.content.rightContainer.tag}>
+                  Styled Components
+                </li>
+                <li className={s.content.rightContainer.tag}>CSS Modules</li>
+                <li className={s.content.rightContainer.tag}>
+                  ExpressJs Server
+                </li>
+                <li className={s.content.rightContainer.tag}>
+                  PostgreSQL Database
+                </li>
+              </ul>
+            </div>
+            <div className="mr-auto">
+              <h3 className={s.content.titleText}>Tools</h3>
+              <ul className={s.content.rightContainer.tagsGroup}>
+                <li className={s.content.rightContainer.tag2}>VS Code</li>
+                <li className={s.content.rightContainer.tag2}>
+                  Github & Git Workflow
+                </li>
+                <li className={s.content.rightContainer.tag2}>
+                  Github Issues & Projects
+                </li>
+                <li className={s.content.rightContainer.tag2}>Postman</li>
+                <li className={s.content.rightContainer.tag2}>Vercel</li>
+                <li className={s.content.rightContainer.tag2}>Heroku</li>
+
+                <li className={s.content.rightContainer.tag2}>Contentful</li>
+                <li className={s.content.rightContainer.tag2}>Prismic</li>
+                <li className={s.content.rightContainer.tag2}>Figma</li>
+                <li className={s.content.rightContainer.tag2}>Photoshop</li>
+                <li className={s.content.rightContainer.tag2}>Gimp</li>
+                <li className={s.content.rightContainer.tag2}>Inkscape</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <Button size="lg" variant="secondary" className="my-4">
+          Schedule a Meeting
+        </Button>
       </Section.Container>
     )
   }

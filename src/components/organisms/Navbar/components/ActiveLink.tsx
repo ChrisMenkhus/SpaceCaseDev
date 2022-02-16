@@ -17,7 +17,7 @@ export const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
 
   const styles = makeStyles([
     className,
-    isActiveLink && 'border-primary text-primary border-b-2 ',
+    isActiveLink && 'border-secondary text-secondary border-b-2 ',
   ])
 
   return (

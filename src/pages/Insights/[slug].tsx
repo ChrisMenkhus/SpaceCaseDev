@@ -1,14 +1,13 @@
 import Post from '../../types/Post'
 
-import { Navbar } from '@components/organisms/Navbar'
 import Layout from '@components/templates/Layout'
 import {
   Options,
   documentToReactComponents,
 } from '@contentful/rich-text-react-renderer'
-import { BLOCKS, Document, MARKS, Node } from '@contentful/rich-text-types'
+import { BLOCKS, Document, MARKS } from '@contentful/rich-text-types'
 import queryContentful from '@utils/queryContentful'
-import type { GetStaticProps, InferGetStaticPropsType, NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import React from 'react'
 
 const Blog: NextPage<{ post: Post }> = ({ post }) => {
@@ -38,14 +37,12 @@ const Blog: NextPage<{ post: Post }> = ({ post }) => {
   const document: Document = post.post.json as any
 
   const BlogPost = () => (
-    <div className="w-full">
-      {documentToReactComponents(document, options)}{' '}
-    </div>
+    <div className="w-full">{documentToReactComponents(document, options)}</div>
   )
 
   return (
     <Layout title="Insights" description="Insights" className="px-8">
-      <div className="flex flex-wrap m-auto max-w-screen-md text-left">
+      <div className="flex flex-wrap m-auto mt-20 max-w-screen-md text-left">
         <div className="flex flex-col-reverse my-4 w-full md:flex-row">
           <div className="my-8 mr-4 w-full h-64 bg-dark md:my-0 md:max-w-xs md:h-full" />
 
@@ -63,7 +60,6 @@ const Blog: NextPage<{ post: Post }> = ({ post }) => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params && params.slug
 
-  console.log('PARAMS: ', params)
   const queryForPost = ` query {
       blogPostCollection(where: {
         slug: "${slug}"
@@ -105,7 +101,6 @@ export async function getStaticPaths() {
 
   const slugsData = await queryContentful(queryForSlugs)
   const slugs: { slug: string }[] = slugsData.blogPostCollection.items
-  console.log('SLUGS: ', slugs)
 
   const paths = slugs.map((element, index) => {
     console.log('SLUG: ', element.slug)

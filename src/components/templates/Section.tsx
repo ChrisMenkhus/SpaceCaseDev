@@ -1,6 +1,5 @@
-import createClassName from '@utils/createClassName'
 import makeStyles from '@utils/makeStyles'
-import { FC, forwardRef } from 'react'
+import { forwardRef } from 'react'
 
 type ContainerInterface = React.HTMLAttributes<HTMLDivElement> & {
   children: JSX.Element | JSX.Element[]
@@ -11,47 +10,41 @@ type ContainerInterface = React.HTMLAttributes<HTMLDivElement> & {
 const Container = forwardRef<HTMLDivElement, ContainerInterface>(
   ({ children, name, className = '' }, ref?) => {
     return (
-      <div
+      <section
         ref={ref}
         id={name}
         className={makeStyles([
-          'flex items-center justify-center flex-col gap-4 px-0 mt-8 pb-0 w-full',
+          'flex items-center justify-center flex-col gap-4 px-0 pb-0 w-full',
           className,
         ])}
       >
         {children}
-      </div>
+      </section>
     )
   }
 )
 
 Container.displayName = 'DisplayContainer'
 
-interface HeaderInterface {
-  title: string
-  subtitle: string
-}
-
-function Header({ title, subtitle }: HeaderInterface) {
+const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
   return (
     <header
-      className={createClassName([
-        'z-10 flex-col p-0 mt-0 mb-auto md:pl-12 md:max-w-screen-lg flexcenter',
+      className={makeStyles([
+        'z-10 flex-col pl-0 mt-0 mb-auto md:pl-4 md:max-w-screen-lg flexcenter',
         'md:justify-start md:items-start',
       ])}
     >
-      <h2 className="pt-4 font-light leading-none">
-        <span className="">(01) </span>
+      <h2 className="px-8 pt-4 font-light leading-none whitespace-normal md:px-0">
         {subtitle}
       </h2>
-      <h1 className="pt-8 pb-4 text-6xl font-bold leading-none text-center md:pl-0 md:m-0 md:text-8xl md:text-left">
+      <h1 className="pt-2 pb-4 text-6xl font-bold leading-none text-center md:pl-0 md:m-0 md:text-8xl md:text-left">
         {title}
       </h1>
     </header>
   )
 }
 
-const Content: FC = ({ children }) => {
+const Content = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   return (
     <div className=" flex-row flex-wrap mt-4 max-w-screen-lg flexcenter">
       {children}
@@ -59,11 +52,11 @@ const Content: FC = ({ children }) => {
   )
 }
 
-const Article: FC = ({ children }) => {
-  return <article className="flexcenter ">{children}</article>
+const Article = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
+  return <article className="flexcenter">{children}</article>
 }
 
-const Footer: FC = ({ children }) => {
+const Footer = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   return <footer className="max-w-screen-lg flexcenter ">{children}</footer>
 }
 
