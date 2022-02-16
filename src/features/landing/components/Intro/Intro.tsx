@@ -78,7 +78,7 @@ export default function Intro({
           <figure className={s.content.imageContainer.figure}>
             <Image
               src="/icon/chris-illustration.svg"
-              alt="starship image"
+              alt="no shadow flat anime image of Chris"
               layout="fill"
               className={s.content.imageContainer.image}
             />
