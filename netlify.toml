@@ -4,8 +4,11 @@
   functions = "netlify/functions"
   publish = ".next"
 
-[functions]
-  external_node_modules = ["sharp"]
+ ##[functions]
+ ##external_node_modules = ["sharp"]
+
+[[plugins]]
+package = "@netlify/plugin-nextjs"
 
   ## Uncomment to use this redirect for Single Page Applications like create-react-app.
   ## Not needed for static site generators.
