@@ -28,7 +28,7 @@ type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
 const About = forwardRef<HTMLDivElement, AboutInterface>(
   ({ className = '' }, ref?) => {
     return (
-      <Section.Container name="About" className="h-full" ref={ref}>
+      <Section.Container name="About" className="h-full " ref={ref}>
         <Section.Header
           title="About"
           subtitle="Did I mention im obsessed with space? 🚀"

@@ -9,6 +9,9 @@ const nextConfig = {
     './src/pages/*.{html,js,ts,tsx}',
     './src/components/**/*.{html,js,ts,tsx}',
   ],
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
 }
 
 module.exports = nextConfig
