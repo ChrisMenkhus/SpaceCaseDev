@@ -6,12 +6,12 @@ import Router from 'next/router'
 
 export const s = {
   background: {
-    main: 'flex w-full h-[calc(100vh-4rem)] max-h-[1050px] flex-col md:flex-row ',
+    main: 'flex w-full h-full max-h-[1050px] flex-col md:flex-row ',
     left: 'w-1/2 h-full ',
-    right: 'bg-secondary h-5/6 md:h-5/6 md:m-auto md:w-1/2 ',
+    right: 'bg-secondary h-full md:h-5/6 md:m-auto md:w-1/2 ',
   },
   content: {
-    main: 'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-full md:h-[calc(100vh-4rem)] md:max-h-[1050px] md:flex-row overflow-hidden',
+    main: 'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-full md:flex-row overflow-hidden',
     textContainer: {
       main: 'flex justify-center items-center m-auto w-full h-full md:pt-0 md:w-1/2 bg-transparent ',
       header1:
@@ -37,7 +37,7 @@ export const s = {
 
 export default function Intro({}: {}) {
   return (
-    <Section.Container name="Intro" className={'relative '}>
+    <Section.Container name="Intro" className={'relative h-screen'}>
       <div className={s.background.main}>
         <div className={s.background.left} />
         <div className={s.background.right} />

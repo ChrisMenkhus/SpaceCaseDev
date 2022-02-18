@@ -1,20 +1,25 @@
-import { DarkModeSwitch } from './DarkModeSwitch'
+import DarkModeToggleButton from './DarkModeSwitch'
 
 import { MenuIcon, MoonIcon, SunIcon, XIcon } from '@heroicons/react/outline'
 import makeStyles from '@utils/makeStyles'
+import useScrollPosition from '@utils/useScrollPosition'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Router from 'next/router'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const styles = {
   container:
-    'bg-white w-full fixed top-0 z-50 shadow-md text-black bg-white dark:bg-dark dark:text-white',
+    'fixed top-0 z-50 bg-white w-full  sm:shadow-md text-black bg-transparent sm:bg-white dark:sm:bg-dark dark:text-white hidden',
+  container_hasScrolled: 'block',
+  container_mobileIsActive:
+    'bg-light dark:bg-dark pb-12 border-b-8 border-secondary',
   layout:
     'max-w-screen-lg mx-auto flex flex-wrap md:flex-nowrap px-4 py-2 md:py-4 ',
   layout_top: 'flex flex-row items-center w-full h-auto md:w-auto',
-  logoButton: 'relative w-12 h-12 ',
-  menuButton: 'relative ml-auto p-1 w-10 h-10 md:hidden',
+  logoButton: 'relative w-12 h-12 hidden sm:flex',
+  menuButton:
+    'relative ml-auto p-1 w-10 h-10 mt-4 bg-white shadow-lg dark:bg-dark rounded-full sm:mt-auto md:hidden',
   links: 'flex flex-col w-auto text-center m-auto md:mr-0 md:flex-row',
   darkModeSwitch:
     'relative m-auto mt-8 md:mt-auto md:ml-8 md:mr-0 grid place-items-center',
@@ -22,7 +27,8 @@ const styles = {
 
 export const NavWrapper = ({
   children,
-}: React.BaseHTMLAttributes<HTMLElement>) => {
+  showOnScroll = false,
+}: React.BaseHTMLAttributes<HTMLElement> & { showOnScroll?: boolean }) => {
   const [mobileNavMenuToggled, setMobileNavMenuToggled] = useState(false)
 
   function ToggleMobileNavMenu() {
@@ -35,8 +41,33 @@ export const NavWrapper = ({
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
+  let isDark = Boolean(theme === 'dark')
+
+  const [hasScrolled, setHasScrolled] = useState(false)
+  let scrollPosition = useScrollPosition()
+
+  if (showOnScroll) {
+    if (!hasScrolled) {
+      if (scrollPosition > 10) {
+        setHasScrolled(true)
+      }
+    } else {
+      if (scrollPosition < 10) {
+        setHasScrolled(false)
+      }
+    }
+  } else {
+    if (!hasScrolled) setHasScrolled(true)
+  }
+
   return (
-    <nav className={styles.container}>
+    <nav
+      className={makeStyles([
+        styles.container,
+        mobileNavMenuToggled && styles.container_mobileIsActive,
+        hasScrolled && styles.container_hasScrolled,
+      ])}
+    >
       <div className={styles.layout}>
         <div className={styles.layout_top}>
           <button
@@ -65,7 +96,7 @@ export const NavWrapper = ({
         >
           {children}
           <div className={styles.darkModeSwitch}>
-            <DarkModeSwitch toggleTheme={toggleTheme} />
+            <DarkModeToggleButton toggleTheme={toggleTheme} isDark={isDark} />
           </div>
         </div>
       </div>

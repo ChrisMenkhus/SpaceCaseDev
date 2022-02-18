@@ -1,9 +1,12 @@
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
+import { memo } from 'react'
 
-export const DarkModeSwitch = ({
+const DarkModeSwitch = ({
   toggleTheme,
+  isDark,
 }: {
   toggleTheme: () => void
+  isDark: boolean
 }) => {
   return (
     <label
@@ -16,6 +19,9 @@ export const DarkModeSwitch = ({
         id="darktoggle"
         className="peer sr-only"
         onClick={toggleTheme}
+        checked={isDark}
+        defaultChecked
+        autoComplete="off"
       />
       <span className="flex absolute peer-checked:left-20 w-8 h-8 text-dark bg-light rounded-full border-2 border-dark transition-all">
         <div className="block dark:hidden m-auto w-6 h-6 ">
@@ -32,3 +38,7 @@ export const DarkModeSwitch = ({
     </label>
   )
 }
+
+DarkModeSwitch.displayName = 'DarkModeToggleButton'
+const DarkModeToggleButton = memo(DarkModeSwitch)
+export default DarkModeToggleButton
