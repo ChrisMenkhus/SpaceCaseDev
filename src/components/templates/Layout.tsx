@@ -7,6 +7,7 @@ type PageInterface = {
   title: string
   description: string
   className?: string
+  showNavOnScroll?: boolean
 }
 
 export default function Layout({ ...props }: PageInterface) {
@@ -22,8 +23,8 @@ export default function Layout({ ...props }: PageInterface) {
         <title>{props.title}</title>
         <meta name="description" content={props.description} />
       </Head>
-      <Navbar />
-      <div className="mt-16">{props.children}</div>
+      <Navbar showOnScroll={props.showNavOnScroll} />
+      <div className="mt-0">{props.children}</div>
     </div>
   )
 }

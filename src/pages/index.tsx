@@ -50,6 +50,7 @@ const Home: NextPage<{ posts: Post[]; projects: Project[] }> = ({
 }) => {
   return (
     <Layout
+      showNavOnScroll
       title="Chris Menkhus Developer Front End & Full Stack About Hire Contact Page"
       description="Chris Menkhus Front End or Full Stack website web developer and designer. Intro Page outlining skills like React Nextjs Nodejs HTML CSS GraphQL SQL styled-components tailwindcss tailwind semantic seo and other tools and frameworks."
     >
