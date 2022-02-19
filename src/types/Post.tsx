@@ -4,6 +4,9 @@ export type Post = {
   date: string
   post: { json: JSON }
   slug: string
+  image: {
+    url: string
+  }
 }
 
 export default Post

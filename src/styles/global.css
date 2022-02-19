@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 html {
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  //scroll-behavior: smooth;
 }
 
 html,
@@ -12,6 +11,14 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'IBM Plex Sans', sans-serif;
+}
+
+html {
+  height: 100%;
+  overflow: auto;
+}
+body {
+  height: 100%;
 }
 
 input,

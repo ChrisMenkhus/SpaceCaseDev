@@ -1,11 +1,20 @@
+import { Button } from '@components/atoms/Button'
+import { GlobeIcon, SparklesIcon } from '@heroicons/react/outline'
+import Image from 'next/image'
+
 interface Props {
   variant?: 'primary' | 'featured'
   title: string
+  text: string
+  slug: string
+  desktopImage: string
+  mobileImage: string
+  colors: string[]
 }
 
 function ProjectCard({ ...props }: Props) {
   return (
-    <article className="mb-16 last:mb-8 w-screen h-full bg-gradient-to-b from-[#E0E0E0] to-white rounded shadow-lg dark:from-dark dark:to-[#111] dark:text-white">
+    <article className="overflow-hidden mb-16 last:mb-8 w-screen h-full dark:text-white bg-gradient-to-b from-[#E0E0E0] dark:from-dark to-white dark:to-[#111] rounded shadow-lg">
       <div className="flex flex-row flex-wrap justify-center items-center pt-10 mx-auto w-full">
         <div className="py-4 px-6 max-w-sm  ">
           <div className="pb-2 text-sm font-light text-dark">
@@ -19,16 +28,42 @@ function ProjectCard({ ...props }: Props) {
             consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et.
           </p>
           <div className="flex flex-row mt-2 w-auto ">
-            <div className="w-6 h-12 bg-secondary " />
-            <div className="z-10 ml-0 w-6 h-12 bg-primary border-0" />
-            <div className="z-20 ml-0 w-6 h-12 bg-dark border-0" />
-            <div className="z-30 ml-0 w-6 h-12 bg-black border-0" />
-            <div className="z-40 ml-0 w-6 h-12 bg-light border-0" />
+            {props.colors.map((e) => (
+              <div
+                key={e}
+                className="-mr-4 w-10 h-10 bg-secondary rounded-full shadow-md"
+                style={{ backgroundColor: e }}
+              />
+            ))}
+          </div>
+          <div className="flex flex-row gap-4 justify-start mt-4">
+            <Button variant="primary" size="sm" icon={GlobeIcon}>
+              Website
+            </Button>
+            <Button variant="primary" size="sm" icon={SparklesIcon}>
+              Github
+            </Button>
           </div>
         </div>
-        <div className="flex overflow-hidden justify-center items-center mt-auto w-auto h-64">
-          <div className="mt-auto w-64 h-96 bg-dark shadow-lg"></div>
-          <div className="mt-auto w-32 h-48 bg-black"></div>
+        <div className="flex justify-center items-center mt-auto w-auto h-fit">
+          <div className="relative mt-auto w-64 h-[16rem] sm:w-80 sm:h-[20rem]">
+            <Image
+              src={props.desktopImage}
+              alt="generic blog image"
+              layout="fill"
+              objectFit="contain"
+              objectPosition="bottom"
+            />
+          </div>
+          <div className="relative mt-auto w-24 h-52">
+            <Image
+              src={props.mobileImage}
+              alt="generic blog image"
+              layout="fill"
+              objectFit="contain"
+              objectPosition="top"
+            />
+          </div>
         </div>
       </div>
     </article>

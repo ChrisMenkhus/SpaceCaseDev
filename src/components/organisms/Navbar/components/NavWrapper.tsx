@@ -1,4 +1,4 @@
-import DarkModeToggleButton from './DarkModeSwitch'
+import DarkModeToggleButton from './DarkModeToggleButton'
 
 import { MenuIcon, MoonIcon, SunIcon, XIcon } from '@heroicons/react/outline'
 import makeStyles from '@utils/makeStyles'
