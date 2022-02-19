@@ -8,11 +8,10 @@ import {
 import { BLOCKS, Document, MARKS } from '@contentful/rich-text-types'
 import queryContentful from '@utils/queryContentful'
 import type { GetStaticProps, NextPage } from 'next'
+import Image from 'next/image'
 import React from 'react'
 
 const Blog: NextPage<{ post: Post }> = ({ post }) => {
-  console.log('new page loaded')
-
   const options: Options = {
     renderMark: {
       [MARKS.CODE]: (text) => (
@@ -26,10 +25,16 @@ const Blog: NextPage<{ post: Post }> = ({ post }) => {
         <h1 className="mt-8 mb-4 text-4xl font-medium">{children}</h1>
       ),
       [BLOCKS.HEADING_2]: (node, children) => (
-        <h1 className="my-4 text-5xl text-primary">{children}</h1>
+        <h2 className="my-4 text-5xl text-primary">{children}</h2>
       ),
       [BLOCKS.PARAGRAPH]: (node, children) => (
         <p className="mb-4">{children}</p>
+      ),
+      [BLOCKS.UL_LIST]: (node, children) => (
+        <ul className="list-disc">{children}</ul>
+      ),
+      [BLOCKS.LIST_ITEM]: (node, children) => (
+        <li className="list-item mb-4 ml-4">{children}</li>
       ),
     },
   }
@@ -44,8 +49,16 @@ const Blog: NextPage<{ post: Post }> = ({ post }) => {
     <Layout title="Insights" description="Insights" className="px-8">
       <div className="flex flex-wrap m-auto mt-20 max-w-screen-md text-left">
         <div className="flex flex-col-reverse my-4 w-full md:flex-row">
-          <div className="my-8 mr-4 w-full h-64 bg-dark md:my-0 md:max-w-xs md:h-full" />
-
+          <div className="relative my-8 mr-4 w-full h-64 bg-dark md:my-0 md:max-w-xs md:h-full">
+            <Image
+              // src="/monitors.jpg"
+              src={post.image.url}
+              layout="fill"
+              alt="no shadow flat anime image of Chris"
+              objectPosition="center"
+              objectFit="cover"
+            />
+          </div>
           <h1 className="w-full text-7xl">{post.title}</h1>
         </div>
         <p className="my-2 text-xl ">{post.description}</p>
@@ -74,6 +87,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
             json
           }
           date
+          image {
+            url
+          }
         }
       }
     }

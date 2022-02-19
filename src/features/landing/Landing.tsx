@@ -4,8 +4,6 @@ import Insights from './components/Insights/Insights'
 import Intro from './components/Intro/Intro'
 import Projects from './components/Projects/Projects'
 
-import scrollToRef from '@utils/scrollToRef'
-import { useRef } from 'react'
 import Post from 'src/types/Post'
 import Project from 'src/types/Project'
 

@@ -4,7 +4,7 @@ import { CalendarIcon, MailIcon } from '@heroicons/react/outline'
 import makeStyles from '@utils/makeStyles'
 import OpenCalendlyPopup from '@utils/openCalendlyPopup'
 
-function Form({}: {}) {
+function EmailForm({}: {}) {
   return (
     <form
       action="https://formsubmit.co/e283962fbedec3fd99c4f6a71c9503eb"
@@ -12,7 +12,7 @@ function Form({}: {}) {
       className="flex-col flexcenter"
     >
       <label htmlFor="name" className="w-full text-left">
-        name
+        Name
       </label>
       <input
         type="text"
@@ -21,7 +21,7 @@ function Form({}: {}) {
         className="mb-4 w-full border-2 border-primary"
       />
       <label htmlFor="email" className="w-full text-left">
-        email
+        Email
       </label>
       <input
         type="email"
@@ -30,7 +30,7 @@ function Form({}: {}) {
         className="mb-4 w-full border-2 border-primary"
       />
       <label htmlFor="message" className="w-full text-left">
-        message
+        Message
       </label>
       <textarea
         name="message"
@@ -40,11 +40,11 @@ function Form({}: {}) {
       <Button
         type="submit"
         size="lg"
-        variant="secondary"
+        variant="primary"
         icon={MailIcon}
         className="mt-4"
       >
-        Send message
+        Send Message
       </Button>
     </form>
   )
@@ -101,20 +101,22 @@ export default function Contact() {
         name="Contact"
         // ref={contactSectionRef}
       >
-        <Section.Header title="Contact" subtitle={'subtitle'} />
+        <Section.Header title="Contact" subtitle="Get In Touch" />
         <Section.Content>
-          <SimpleCard title={'contact'}>
-            <Form />
+          <SimpleCard title={'Message Me'}>
+            <EmailForm />
           </SimpleCard>
-          <SimpleCard variant="secondary" title="title">
-            <SimpleCardText>{'texttext'}</SimpleCardText>
+          <SimpleCard variant="secondary" title="Schedule a Meeting">
+            <SimpleCardText>
+              {'Let’s schedule a time to get to know each other.'}
+            </SimpleCardText>
             <Button
               size="lg"
-              variant="primary"
+              variant="secondary"
               icon={CalendarIcon}
               onClick={OpenCalendlyPopup}
             >
-              more text
+              Open Calendar
             </Button>
           </SimpleCard>
         </Section.Content>

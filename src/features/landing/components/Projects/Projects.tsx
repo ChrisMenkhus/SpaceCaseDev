@@ -3,6 +3,7 @@ import ProjectCard from './components/ProjectCard'
 import { Button } from '@components/atoms/Button'
 import Section from '@components/templates/Section'
 import { CollectionIcon } from '@heroicons/react/outline'
+import Router from 'next/router'
 import Project from 'src/types/Project'
 
 type ProjectsInterface = {
@@ -12,10 +13,18 @@ type ProjectsInterface = {
 export default function Projects({ projects }: ProjectsInterface) {
   return (
     <Section.Container name="Projects">
-      <Section.Header title="Projects" subtitle="subtitle" />
+      <Section.Header title="Projects" subtitle="Projects & Case Studies" />
       <Section.Content>
-        {projects.map((v, i) => (
-          <ProjectCard key={v.title + i} title={v.title} />
+        {projects.map((element, i) => (
+          <ProjectCard
+            key={element.title + i}
+            title={element.title}
+            desktopImage={element.desktopImage.url}
+            mobileImage={element.mobileImage.url}
+            colors={element.colors}
+            slug={element.slug}
+            text={element.description}
+          />
         ))}
       </Section.Content>
       <Section.Footer>
@@ -24,9 +33,13 @@ export default function Projects({ projects }: ProjectsInterface) {
             size="lg"
             variant="primary"
             icon={CollectionIcon}
-            className="mx-auto sm:mr-8"
+            className="mx-auto mt-4 sm:mr-8"
+            onClick={(e) => {
+              e.preventDefault()
+              Router.push('/Portfolio')
+            }}
           >
-            Portfolio
+            More Projects
           </Button>
         </div>
       </Section.Footer>

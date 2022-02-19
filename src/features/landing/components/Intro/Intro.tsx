@@ -4,7 +4,7 @@ import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 import Router from 'next/router'
 
-export const s = {
+export const styles = {
   background: {
     main: 'flex w-full h-full max-h-[1050px] flex-col md:flex-row ',
     left: 'w-1/2 h-full ',
@@ -38,26 +38,28 @@ export const s = {
 export default function Intro({}: {}) {
   return (
     <Section.Container name="Intro" className={'relative h-screen'}>
-      <div className={s.background.main}>
-        <div className={s.background.left} />
-        <div className={s.background.right} />
+      <div className={styles.background.main}>
+        <div className={styles.background.left} />
+        <div className={styles.background.right} />
       </div>
-      <div className={s.content.main}>
-        <div className={s.content.textContainer.main}>
-          <div className={s.content.textContainer.header1}>
+      <div className={styles.content.main}>
+        <div className={styles.content.textContainer.main}>
+          <div className={styles.content.textContainer.header1}>
             <h1>
-              <span className={s.content.textContainer.span1}>Hey, I am</span>
-              <span className={s.content.textContainer.span2}>
+              <span className={styles.content.textContainer.span1}>
+                Hey, I am
+              </span>
+              <span className={styles.content.textContainer.span2}>
                 Chris Menkhus
               </span>
-              <span className={s.content.textContainer.span3}>
+              <span className={styles.content.textContainer.span3}>
                 Front End Web-Stronaut
               </span>
             </h1>
             <Button
               variant="primary"
               size="lg"
-              className={s.content.textContainer.button}
+              className={styles.content.textContainer.button}
               icon={ChevronDoubleDownIcon}
               onClick={(e) => {
                 e.preventDefault()
@@ -68,11 +70,11 @@ export default function Intro({}: {}) {
             </Button>
           </div>
         </div>
-        <div className={s.content.imageContainer.main}>
+        <div className={styles.content.imageContainer.main}>
           <Button
             variant="inverse"
             size="lg"
-            className={s.content.imageContainer.button}
+            className={styles.content.imageContainer.button}
             icon={ChevronDoubleDownIcon}
             onClick={(e) => {
               e.preventDefault()
@@ -81,13 +83,13 @@ export default function Intro({}: {}) {
           >
             Learn More
           </Button>
-          <figure className={s.content.imageContainer.figure}>
+          <figure className={styles.content.imageContainer.figure}>
             <Image
               src="https://res.cloudinary.com/spacecaser/image/upload/v1645042060/chris-illustration_qbzyoa.svg"
               width="222"
               height="670"
               alt="no shadow flat anime image of Chris"
-              className={s.content.imageContainer.image}
+              className={styles.content.imageContainer.image}
             />
           </figure>
         </div>

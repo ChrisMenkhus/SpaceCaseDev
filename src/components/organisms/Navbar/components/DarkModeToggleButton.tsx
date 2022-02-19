@@ -20,7 +20,7 @@ const DarkModeSwitch = ({
         className="peer sr-only"
         onClick={toggleTheme}
         checked={isDark}
-        defaultChecked
+        readOnly
         autoComplete="off"
       />
       <span className="flex absolute peer-checked:left-20 w-8 h-8 text-dark bg-light rounded-full border-2 border-dark transition-all">

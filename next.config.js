@@ -10,7 +10,7 @@ const nextConfig = {
     './src/components/**/*.{html,js,ts,tsx}',
   ],
   images: {
-    domains: ['res.cloudinary.com'],
+    domains: ['res.cloudinary.com', 'images.ctfassets.net'],
   },
 }
 

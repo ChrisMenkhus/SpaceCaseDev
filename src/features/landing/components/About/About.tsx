@@ -1,6 +1,7 @@
 import { Button } from '@components/atoms/Button'
 import Section from '@components/templates/Section'
-import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
+import { CalendarIcon, ChevronDoubleDownIcon } from '@heroicons/react/outline'
+import OpenCalendlyPopup from '@utils/openCalendlyPopup'
 import Image from 'next/image'
 import { forwardRef } from 'react'
 
@@ -25,100 +26,113 @@ type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
 }
 
-const About = forwardRef<HTMLDivElement, AboutInterface>(
-  ({ className = '' }, ref?) => {
-    return (
-      <Section.Container name="About" className="h-full " ref={ref}>
-        <Section.Header
-          title="About"
-          subtitle="Did I mention im obsessed with space? 🚀"
-        />
-        <div className={s.content.main}>
-          <div className={s.content.leftContainer.main}>
-            <h1 className={s.content.titleText}>Technical</h1>
-            <p className={s.content.leftContainer.paragraph}>
-              I’m Chris Menkhus a Colorado based web developer and designer. I
-              develop real-world web applications through modern web design
-              concepts, web development technologies, and search engine
-              optimization practices. I craft custom web solutions that are
-              tailored specifically to the clients needs.
-            </p>
-            <h2 className={s.content.titleText}>Personal</h2>
-            <p className={s.content.leftContainer.paragraph}>
-              When im not programming or spending time with my girlfriend im
-              dreaming of space, comic book movies, and my next crazy adventure.
-              Every weekend I go on an adventure wether that be finding a
-              beautiful new view of Colorado or slaying monsters and gaining EXP
-              in Dungeons & Dragons.
-            </p>
-          </div>
-          <div className={s.content.rightContainer.main}>
-            <div className="mr-auto">
-              <h3 className={s.content.titleText}>Current Tech Stack</h3>
-              <ul className={s.content.rightContainer.tagsGroup}>
-                <li className={s.content.rightContainer.tag}>Typescript</li>
-                <li className={s.content.rightContainer.tag}>React</li>
-                <li className={s.content.rightContainer.tag}>NextJs</li>
-                <li className={s.content.rightContainer.tag}>Graphql</li>
-                <li className={s.content.rightContainer.tag}>Tailwind</li>
-                <li className={s.content.rightContainer.tag}>Redux Toolkit</li>
-                <li className={s.content.rightContainer.tag}>Headless CMS</li>
-              </ul>
-            </div>
-            <div className="mr-auto">
-              <h3 className={s.content.titleText}>Other Skills</h3>
-              <ul className={s.content.rightContainer.tagsGroup}>
-                <li className={s.content.rightContainer.tag}>
-                  Javascript (ES6+)
-                </li>
-                <li className={s.content.rightContainer.tag}>HTML</li>
-                <li className={s.content.rightContainer.tag}>CSS</li>
-                <li className={s.content.rightContainer.tag}>Redux</li>
-                <li className={s.content.rightContainer.tag}>NodeJs</li>
-                <li className={s.content.rightContainer.tag}>React Router</li>
-                <li className={s.content.rightContainer.tag}>
-                  Styled Components
-                </li>
-                <li className={s.content.rightContainer.tag}>CSS Modules</li>
-                <li className={s.content.rightContainer.tag}>
-                  ExpressJs Server
-                </li>
-                <li className={s.content.rightContainer.tag}>
-                  PostgreSQL Database
-                </li>
-              </ul>
-            </div>
-            <div className="mr-auto">
-              <h3 className={s.content.titleText}>Tools</h3>
-              <ul className={s.content.rightContainer.tagsGroup}>
-                <li className={s.content.rightContainer.tag2}>VS Code</li>
-                <li className={s.content.rightContainer.tag2}>
-                  Github & Git Workflow
-                </li>
-                <li className={s.content.rightContainer.tag2}>
-                  Github Issues & Projects
-                </li>
-                <li className={s.content.rightContainer.tag2}>Postman</li>
-                <li className={s.content.rightContainer.tag2}>Vercel</li>
-                <li className={s.content.rightContainer.tag2}>Heroku</li>
+const About = forwardRef<HTMLDivElement, AboutInterface>(({}, ref?) => {
+  const aboutMeTechnicalParagraph =
+    'I’m Chris Menkhus a Colorado based web developer and designer. I develop real-world web applications through modern web design concepts, web development technologies, and search engine optimization practices. I craft custom web solutions that are tailored specifically to the clients needs.'
+  const aboutMePersonalParagraph =
+    'When im not programming or spending time with my girlfriend im dreaming of space, comic book movies, and my next crazy adventure. Every weekend I go on an adventure wether that be finding a beautiful new view of Colorado or slaying monsters and gaining EXP in Dungeons & Dragons.'
 
-                <li className={s.content.rightContainer.tag2}>Contentful</li>
-                <li className={s.content.rightContainer.tag2}>Prismic</li>
-                <li className={s.content.rightContainer.tag2}>Figma</li>
-                <li className={s.content.rightContainer.tag2}>Photoshop</li>
-                <li className={s.content.rightContainer.tag2}>Gimp</li>
-                <li className={s.content.rightContainer.tag2}>Inkscape</li>
-              </ul>
-            </div>
+  const currentSkills = [
+    'Typescript',
+    'React',
+    'NextJs',
+    'Graphql',
+    'Tailwind',
+    'Redux Toolkit',
+    'Headless CMS',
+  ]
+  const otherSkills = [
+    'Javascript (ES6+)',
+    'HTML',
+    'CSS',
+    'Redux',
+    'NodeJs',
+    'React Router',
+    'Styled Components',
+    'CSS Modules',
+    'ExpressJs Server',
+    'PostgreSQL Database',
+  ]
+  const tools = [
+    'VS Code',
+    'Github & Git Workflow',
+    'Github Issues & Projects',
+    'Postman',
+    'Vercel',
+    'Heroku',
+    'Contentful',
+    'Prismic',
+    'Figma',
+    'Photoshop',
+    'Gimp',
+    'Inkscape',
+  ]
+
+  return (
+    <Section.Container name="About" className="h-full " ref={ref}>
+      <Section.Header
+        title="About"
+        subtitle="Did I mention im obsessed with space? 🚀"
+      />
+      <div className={s.content.main}>
+        <div className={s.content.leftContainer.main}>
+          <h1 className={s.content.titleText}>Technical</h1>
+          <p className={s.content.leftContainer.paragraph}>
+            {aboutMeTechnicalParagraph}
+          </p>
+          <h2 className={s.content.titleText}>Personal</h2>
+          <p className={s.content.leftContainer.paragraph}>
+            {aboutMePersonalParagraph}
+          </p>
+        </div>
+        <div className={s.content.rightContainer.main}>
+          <div className="mr-auto">
+            <h3 className={s.content.titleText}>Current Tech Stack</h3>
+            <ul className={s.content.rightContainer.tagsGroup}>
+              {currentSkills.map((e, i) => (
+                <li className={s.content.rightContainer.tag} key={e + i}>
+                  {e}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mr-auto">
+            <h4 className={s.content.titleText}>Other Skills</h4>
+            <ul className={s.content.rightContainer.tagsGroup}>
+              <li className={s.content.rightContainer.tag}>
+                Javascript (ES6+)
+              </li>
+              {otherSkills.map((e, i) => (
+                <li className={s.content.rightContainer.tag} key={e + i}>
+                  {e}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mr-auto">
+            <h5 className={s.content.titleText}>Tools</h5>
+            <ul className={s.content.rightContainer.tagsGroup}>
+              {tools.map((e, i) => (
+                <li className={s.content.rightContainer.tag2} key={e + i}>
+                  {e}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-        <Button size="lg" variant="secondary" className="my-4">
-          Schedule a Meeting
-        </Button>
-      </Section.Container>
-    )
-  }
-)
+      </div>
+      <Button
+        size="lg"
+        variant="secondary"
+        className="my-4"
+        icon={CalendarIcon}
+        onClick={() => OpenCalendlyPopup()}
+      >
+        Schedule a Meeting
+      </Button>
+    </Section.Container>
+  )
+})
 
 About.displayName = 'AboutSection'
 export default About
