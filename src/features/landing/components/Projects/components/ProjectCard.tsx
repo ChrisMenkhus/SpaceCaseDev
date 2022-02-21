@@ -1,4 +1,4 @@
-import { Button } from '@components/atoms/Button'
+import Button from '@components/atoms/Button'
 import { GlobeIcon, SparklesIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 
@@ -10,6 +10,8 @@ interface Props {
   desktopImage: string
   mobileImage: string
   colors: string[]
+  website: string
+  github: string
 }
 
 function ProjectCard({ ...props }: Props) {
@@ -43,6 +45,8 @@ function ProjectCard({ ...props }: Props) {
             <Button variant="primary" size="sm" icon={SparklesIcon}>
               Github
             </Button>
+            <a href={props.website}>Website</a>
+            <a href={props.github}>Github</a>
           </div>
         </div>
         <div className="flex justify-center items-center mt-auto w-auto h-fit">

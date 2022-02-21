@@ -1,4 +1,5 @@
 import Post from '../../types/Post'
+import BlogContent from './components/BlogContent'
 
 import Layout from '@components/templates/Layout'
 import {
@@ -11,47 +12,13 @@ import type { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
 import React from 'react'
 
-const Blog: NextPage<{ post: Post }> = ({ post }) => {
-  const options: Options = {
-    renderMark: {
-      [MARKS.CODE]: (text) => (
-        <pre className="py-2 px-4 my-4 text-white whitespace-pre-wrap bg-dark">
-          {text}
-        </pre>
-      ),
-    },
-    renderNode: {
-      [BLOCKS.HEADING_1]: (node, children) => (
-        <h1 className="mt-8 mb-4 text-4xl font-medium">{children}</h1>
-      ),
-      [BLOCKS.HEADING_2]: (node, children) => (
-        <h2 className="my-4 text-5xl text-primary">{children}</h2>
-      ),
-      [BLOCKS.PARAGRAPH]: (node, children) => (
-        <p className="mb-4">{children}</p>
-      ),
-      [BLOCKS.UL_LIST]: (node, children) => (
-        <ul className="list-disc">{children}</ul>
-      ),
-      [BLOCKS.LIST_ITEM]: (node, children) => (
-        <li className="list-item mb-4 ml-4">{children}</li>
-      ),
-    },
-  }
-
-  const document: Document = post.post.json as any
-
-  const BlogPost = () => (
-    <div className="w-full">{documentToReactComponents(document, options)}</div>
-  )
-
+const BlogArticle: NextPage<{ post: Post }> = ({ post }) => {
   return (
     <Layout title="Insights" description="Insights" className="px-8">
       <div className="flex flex-wrap m-auto mt-20 max-w-screen-md text-left">
         <div className="flex flex-col-reverse my-4 w-full md:flex-row">
           <div className="relative my-8 mr-4 w-full h-64 bg-dark md:my-0 md:max-w-xs md:h-full">
             <Image
-              // src="/monitors.jpg"
               src={post.image.url}
               layout="fill"
               alt="no shadow flat anime image of Chris"
@@ -64,7 +31,7 @@ const Blog: NextPage<{ post: Post }> = ({ post }) => {
         <p className="my-2 text-xl ">{post.description}</p>
       </div>
       <div className="flex flex-wrap mb-36 max-w-screen-sm">
-        <BlogPost />
+        <BlogContent document={post.post.json as any} />
       </div>
     </Layout>
   )
@@ -131,5 +98,6 @@ export async function getStaticPaths() {
   }
 }
 
-Blog.displayName = 'BlogPage'
-export default Blog
+BlogArticle.displayName = 'BlogArticlePage'
+
+export default BlogArticle

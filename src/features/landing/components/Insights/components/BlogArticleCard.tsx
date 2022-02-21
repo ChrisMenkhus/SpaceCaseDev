@@ -1,4 +1,4 @@
-import { Button } from '@components/atoms/Button'
+import Button from '@components/atoms/Button'
 import { BookOpenIcon } from '@heroicons/react/outline'
 import makeStyles from '@utils/makeStyles'
 import truncateString from '@utils/truncateString'
