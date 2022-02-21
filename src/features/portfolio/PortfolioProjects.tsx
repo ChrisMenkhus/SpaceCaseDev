@@ -23,8 +23,9 @@ export default function PortfolioProjects({ projects }: PortfolioInterface) {
                   desktopImage={element.desktopImage.url}
                   key={element.title + i}
                   colors={element.colors}
+                  website={element.websiteUrl}
+                  github={element.githubUrl}
                 />
-                <a href={element.githubUrl}>website</a>
               </>
             )
           })}

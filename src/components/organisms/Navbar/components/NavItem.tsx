@@ -1,6 +1,6 @@
 import { ActiveLink } from './ActiveLink'
 
-import { Button } from '@components/atoms/Button'
+import Button from '@components/atoms/Button'
 import Router from 'next/router'
 import { ElementType } from 'react'
 

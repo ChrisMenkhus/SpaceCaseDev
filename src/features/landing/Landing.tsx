@@ -12,7 +12,7 @@ type LandingInterface = {
   projects: Project[]
 }
 
-export default function Landing({ posts, projects }: LandingInterface) {
+function Landing({ posts, projects }: LandingInterface) {
   return (
     <>
       <Intro />
@@ -23,3 +23,5 @@ export default function Landing({ posts, projects }: LandingInterface) {
     </>
   )
 }
+
+export default Landing
