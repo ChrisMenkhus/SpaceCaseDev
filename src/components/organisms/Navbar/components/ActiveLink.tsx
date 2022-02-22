@@ -16,6 +16,7 @@ export const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
   let isActiveLink = currentPathName === nextPathName
 
   const styles = makeStyles([
+    'border-b-2 border-transparent hover:border-dark dark:hover:border-light transition-all',
     className,
     isActiveLink && 'border-secondary text-secondary border-b-2 ',
   ])

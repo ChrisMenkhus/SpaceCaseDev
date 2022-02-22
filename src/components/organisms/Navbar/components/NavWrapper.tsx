@@ -78,7 +78,7 @@ export const NavWrapper = ({
             }}
           >
             <Image
-              src="/icon/logo_color.svg"
+              src="/logo.svg"
               alt="website logo"
               layout="fill"
               objectFit="contain"

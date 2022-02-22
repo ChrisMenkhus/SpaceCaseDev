@@ -1,4 +1,4 @@
-import { Navbar } from '@components/organisms/Navbar'
+import { Navbar } from '@components/organisms/navbar'
 import makeStyles from '@utils/makeStyles'
 import Head from 'next/head'
 

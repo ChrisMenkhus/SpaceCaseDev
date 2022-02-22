@@ -1,6 +1,7 @@
 import ProjectCard from './components/ProjectCard'
 
 import Button from '@components/atoms/Button'
+import Link from '@components/atoms/Link'
 import Section from '@components/templates/Section'
 import { CollectionIcon } from '@heroicons/react/outline'
 import Router from 'next/router'
@@ -34,18 +35,14 @@ const Projects = forwardRef<HTMLDivElement, ProjectsInterface>(
         </Section.Content>
         <Section.Footer>
           <div className="flex w-full max-w-screen-lg">
-            <Button
-              size="lg"
-              variant="primary"
+            <Link
+              size="xl"
               icon={CollectionIcon}
               className="mx-auto mt-4 sm:mr-8"
-              onClick={(e) => {
-                e.preventDefault()
-                Router.push('/Portfolio')
-              }}
+              href="/Portfolio"
             >
               More Projects
-            </Button>
+            </Link>
           </div>
         </Section.Footer>
       </Section.Container>
