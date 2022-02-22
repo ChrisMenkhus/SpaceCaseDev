@@ -1,19 +1,7 @@
 import makeStyles from '@utils/makeStyles'
+import classNames from 'classnames'
 import React from 'react'
-
-const variants = {
-  primary: 'border-primary',
-  secondary: 'border-secondary bg-white shadaw-lg',
-  inverse: 'border-dark',
-  borderless: 'border-none shadow-none bg-transparent dark:bg-transparent',
-}
-
-const sizes = {
-  sm: 'py-2 px-4 text-sm',
-  md: 'py-2 px-6 text-md',
-  lg: 'py-3 px-8 text-lg',
-  xl: 'py-4 px-10 text-lg',
-}
+import { overrideTailwindClasses } from 'tailwind-override'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant: keyof typeof variants
@@ -26,8 +14,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     {
       type = 'button',
       className = '',
-      variant = 'primary',
       size = 'md',
+      variant = 'primary',
       icon,
       ...props
     },
@@ -38,20 +26,20 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         type={type}
-        className={makeStyles([
-          'flex justify-center items-center rounded border shadow-lg text-black bg-white dark:text-white dark:bg-dark',
+        className={classNames([
+          styles.container,
           variants[variant],
           sizes[size],
           className,
         ])}
         {...props}
       >
-        <span className="mx-1">{props.children}</span>
+        <span className={styles.text}>{props.children}</span>
         {Icon && (
           <Icon
             className={makeStyles([
-              'h-4 w-4 mx-1 my-auto',
-              size === 'xl' && 'h-14 w-16',
+              styles.icon.main,
+              size === sizes.lg && styles.icon.large,
             ])}
           />
         )}
@@ -60,6 +48,31 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   }
 )
 
-Button.displayName = 'Button'
+const styles = {
+  container:
+    'flex justify-center items-center rounded border text-black bg-white dark:text-white dark:bg-dark  hover:scale-105 transition-all border-0',
+  text: 'mx-1',
+  icon: {
+    main: 'h-4 w-4 mx-1 my-auto',
+    large: 'h-14 w-16',
+  },
+}
+
+const variants = {
+  primary:
+    'bg-gradient-to-r from-primary to-secondary text-white shadow-xl shadow-secondary/30',
+  secondary: 'border-2 border-secondary bg-white shadaw-lg',
+  inverse: 'border-dark',
+  borderless: 'border-none shadow-none bg-transparent dark:bg-transparent',
+}
+
+const sizes = {
+  sm: 'py-2 px-4 text-sm',
+  md: 'py-2 px-6 text-md',
+  lg: 'py-3 px-8 text-lg',
+  xl: 'py-4 px-10 text-lg',
+}
+
+Button.displayName = 'ButtonComponent'
 
 export default Button

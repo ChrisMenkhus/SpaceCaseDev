@@ -2,11 +2,6 @@ import Post from '../../types/Post'
 import BlogContent from './components/BlogContent'
 
 import Layout from '@components/templates/Layout'
-import {
-  Options,
-  documentToReactComponents,
-} from '@contentful/rich-text-react-renderer'
-import { BLOCKS, Document, MARKS } from '@contentful/rich-text-types'
 import queryContentful from '@utils/queryContentful'
 import type { GetStaticProps, NextPage } from 'next'
 import Image from 'next/image'
@@ -17,7 +12,7 @@ const BlogArticle: NextPage<{ post: Post }> = ({ post }) => {
     <Layout title="Insights" description="Insights" className="px-8">
       <div className="flex flex-wrap m-auto mt-20 max-w-screen-md text-left">
         <div className="flex flex-col-reverse my-4 w-full md:flex-row">
-          <div className="relative my-8 mr-4 w-full h-64 bg-dark md:my-0 md:max-w-xs md:h-full">
+          <div className="relative my-8 w-screen h-64 bg-dark sm:mr-4 sm:w-full md:my-0 md:max-w-xs md:h-full">
             <Image
               src={post.image.url}
               layout="fill"
@@ -26,7 +21,7 @@ const BlogArticle: NextPage<{ post: Post }> = ({ post }) => {
               objectFit="cover"
             />
           </div>
-          <h1 className="w-full text-7xl">{post.title}</h1>
+          <h1 className="w-full text-6xl md:text-7xl">{post.title}</h1>
         </div>
         <p className="my-2 text-xl ">{post.description}</p>
       </div>

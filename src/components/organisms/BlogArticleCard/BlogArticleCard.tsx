@@ -1,11 +1,12 @@
 import Button from '@components/atoms/Button'
+import Link from '@components/atoms/Link'
 import { BookOpenIcon } from '@heroicons/react/outline'
 import makeStyles from '@utils/makeStyles'
 import truncateString from '@utils/truncateString'
 import Image from 'next/image'
 import Router from 'next/router'
 
-export default function BlogArticleCard({
+function BlogArticleCard({
   title,
   text,
   date,
@@ -53,7 +54,7 @@ export default function BlogArticleCard({
         <div className="flex justify-start items-center ">
           <div className="relative w-6 h-6">
             <Image
-              src="/icon/profile_image.svg"
+              src="/profile.svg"
               alt="profile image"
               layout="fill"
               objectFit="cover"
@@ -68,20 +69,26 @@ export default function BlogArticleCard({
           {truncateString(text as string, variant === 'large' ? 212 : 112)}
         </p>
         <div className="flex ">
-          <Button
+          {/* <Button
             variant="secondary"
             size="md"
             icon={BookOpenIcon}
             onClick={(e) => {
               e.preventDefault()
               Router.push('/Insights/' + slug)
-              // .then(() => window.scrollTo(0, 0))
             }}
           >
             Read More
-          </Button>
+          </Button> */}
+          <Link icon={BookOpenIcon} href={'/Insights/' + slug}>
+            Read More
+          </Link>
         </div>
       </div>
     </article>
   )
 }
+
+BlogArticleCard.displayName = 'BlogArticleCardComponent'
+
+export default BlogArticleCard

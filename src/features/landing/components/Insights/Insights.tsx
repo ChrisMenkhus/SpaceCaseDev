@@ -1,6 +1,6 @@
-import BlogArticleCard from './components/BlogArticleCard'
-
 import Button from '@components/atoms/Button'
+import Link from '@components/atoms/Link'
+import BlogArticleCard from '@components/organisms/BlogArticleCard'
 import Section from '@components/templates/Section'
 import { CollectionIcon } from '@heroicons/react/outline'
 import Router from 'next/router'
@@ -35,18 +35,14 @@ const Insights = forwardRef<HTMLDivElement, InsightsInterface>(
         </Section.Content>
         <Section.Footer>
           <div className="flex w-full max-w-screen-lg">
-            <Button
-              size="lg"
-              variant="primary"
+            <Link
+              size="xl"
               icon={CollectionIcon}
               className="mx-auto sm:mr-8"
-              onClick={(e) => {
-                e.preventDefault()
-                Router.push('/Insights')
-              }}
+              href="/Insights"
             >
               More Articles
-            </Button>
+            </Link>
           </div>
         </Section.Footer>
       </Section.Container>

@@ -42,21 +42,35 @@ const Intro = forwardRef<HTMLDivElement, IntroInterface>(({}, ref?) => {
             >
               Learn More
             </Button>
+            <div className="flex justify-center items-center md:mt-8">
+              <a
+                href="https://github.com/ChrisMenkhus"
+                className={styles.content.textContainer.ellipseButton}
+              >
+                <div className="relative w-8 h-8">
+                  <Image alt="lol" src="/github.svg" layout="fill" />
+                </div>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/solonaut/"
+                className={styles.content.textContainer.ellipseButton}
+              >
+                <div className="relative w-8 h-8">
+                  <Image alt="lol" src="/linkedin.svg" layout="fill" />
+                </div>
+              </a>
+              <a
+                href="https://docs.google.com/document/d/1oDRiRERHm9KubdwktoU7MtR5XTMyZr6Y5Rp2a7SrsHM/edit?usp=sharing"
+                className={styles.content.textContainer.ellipseButton}
+              >
+                <div className="relative w-8 h-8">
+                  <Image alt="lol" src="/resume.svg" layout="fill" />
+                </div>
+              </a>
+            </div>
           </div>
         </div>
         <div className={styles.content.imageContainer.main}>
-          <Button
-            variant="inverse"
-            size="lg"
-            className={styles.content.imageContainer.button}
-            icon={ChevronDoubleDownIcon}
-            onClick={(e) => {
-              e.preventDefault()
-              Router.push('#About')
-            }}
-          >
-            Learn More
-          </Button>
           <figure className={styles.content.imageContainer.figure}>
             <Image
               src="https://res.cloudinary.com/spacecaser/image/upload/v1645042060/chris-illustration_qbzyoa.svg"
@@ -76,26 +90,25 @@ const styles = {
   background: {
     main: 'flex w-full h-full max-h-[1050px] flex-col md:flex-row max-w-screen-lg ',
     left: 'w-1/2 h-full ',
-    right: 'bg-secondary h-full md:h-5/6 md:m-auto md:w-1/2 ',
+    right: 'bg-secondary h-full h-4/6 md:h-5/6 md:m-auto md:w-1/2 ',
   },
   content: {
     main: 'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-full md:flex-row overflow-hidden',
     textContainer: {
       main: 'flex justify-center items-center m-auto w-full h-full md:pt-0 md:w-1/2 bg-transparent ',
       header1:
-        'p-4 w-full max-w-fit text-2xl sm:m-auto sm:text-3xl md:pt-0 md:pb-16 ',
+        'p-4 w-full max-w-fit text-2xl mt-16 sm:m-auto sm:text-3xl md:pt-0 md:pb-16 h-full flex flex-col justify-center items-center',
       span1: 'block text-left',
       span2:
         'block text-6xl text-left text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary sm:text-6xl ',
       span3: 'block text-right',
-      button: 'hidden m-auto my-8 mt-16 md:flex',
+      button: 'm-auto my-8 md:mt-16 md:flex',
+      ellipseButton:
+        'grid place-items-center p-4 mx-4 my-auto w-16 h-16 bg-white rounded-full shadow-md hover:scale-110 transition-all',
     },
     imageContainer: {
       main: 'flex relative justify-center items-center w-full h-full md:h-full md:w-1/2 ',
-      button: 'absolute z-10 md:hidden',
-      button__old: 'z-10 mt-auto mb-32 md:hidden',
-
-      figure: 'flex w-fit h-fit mr-auto ',
+      figure: 'flex w-fit h-fit mr-auto mt-4',
       figure__old:
         'absolute bottom-1 left-0 w-auto h-auto md:relative md:m-auto md:ml-0 md:w-56 md:h-full md:max-h-[42rem] ',
       image: '',

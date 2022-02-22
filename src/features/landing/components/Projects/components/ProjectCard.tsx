@@ -1,4 +1,5 @@
 import Button from '@components/atoms/Button'
+import Link from '@components/atoms/Link'
 import { GlobeIcon, SparklesIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 
@@ -29,43 +30,41 @@ function ProjectCard({ ...props }: Props) {
             exercitationem praesentium nihil. Lorem ipsum dolor sit amet,
             consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et.
           </p>
-          <div className="flex flex-row mt-2 w-auto ">
+          <div className="group flex flex-row mt-2 w-auto">
             {props.colors.map((e) => (
               <div
                 key={e}
-                className="-mr-4 w-10 h-10 bg-secondary rounded-full shadow-md"
+                className="-mr-4 group-hover:-mr-2 w-10 h-10 bg-secondary rounded-full shadow-md transition-all"
                 style={{ backgroundColor: e }}
               />
             ))}
           </div>
           <div className="flex flex-row gap-4 justify-start mt-4">
-            <Button variant="primary" size="sm" icon={GlobeIcon}>
+            <Link icon={GlobeIcon} href={props.website}>
               Website
-            </Button>
-            <Button variant="primary" size="sm" icon={SparklesIcon}>
+            </Link>
+            <Link icon={SparklesIcon} href={props.github}>
               Github
-            </Button>
-            <a href={props.website}>Website</a>
-            <a href={props.github}>Github</a>
+            </Link>
           </div>
         </div>
         <div className="flex justify-center items-center mt-auto w-auto h-fit">
-          <div className="relative mt-auto w-64 h-[16rem] sm:w-80 sm:h-[20rem]">
+          <div className="relative hover:z-10 mt-auto w-64 h-[16rem] shadow-xl transition-all hover:scale-105 sm:w-80 sm:h-[20rem]">
             <Image
               src={props.desktopImage}
               alt="generic blog image"
               layout="fill"
-              objectFit="contain"
-              objectPosition="bottom"
+              objectFit="cover"
+              className="object-top hover:object-bottom rounded transition-all duration-500"
             />
           </div>
-          <div className="relative mt-auto w-24 h-52">
+          <div className="relative mt-auto w-28 h-52 shadow-md transition-all hover:scale-110">
             <Image
               src={props.mobileImage}
               alt="generic blog image"
               layout="fill"
-              objectFit="contain"
-              objectPosition="top"
+              objectFit="cover"
+              className="object-top hover:object-bottom rounded transition-all duration-1000"
             />
           </div>
         </div>

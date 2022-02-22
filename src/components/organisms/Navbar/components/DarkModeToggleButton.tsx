@@ -11,7 +11,7 @@ const DarkModeSwitch = ({
   return (
     <label
       htmlFor="darktoggle"
-      className="relative w-28 h-8 text-white bg-[#333] rounded-full transition-all"
+      className="relative w-28 h-8 text-white bg-[#333] rounded-full transition-all hover:scale-105"
     >
       <input
         type="checkbox"

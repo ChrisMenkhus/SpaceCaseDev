@@ -1,5 +1,4 @@
-import BlogArticleCard from '../landing/components/Insights/components/BlogArticleCard'
-
+import BlogArticleCard from '@components/organisms/BlogArticleCard'
 import Section from '@components/templates/Section'
 import Post from 'src/types/Post'
 
