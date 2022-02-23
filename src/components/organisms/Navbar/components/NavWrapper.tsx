@@ -5,6 +5,7 @@ import makeStyles from '@utils/makeStyles'
 import useScrollPosition from '@utils/useScrollPosition'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
+import Link from 'next/link'
 import Router from 'next/router'
 import { useState } from 'react'
 
@@ -70,20 +71,16 @@ export const NavWrapper = ({
     >
       <div className={styles.layout}>
         <div className={styles.layout_top}>
-          <button
-            className={styles.logoButton}
-            onClick={(e) => {
-              e.preventDefault()
-              Router.push('/')
-            }}
-          >
-            <Image
-              src="/logo.svg"
-              alt="website logo"
-              layout="fill"
-              objectFit="contain"
-            />
-          </button>
+          <Link href="/" passHref>
+            <a className={styles.logoButton}>
+              <Image
+                src="/logo.svg"
+                alt="website logo"
+                layout="fill"
+                objectFit="contain"
+              />
+            </a>
+          </Link>
           <button className={styles.menuButton} onClick={ToggleMobileNavMenu}>
             {mobileNavMenuToggled ? <XIcon /> : <MenuIcon />}
           </button>
