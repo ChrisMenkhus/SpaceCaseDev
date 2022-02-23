@@ -57,7 +57,7 @@
 [![SpaceCase.dev Screen Shot][product-screenshot]](https://space-case-dev.vercel.app/)
 
 <a href="https://space-case-dev.vercel.app/">
-  <img src=[product-screenshot] alt="screenshot" width="300" height="250">
+  <img src="https://res.cloudinary.com/spacecaser/image/upload/v1645582720/FireShot_Capture_009_-_Chris_Menkhus_Developer_Front_End_Full_Stack_About_Contact_Page_-_localhost_d6bei9.png" alt="screenshot" width="300" height="250">
 </a>
 
 This is my third portfolio website and my third year using React so I really want this project to stand out from my past projects in terms of design and development.
