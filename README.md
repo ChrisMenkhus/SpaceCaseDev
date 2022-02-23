@@ -54,7 +54,11 @@
 
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://space-case-dev.vercel.app/)
+[![SpaceCase.dev Screen Shot][product-screenshot]](https://space-case-dev.vercel.app/)
+
+<a href="https://space-case-dev.vercel.app/">
+  <img src=[product-screenshot] alt="screenshot" width="300" height="250">
+</a>
 
 This is my third portfolio website and my third year using React so I really want this project to stand out from my past projects in terms of design and development.
 
