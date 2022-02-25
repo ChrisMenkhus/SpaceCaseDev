@@ -1,13 +1,13 @@
 import Layout from '@components/templates/Layout'
 import queryContentful from '@utils/queryContentful'
 import type { NextPage } from 'next'
-import Blog from 'src/features/blog/Blog'
+import BlogList from 'src/features/Blog/BlogList'
 import Post from 'src/types/Post'
 
 const Insights: NextPage<{ posts: Post[] }> = ({ posts }) => {
   return (
-    <Layout className="mt-20" title="Insights" description="Insights">
-      <Blog posts={posts} />
+    <Layout className="pt-20" title="Insights" description="Insights">
+      <BlogList posts={posts} />
     </Layout>
   )
 }

@@ -1,7 +1,7 @@
 import Layout from '@components/templates/Layout'
 import queryContentful from '@utils/queryContentful'
 import type { NextPage } from 'next'
-import Landing from 'src/features/landing/Landing'
+import Landing from 'src/features/Landing/Landing'
 import Post from 'src/types/Post'
 import Project from 'src/types/Project'
 

@@ -8,7 +8,7 @@ type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
 }
 
-const About = forwardRef<HTMLDivElement, AboutInterface>(({}, ref?) => {
+const AboutSection = forwardRef<HTMLDivElement, AboutInterface>(({}, ref?) => {
   return (
     <Section.Container name="About" className="h-full " ref={ref}>
       <Section.Header
@@ -130,6 +130,6 @@ const copytext = {
   ],
 }
 
-About.displayName = 'AboutSection'
+AboutSection.displayName = 'AboutSection'
 
-export default About
+export default AboutSection

@@ -1,33 +1,14 @@
 import Post from '../../types/Post'
-import BlogContent from './components/BlogContent'
 
 import Layout from '@components/templates/Layout'
 import queryContentful from '@utils/queryContentful'
 import type { GetStaticProps, NextPage } from 'next'
-import Image from 'next/image'
 import React from 'react'
 
 const BlogArticle: NextPage<{ post: Post }> = ({ post }) => {
   return (
-    <Layout title="Insights" description="Insights" className="px-8">
-      <div className="flex flex-wrap m-auto mt-20 max-w-screen-md text-left">
-        <div className="flex flex-col-reverse my-4 w-full md:flex-row">
-          <div className="relative my-8 w-screen h-64 bg-dark sm:mr-4 sm:w-full md:my-0 md:max-w-xs md:h-full">
-            <Image
-              src={post.image.url}
-              layout="fill"
-              alt="no shadow flat anime image of Chris"
-              objectPosition="center"
-              objectFit="cover"
-            />
-          </div>
-          <h1 className="w-full text-6xl md:text-7xl">{post.title}</h1>
-        </div>
-        <p className="my-2 text-xl ">{post.description}</p>
-      </div>
-      <div className="flex flex-wrap mb-36 max-w-screen-sm">
-        <BlogContent document={post.post.json as any} />
-      </div>
+    <Layout title="Insights" description="Insights" className="px-8 pt-20">
+      <BlogArticle post={post} />
     </Layout>
   )
 }
@@ -94,5 +75,3 @@ export async function getStaticPaths() {
 }
 
 BlogArticle.displayName = 'BlogArticlePage'
-
-export default BlogArticle

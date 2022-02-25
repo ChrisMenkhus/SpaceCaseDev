@@ -25,7 +25,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/features/landing/components/Process/components/particlesjs-config.js",
+    "src/features/Landing/components/Process/components/particlesjs-config.js",
     "src/components/molecules/ParticleBackground/ParticleBackground.jsx"
   ],
   "exclude": ["node_modules"]

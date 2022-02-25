@@ -6,7 +6,7 @@ type BlogInterface = {
   posts: Post[]
 }
 
-export default function Blog({ posts }: BlogInterface) {
+function BlogList({ posts }: BlogInterface) {
   return (
     <Section.Container name="Insights" className="min-h-screen">
       <Section.Content>
@@ -28,3 +28,7 @@ export default function Blog({ posts }: BlogInterface) {
     </Section.Container>
   )
 }
+
+BlogList.displayName = 'ArticleListComponent'
+
+export default BlogList

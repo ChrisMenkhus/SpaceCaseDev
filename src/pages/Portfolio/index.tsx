@@ -1,17 +1,17 @@
 import Layout from '@components/templates/Layout'
 import queryContentful from '@utils/queryContentful'
 import { NextPage } from 'next'
-import PortfolioProjects from 'src/features/portfolio/PortfolioProjects'
+import ProjectList from 'src/features/portfolio/ProjectList'
 import Project from 'src/types/Project'
 
 const Portfolio: NextPage<{ projects: Project[] }> = ({ projects }) => {
   return (
     <Layout
-      className="mt-20"
+      className="pt-20"
       title="Portfolio"
       description="Collection of projects."
     >
-      <PortfolioProjects projects={projects} />
+      <ProjectList projects={projects} />
     </Layout>
   )
 }

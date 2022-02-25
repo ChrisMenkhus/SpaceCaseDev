@@ -1,1 +1,1 @@
-export * from './PortfolioProjects'
+export * from './ProjectList'
