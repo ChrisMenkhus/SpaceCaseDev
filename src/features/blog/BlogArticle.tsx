@@ -1,5 +1,6 @@
 import BlogContent from './components/BlogContent'
 
+import Link from '@components/atoms/Link'
 import BlogArticleCard from '@components/organisms/BlogArticleCard'
 import Section from '@components/templates/Section'
 import Image from 'next/image'
@@ -13,9 +14,9 @@ function BlogArticle({ post }: BlogInterface) {
   return (
     <Section.Container name="Insights" className="min-h-screen">
       <Section.Content>
-        <div className="flex flex-wrap m-auto mt-20 max-w-screen-md text-left">
-          <div className="flex flex-col-reverse my-4 w-full md:flex-row">
-            <div className="relative my-8 w-screen h-64 bg-dark sm:mr-4 sm:w-full md:my-0 md:max-w-xs md:h-full">
+        <div className="flex flex-wrap px-4 m-auto max-w-screen-lg text-left">
+          <div className="flex flex-col-reverse mt-4 w-full md:flex-row">
+            <div className="relative my-8 w-full max-w-lg h-64 bg-dark sm:mr-4 sm:w-full md:my-0 md:h-full">
               <Image
                 src={post.image.url}
                 layout="fill"
@@ -24,16 +25,37 @@ function BlogArticle({ post }: BlogInterface) {
                 objectFit="cover"
               />
             </div>
-            <h1 className="px-2 w-full text-5xl sm:text-6xl md:text-7xl">
+            <h1 className="w-full text-5xl sm:text-6xl md:text-7xl">
               {post.title}
             </h1>
           </div>
-          <p className="px-2 my-2 text-xl">{post.description}</p>
+          <p className="py-4 m-auto max-w-screen-lg text-xl">
+            {post.description}
+          </p>
         </div>
-        <div className="flex flex-wrap px-2 mb-36 w-full max-w-screen-sm">
-          <BlogContent document={post.post.json as any} />
+        <div className="flex flex-wrap w-full max-w-screen-lg">
+          <BlogContent
+            className="px-4 mr-auto w-full max-w-screen-sm"
+            document={post.post.json as any}
+          />
         </div>
       </Section.Content>
+      <Section.Footer>
+        <small className="mt-16 mb-8">
+          Found a bug? 🕷
+          <Link className="inline p-0 m-0" href="/#contact">
+            {'contact'}
+          </Link>
+          me or create an
+          <Link
+            className="inline p-0 m-0"
+            href="https://github.com/ChrisMenkhus/SpaceCaseDev/issues/new"
+          >
+            {'issue'}
+          </Link>
+          on github
+        </small>
+      </Section.Footer>
     </Section.Container>
   )
 }

@@ -2,15 +2,40 @@ import Post from '../../types/Post'
 
 import Layout from '@components/templates/Layout'
 import queryContentful from '@utils/queryContentful'
-import type { GetStaticProps, NextPage } from 'next'
+import type { GetStaticProps } from 'next'
 import React from 'react'
+import BlogArticle from 'src/features/Blog/BlogArticle'
 
-const BlogArticle: NextPage<{ post: Post }> = ({ post }) => {
+function BlogArticlePage({ post }: { post: Post }) {
   return (
-    <Layout title="Insights" description="Insights" className="px-8 pt-20">
+    <Layout title="Insights" description="Insights" className="pt-20">
       <BlogArticle post={post} />
     </Layout>
   )
+}
+
+export async function getStaticPaths() {
+  const queryForSlugs = ` query {
+      blogPostCollection{
+        items {
+          slug
+        }
+      }
+    }`
+
+  const slugsData = await queryContentful(queryForSlugs)
+  const slugs: { slug: string }[] = slugsData.blogPostCollection.items
+
+  const paths = slugs.map((element, index) => {
+    console.log('SLUG: ', element.slug)
+    return {
+      params: { slug: element.slug },
+    }
+  })
+  return {
+    paths,
+    fallback: false,
+  }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
@@ -36,7 +61,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         }
       }
     }
-    
+
     `
 
   const postData = await queryContentful(queryForPost)
@@ -49,29 +74,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-export async function getStaticPaths() {
-  const queryForSlugs = ` query {
-      blogPostCollection{
-        items {
-          slug
-        }
-      }
-    }`
+BlogArticlePage.displayName = 'BlogArticlePage'
 
-  const slugsData = await queryContentful(queryForSlugs)
-  const slugs: { slug: string }[] = slugsData.blogPostCollection.items
-
-  const paths = slugs.map((element, index) => {
-    console.log('SLUG: ', element.slug)
-    return {
-      params: { slug: element.slug },
-    }
-  })
-
-  return {
-    paths,
-    fallback: false,
-  }
-}
-
-BlogArticle.displayName = 'BlogArticlePage'
+export default BlogArticlePage

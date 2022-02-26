@@ -2,19 +2,34 @@ import {
   Options,
   documentToReactComponents,
 } from '@contentful/rich-text-react-renderer'
-import { BLOCKS, Document, MARKS } from '@contentful/rich-text-types'
+import {
+  BLOCKS,
+  Document,
+  EntryLinkBlock,
+  MARKS,
+} from '@contentful/rich-text-types'
 
-function BlogContent({ document }: { document: Document }) {
+function BlogContent({
+  document,
+  className = '',
+}: {
+  document: Document
+  className?: string
+}) {
   return (
-    <div className="w-full">{documentToReactComponents(document, options)}</div>
+    <div className={className}>
+      {documentToReactComponents(document, options)}
+    </div>
   )
 }
 
 const options: Options = {
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => (
-      <div className="my-1">{children}</div>
-    ),
+    [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
+      console.log(node.data.target)
+      return <div className="">{children}</div>
+    },
+    [BLOCKS.PARAGRAPH]: (node, children) => <div className="">{children}</div>,
     [BLOCKS.HEADING_1]: (node, children) => (
       <h1 className={styles.header}>{children}</h1>
     ),
@@ -34,15 +49,15 @@ const options: Options = {
       <h6 className={styles.header}>{children}</h6>
     ),
     [BLOCKS.UL_LIST]: (node, children) => (
-      <ul className="list-disc">{children}</ul>
+      <ul className="pl-8 list-decimal">{children}</ul>
     ),
     [BLOCKS.LIST_ITEM]: (node, children) => (
-      <li className="list-item mb-4 ml-4">{children}</li>
+      <li className="list-item indent-2">{children}</li>
     ),
   },
   renderMark: {
     [MARKS.CODE]: (text) => (
-      <pre className="py-1 px-4 mt-4 w-full text-white whitespace-pre-wrap bg-dark">
+      <pre className="py-2 px-1 my-2 w-full text-white whitespace-pre-wrap bg-dark">
         {text}
       </pre>
     ),
@@ -50,7 +65,7 @@ const options: Options = {
 }
 
 const styles = {
-  header: 'mt-8 mb-4 text-4xl font-medium',
+  header: 'pt-8 pb-2 text-4xl font-medium',
 }
 
 export default BlogContent
