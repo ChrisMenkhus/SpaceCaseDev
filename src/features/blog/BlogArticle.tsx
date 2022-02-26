@@ -1,10 +1,9 @@
 import BlogContent from './components/BlogContent'
 
 import Link from '@components/atoms/Link'
-import BlogArticleCard from '@components/organisms/BlogArticleCard'
+import Post from 'src/types/Post'
 import Section from '@components/templates/Section'
 import Image from 'next/image'
-import Post from 'src/types/Post'
 
 type BlogInterface = {
   post: Post
