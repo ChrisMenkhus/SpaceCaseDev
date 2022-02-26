@@ -11,7 +11,7 @@ type InsightsInterface = {
   posts: Post[]
 }
 
-const Insights = forwardRef<HTMLDivElement, InsightsInterface>(
+const InsightsSection = forwardRef<HTMLDivElement, InsightsInterface>(
   ({ posts }, ref?) => {
     return (
       <Section.Container name="Insights">
@@ -50,6 +50,6 @@ const Insights = forwardRef<HTMLDivElement, InsightsInterface>(
   }
 )
 
-Insights.displayName = 'InsightsSection'
+InsightsSection.displayName = 'InsightsSection'
 
-export default Insights
+export default InsightsSection

@@ -13,7 +13,6 @@ async function queryContentful(query: string): Promise<any> {
     }
   )
   if (result.ok) {
-    // console.log('RESULT: ', result)
     const { data } = await result.json()
     return data
   } else {

@@ -69,18 +69,7 @@ function BlogArticleCard({
           {truncateString(text as string, variant === 'large' ? 212 : 112)}
         </p>
         <div className="flex ">
-          {/* <Button
-            variant="secondary"
-            size="md"
-            icon={BookOpenIcon}
-            onClick={(e) => {
-              e.preventDefault()
-              Router.push('/Insights/' + slug)
-            }}
-          >
-            Read More
-          </Button> */}
-          <Link icon={BookOpenIcon} href={'/Insights/' + slug}>
+          <Link icon={BookOpenIcon} href={'/Blog/' + slug}>
             Read More
           </Link>
         </div>

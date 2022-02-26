@@ -110,8 +110,6 @@ Project Link: [https://github.com/ChrisMenkhus/SpaceCaseDev](https://github.com/
 
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
 - [HeroIcons](https://heroicons.com/)
 - [Pexels](https://www.pexels.com/)
 - [BulletProof React](https://github.com/alan2207/bulletproof-react)

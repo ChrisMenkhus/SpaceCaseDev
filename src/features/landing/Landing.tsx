@@ -1,8 +1,8 @@
-import About from './components/About/About'
-import Contact from './components/Contact/Contact'
-import Insights from './components/Insights/Insights'
-import Intro from './components/Intro/Intro'
-import Projects from './components/Projects/Projects'
+import AboutSection from './components/AboutSection/AboutSection'
+import ContactSection from './components/Contact/ContactSection'
+import InsightsSection from './components/InsightsSection/InsightsSection'
+import IntroSection from './components/IntroSection/IntroSection'
+import ProjectsSection from './components/ProjectsSection/ProjectsSection'
 
 import Post from 'src/types/Post'
 import Project from 'src/types/Project'
@@ -15,11 +15,11 @@ type LandingInterface = {
 function Landing({ posts, projects }: LandingInterface) {
   return (
     <>
-      <Intro />
-      <About />
-      <Insights posts={posts} />
-      <Projects projects={projects} />
-      <Contact />
+      <IntroSection />
+      <AboutSection />
+      <InsightsSection posts={posts} />
+      <ProjectsSection projects={projects} />
+      <ContactSection />
     </>
   )
 }
