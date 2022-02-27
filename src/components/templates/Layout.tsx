@@ -4,8 +4,10 @@ import Head from 'next/head'
 
 type PageInterface = {
   children: JSX.Element | JSX.Element[]
-  title: string
-  description: string
+  seo: {
+    title: string
+    description: string
+  }
   className?: string
   showNavOnScroll?: boolean
 }
@@ -20,8 +22,8 @@ export default function Layout({ ...props }: PageInterface) {
       ])}
     >
       <Head>
-        <title>{props.title}</title>
-        <meta name="description" content={props.description} />
+        <title>spacecase.dev - {props.seo.title}</title>
+        <meta name="description" content={props.seo.description} />
       </Head>
       <Navbar showOnScroll={props.showNavOnScroll} />
       <div className="mt-0">{props.children}</div>
