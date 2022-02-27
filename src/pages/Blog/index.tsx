@@ -4,16 +4,8 @@ import type { NextPage } from 'next'
 import BlogList from 'src/features/Blog/BlogList'
 import Post from 'src/types/Post'
 
-const Insights: NextPage<{ posts: Post[] }> = ({ posts }) => {
-  return (
-    <Layout className="pt-20" title="Insights" description="Insights">
-      <BlogList posts={posts} />
-    </Layout>
-  )
-}
-
 export async function getStaticProps() {
-  const postsData = await queryContentful(queryForBlogPosts)
+  const postsData = await queryContentful('posts')
   const posts: Post[] = postsData.blogPostCollection.items
 
   return {
@@ -23,21 +15,19 @@ export async function getStaticProps() {
   }
 }
 
-const queryForBlogPosts = ` query {
-  blogPostCollection{
-    items {
-      title
-      description
-      date
-      slug
-      post {
-        json
-      }
-      image {
-        url
-      }
-    }
-  }
-}`
+type PageProps = { posts: Post[] }
 
-export default Insights
+const Page: NextPage<PageProps> = ({ posts }) => {
+  return (
+    <Layout className="pt-20" seo={pageSeo}>
+      <BlogList posts={posts} />
+    </Layout>
+  )
+}
+
+const pageSeo = {
+  title: 'Insights',
+  description: 'Collection of articles and guides about web development',
+}
+Page.displayName = 'InsightsPage'
+export default Page

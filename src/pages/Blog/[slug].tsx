@@ -2,36 +2,19 @@ import Post from '../../types/Post'
 
 import Layout from '@components/templates/Layout'
 import queryContentful from '@utils/queryContentful'
-import type { GetStaticProps } from 'next'
-import React from 'react'
+import type { GetStaticProps, NextPage } from 'next'
 import BlogArticle from 'src/features/Blog/BlogArticle'
 
-function BlogArticlePage({ post }: { post: Post }) {
-  return (
-    <Layout title="Insights" description="Insights" className="pt-20">
-      <BlogArticle post={post} />
-    </Layout>
-  )
-}
-
 export async function getStaticPaths() {
-  const queryForSlugs = ` query {
-      blogPostCollection{
-        items {
-          slug
-        }
-      }
-    }`
-
-  const slugsData = await queryContentful(queryForSlugs)
+  const slugsData = await queryContentful('slugs')
   const slugs: { slug: string }[] = slugsData.blogPostCollection.items
 
   const paths = slugs.map((element, index) => {
-    console.log('SLUG: ', element.slug)
     return {
       params: { slug: element.slug },
     }
   })
+
   return {
     paths,
     fallback: false,
@@ -39,32 +22,8 @@ export async function getStaticPaths() {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const slug = params && params.slug
-
-  const queryForPost = ` query {
-      blogPostCollection(where: {
-        slug: "${slug}"
-      },
-      limit: 1
-      ) {
-        items {
-          title
-          description
-          slug
-          post {
-            json
-          }
-          date
-          image {
-            url
-          }
-        }
-      }
-    }
-
-    `
-
-  const postData = await queryContentful(queryForPost)
+  const slug = params && params.slug?.toString()
+  const postData = await queryContentful('post', slug)
   const post: Post = postData.blogPostCollection.items[0]
 
   return {
@@ -74,6 +33,19 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   }
 }
 
-BlogArticlePage.displayName = 'BlogArticlePage'
+type PageProps = {
+  post: Post
+}
 
-export default BlogArticlePage
+const Page: NextPage<PageProps> = ({ post }) => {
+  return (
+    <Layout className="pt-20" seo={pageSeo}>
+      <BlogArticle post={post} />
+    </Layout>
+  )
+}
+
+const pageSeo = { title: 'Insights', description: 'Insights' }
+Page.displayName = 'BlogArticlePage'
+
+export default Page
