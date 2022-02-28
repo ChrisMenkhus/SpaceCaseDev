@@ -91,8 +91,9 @@ This section should list any major frameworks/libraries used to bootstrap your p
 - [ ] Add back to top links
 - [ ] Add more projects
 - [ ] Add "hightlights' section to ReadMe
+- [ ] Add embeded images functionality to blog feature
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
+See the [open issues](https://github.com/ChrisMenkhus/SpaceCaseDev/issues/) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -118,7 +119,6 @@ Project Link: [https://github.com/ChrisMenkhus/SpaceCaseDev](https://github.com/
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
 [issues-url]: https://github.com/ChrisMenkhus/SpaceCaseDev/issues
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
