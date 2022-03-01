@@ -12,7 +12,10 @@ type IntroInterface = React.HTMLAttributes<HTMLDivElement> & {
 export const IntroSection = forwardRef<HTMLDivElement, IntroInterface>(
   ({}, ref?) => {
     return (
-      <Section.Container name="Intro" className={'relative h-screen'}>
+      <Section.Container
+        name="Intro"
+        className={'relative h-screen md:h-[calc(100vh-8rem)]'}
+      >
         <div className={styles.background.main}>
           <div className={styles.background.left} />
           <div className={styles.background.right} />

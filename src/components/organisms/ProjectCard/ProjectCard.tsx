@@ -72,7 +72,7 @@ export function ProjectCard({ ...props }: Props) {
 }
 
 const styles = {
-  main: 'overflow-hidden mb-16 last:mb-8 w-screen h-full dark:text-white bg-gradient-to-b from-[#E0E0E0] dark:from-dark to-white dark:to-[#111] rounded shadow-lg',
+  main: 'overflow-hidden mb-16 last:mb-8 w-screen h-full dark:text-white bg-gradient-to-b from-[#FFF] dark:from-dark to-white dark:to-[#111] rounded shadow-lg',
   flexContainer:
     'flex flex-row flex-wrap justify-center items-center pt-10 mx-auto w-full',
   textBox: {

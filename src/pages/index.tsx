@@ -1,15 +1,15 @@
 import Post from '!types/Post'
 import Project from '!types/Project'
-import { Layout } from '@components/templates/Layout/Layout'
+import { Header } from '@components/atoms'
 import { Landing } from '@features/landing/routes'
-import queryContentful from '@utils/queryContentful'
+import { queryForPosts, queryForProjects } from '@utils/queryContentful'
 import type { NextPage } from 'next'
 
 export async function getStaticProps() {
-  const postsData = await queryContentful('posts')
+  const postsData = await queryForPosts(3)
   const posts: Post[] = postsData.blogPostCollection.items
 
-  const projectsData = await queryContentful('projects')
+  const projectsData = await queryForProjects(3)
   const projects: Project[] = projectsData.projectCollection.items
 
   return {
@@ -26,15 +26,16 @@ type PageProps = {
 }
 
 const Page: NextPage<PageProps> = ({ posts, projects }) => (
-  <Layout seo={pageSeo} showNavOnScroll className="md:pt-0">
+  <>
+    <Header {...pageSeo} />
     <Landing posts={posts} projects={projects} />
-  </Layout>
+  </>
 )
 
 const pageSeo = {
   title: 'Chris Menkhus About & Contact',
   description:
-    'Chris Menkhus Front End or Full Stack website web developer and designer. Intro Page outlining skills like React Nextjs Nodejs HTML CSS GraphQL SQL styled-components tailwindcss tailwind semantic seo and other tools and frameworks.',
+    'Chris Menkhus Front End or Full Stack website web developer and designer. Intro Page outlining skills like React Nextjs Nodejs HTML CSS GraphQL SQL styled-components tailwindcss tailwind semantic seo and other tools and frameworks located in Colorado Springs.',
 }
 
 Page.displayName = 'HomePage'

@@ -4,11 +4,7 @@ import NavWrapper from './components/NavWrapper'
 import { MailIcon } from '@heroicons/react/outline'
 import React from 'react'
 
-export const Navbar = ({
-  showOnScroll = false,
-}: {
-  showOnScroll?: boolean
-}) => {
+export const Navbar = ({}: {}) => {
   const navItemsInfo: NavItemProps[] = [
     {
       name: 'Home',
@@ -37,7 +33,7 @@ export const Navbar = ({
     <NavItem {...item} key={item.name + index} />
   ))
 
-  return <NavWrapper showOnScroll={showOnScroll}>{NavItems}</NavWrapper>
+  return <NavWrapper>{NavItems}</NavWrapper>
 }
 
 Navbar.displayName = 'Navbar'

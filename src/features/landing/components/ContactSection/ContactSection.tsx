@@ -19,9 +19,9 @@ export const ContactSection = forwardRef<HTMLDivElement, ContactInterface>(
             <Card title={'Message Me'}>
               <EmailForm />
             </Card>
-            <Card variant="secondary" title="Schedule a Meeting">
+            <Card title="Schedule a Meeting" variant="secondary">
               <div className="py-8 m-auto h-full text-xl text-center">
-                Let’s schedule a time to get to know each other.
+                Lets schedule a time to get to know each other.
               </div>
               <Button
                 size="lg"

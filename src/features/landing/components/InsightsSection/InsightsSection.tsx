@@ -37,7 +37,7 @@ export const InsightsSection = forwardRef<HTMLDivElement, InsightsInterface>(
               size="xl"
               icon={CollectionIcon}
               className="mx-auto sm:mr-8"
-              href="/Insights"
+              href="/blog"
             >
               More Articles
             </Link>

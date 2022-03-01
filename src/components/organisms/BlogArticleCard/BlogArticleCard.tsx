@@ -50,19 +50,21 @@ export function BlogArticleCard({
           {truncateString(title as string, variant === 'large' ? 100 : 70)}
         </h1>
         <div className={styles.textBox.credits.main}>
-          <div className={styles.textBox.credits.logo}>
+          {/* <div className={styles.textBox.credits.logo}>
             <Image
               src="/profile.svg"
               alt="profile image"
               layout="fill"
               objectFit="cover"
             />
-          </div>
+          </div> */}
           <small className={styles.textBox.credits.textBox.main}>
             <h2 className={styles.textBox.credits.textBox.name}>
               Chris Menkhus
             </h2>
-            <h3 className={styles.textBox.credits.textBox.date}>{date}</h3>
+            <h3 className={styles.textBox.credits.textBox.date}>
+              {date || '0/0/0000'}
+            </h3>
           </small>
         </div>
         <p className={styles.textBox.description}>
@@ -79,7 +81,7 @@ export function BlogArticleCard({
 }
 
 const styles = {
-  main: 'mx-4 my-8 flex flex-col w-full min-h-[14rem] max-w-sm bg-white dark:bg-dark dark:text-white text-black shadow-lg sm:flex-row md:my-4 rounded overflow-hidden',
+  main: 'mx-4 my-8 flex flex-col w-full h-full md:min-h-[14rem] max-w-sm bg-white dark:bg-dark dark:text-white text-black shadow-lg sm:flex-row md:my-4 rounded overflow-hidden',
   imageBox: 'w-full h-56 bg-gray-300 sm:h-auto relative',
   textBox: {
     main: 'p-4 w-full max-w-md h-full',
@@ -89,7 +91,7 @@ const styles = {
       main: 'flex justify-start items-center',
       logo: 'relative w-6 h-6',
       textBox: {
-        main: 'flex flex-col justify-center items-center pl-1 leading-none',
+        main: 'flex flex-col justify-center items-center pl-0 leading-none',
         name: 'h-full text-sm leading-none',
         date: 'mr-auto ml-0 h-full text-sm leading-none',
       },
