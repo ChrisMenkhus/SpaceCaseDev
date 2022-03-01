@@ -26,7 +26,7 @@ type PageProps = {
 }
 
 const Page: NextPage<PageProps> = ({ posts, projects }) => (
-  <Layout seo={pageSeo} showNavOnScroll>
+  <Layout seo={pageSeo} showNavOnScroll className="md:pt-0">
     <Landing posts={posts} projects={projects} />
   </Layout>
 )

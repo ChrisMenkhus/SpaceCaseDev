@@ -1,2 +1,2 @@
 export * from './BlogArticle'
-export * from './BlogList'
+export * from './BlogsList'

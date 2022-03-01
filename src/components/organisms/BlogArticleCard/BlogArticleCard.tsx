@@ -24,7 +24,7 @@ export function BlogArticleCard({
   return (
     <article
       className={makeStyles([
-        'mx-4 my-8 flex flex-col w-full min-h-[14rem] max-w-sm bg-white dark:bg-dark dark:text-white text-black shadow-lg sm:flex-row md:my-4 rounded overflow-hidden',
+        styles.main,
         variant === 'regular' && 'sm:max-w-sm sm:flex-col',
         variant === 'large' && 'sm:max-w-screen-lg',
         className,
@@ -32,7 +32,7 @@ export function BlogArticleCard({
     >
       <div
         className={makeStyles([
-          'w-full h-56 bg-gray-300 sm:h-auto relative',
+          styles.imageBox,
           variant === 'regular' && 'sm:h-56',
         ])}
       >
@@ -44,13 +44,13 @@ export function BlogArticleCard({
           objectPosition="center"
         />
       </div>
-      <div className="p-4 w-full max-w-md h-full">
-        <div className="w-32 h-1 gradientbg" />
-        <h1 className="py-2 text-2xl font-bold">
+      <div className={styles.textBox.main}>
+        <div className={styles.textBox.line} />
+        <h1 className={styles.textBox.title}>
           {truncateString(title as string, variant === 'large' ? 100 : 70)}
         </h1>
-        <div className="flex justify-start items-center ">
-          <div className="relative w-6 h-6">
+        <div className={styles.textBox.credits.main}>
+          <div className={styles.textBox.credits.logo}>
             <Image
               src="/profile.svg"
               alt="profile image"
@@ -58,22 +58,45 @@ export function BlogArticleCard({
               objectFit="cover"
             />
           </div>
-          <div className="flex flex-col justify-center items-center pl-1 leading-none">
-            <h2 className="h-full text-sm leading-none">Chris Menkhus</h2>
-            <h3 className="mr-auto ml-0 h-full text-sm leading-none">{date}</h3>
-          </div>
+          <small className={styles.textBox.credits.textBox.main}>
+            <h2 className={styles.textBox.credits.textBox.name}>
+              Chris Menkhus
+            </h2>
+            <h3 className={styles.textBox.credits.textBox.date}>{date}</h3>
+          </small>
         </div>
-        <p className="my-2">
+        <p className={styles.textBox.description}>
           {truncateString(text as string, variant === 'large' ? 212 : 112)}
         </p>
-        <div className="flex ">
-          <Link icon={BookOpenIcon} href={'/Blog/' + slug}>
+        <div className={styles.textBox.link}>
+          <Link icon={BookOpenIcon} href={'/blog/' + slug}>
             Read More
           </Link>
         </div>
       </div>
     </article>
   )
+}
+
+const styles = {
+  main: 'mx-4 my-8 flex flex-col w-full min-h-[14rem] max-w-sm bg-white dark:bg-dark dark:text-white text-black shadow-lg sm:flex-row md:my-4 rounded overflow-hidden',
+  imageBox: 'w-full h-56 bg-gray-300 sm:h-auto relative',
+  textBox: {
+    main: 'p-4 w-full max-w-md h-full',
+    line: 'w-32 h-1 gradientbg',
+    title: 'py-2 text-2xl font-bold',
+    credits: {
+      main: 'flex justify-start items-center',
+      logo: 'relative w-6 h-6',
+      textBox: {
+        main: 'flex flex-col justify-center items-center pl-1 leading-none',
+        name: 'h-full text-sm leading-none',
+        date: 'mr-auto ml-0 h-full text-sm leading-none',
+      },
+    },
+    description: 'my-2',
+    link: 'flex',
+  },
 }
 
 BlogArticleCard.displayName = 'BlogArticleCardComponent'

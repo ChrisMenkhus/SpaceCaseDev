@@ -39,7 +39,7 @@ type PageProps = {
 
 const Page: NextPage<PageProps> = ({ post }) => {
   return (
-    <Layout className="pt-20" seo={pageSeo}>
+    <Layout seo={pageSeo}>
       <BlogArticle post={post} />
     </Layout>
   )

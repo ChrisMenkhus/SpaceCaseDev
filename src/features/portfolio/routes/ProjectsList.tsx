@@ -1,14 +1,14 @@
 import { ProjectCard } from '@components/organisms'
-import { Section } from '@components/templates'
+import { Section } from '@components/templates/Section'
 import Project from 'src/types/Project'
 
 type PortfolioInterface = {
   projects: Project[]
 }
 
-function ProjectList({ projects }: PortfolioInterface) {
+function ProjectsList({ projects }: PortfolioInterface) {
   return (
-    <Section.Container name="Insights" className="min-h-screen">
+    <Section.Container name="Projects" className="min-h-screen">
       <Section.Content>
         <div className="flex flex-row flex-wrap m-auto w-full">
           {projects.map((element, i) => {
@@ -32,5 +32,5 @@ function ProjectList({ projects }: PortfolioInterface) {
   )
 }
 
-ProjectList.displayName = 'ProjectListComponent'
-export default ProjectList
+ProjectsList.displayName = 'ProjectsListComponent'
+export default ProjectsList

@@ -1,12 +1,12 @@
 import { BlogArticleCard } from '@components/organisms'
-import { Section } from '@components/templates'
+import { Section } from '@components/templates/Section'
 import Post from 'src/types/Post'
 
-type BlogInterface = {
+type BlogsListInterface = {
   posts: Post[]
 }
 
-export function BlogList({ posts }: BlogInterface) {
+export function BlogsList({ posts }: BlogsListInterface) {
   return (
     <Section.Container name="Insights" className="min-h-screen">
       <Section.Content>
@@ -29,4 +29,4 @@ export function BlogList({ posts }: BlogInterface) {
   )
 }
 
-BlogList.displayName = 'ArticleListComponent'
+BlogsList.displayName = 'ArticleListComponent'

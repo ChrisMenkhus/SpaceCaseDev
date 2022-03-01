@@ -1,6 +1,6 @@
 import { Link } from '@components/atoms'
 import { ProjectCard } from '@components/organisms'
-import { Section } from '@components/templates'
+import { Section } from '@components/templates/Section'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { forwardRef } from 'react'
 import Project from 'src/types/Project'

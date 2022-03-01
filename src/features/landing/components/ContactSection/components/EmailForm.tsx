@@ -1,4 +1,4 @@
-import Button from '@components/atoms/Button'
+import { Button } from '@components/atoms'
 import { MailIcon } from '@heroicons/react/outline'
 
 function EmailForm({}: {}) {

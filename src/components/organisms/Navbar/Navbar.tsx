@@ -18,12 +18,12 @@ export const Navbar = ({
     {
       name: 'Portfolio',
       variant: 'link',
-      to: '/Portfolio',
+      to: '/portfolio',
     },
     {
       name: 'Insights',
       variant: 'link',
-      to: '/Blog',
+      to: '/blog',
     },
     {
       name: 'Contact',
