@@ -1,5 +1,5 @@
-import ProjectCard from '@components/organisms/ProjectCard'
-import Section from '@components/templates/Section'
+import { ProjectCard } from '@components/organisms'
+import { Section } from '@components/templates'
 import Project from 'src/types/Project'
 
 type PortfolioInterface = {

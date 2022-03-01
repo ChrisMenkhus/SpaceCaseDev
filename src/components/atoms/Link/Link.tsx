@@ -6,7 +6,7 @@ type LinkProps = React.AnchorHTMLAttributes<HTMLAnchorElement> & {
   size?: keyof typeof sizes
 }
 
-const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
+export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
   ({ className = '', size = 'md', icon, ...props }, ref) => {
     const Icon = icon
     return (
@@ -40,5 +40,3 @@ const sizes = {
 }
 
 Link.displayName = 'LinkComponent'
-
-export default Link

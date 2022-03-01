@@ -18,15 +18,11 @@
     "paths": {
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/styles/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@features/*": ["src/features/*"],
+      "!types/*": ["src/types/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "src/features/Landing/components/Process/components/particlesjs-config.js",
-    "src/components/molecules/ParticleBackground/ParticleBackground.jsx"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

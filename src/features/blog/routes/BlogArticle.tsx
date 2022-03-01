@@ -1,15 +1,15 @@
-import BlogContent from './components/BlogContent'
+import { BlogContent } from '../components/BlogContent'
 
-import Link from '@components/atoms/Link'
-import Post from 'src/types/Post'
-import Section from '@components/templates/Section'
+import { Link } from '@components/atoms'
+import { Section } from '@components/templates'
 import Image from 'next/image'
+import Post from 'src/types/Post'
 
 type BlogInterface = {
   post: Post
 }
 
-function BlogArticle({ post }: BlogInterface) {
+export function BlogArticle({ post }: BlogInterface) {
   return (
     <Section.Container name="Insights" className="min-h-screen">
       <Section.Content>
@@ -60,5 +60,3 @@ function BlogArticle({ post }: BlogInterface) {
 }
 
 BlogArticle.displayName = 'ArticleListComponent'
-
-export default BlogArticle

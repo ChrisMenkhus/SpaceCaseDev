@@ -12,7 +12,7 @@ type PageInterface = {
   showNavOnScroll?: boolean
 }
 
-export default function Layout({ ...props }: PageInterface) {
+export function Layout({ ...props }: PageInterface) {
   return (
     <div
       className={makeStyles([

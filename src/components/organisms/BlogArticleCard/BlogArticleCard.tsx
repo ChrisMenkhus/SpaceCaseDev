@@ -1,12 +1,10 @@
-import Button from '@components/atoms/Button'
-import Link from '@components/atoms/Link'
+import { Link } from '@components/atoms'
 import { BookOpenIcon } from '@heroicons/react/outline'
 import makeStyles from '@utils/makeStyles'
 import truncateString from '@utils/truncateString'
 import Image from 'next/image'
-import Router from 'next/router'
 
-function BlogArticleCard({
+export function BlogArticleCard({
   title,
   text,
   date,
@@ -79,5 +77,3 @@ function BlogArticleCard({
 }
 
 BlogArticleCard.displayName = 'BlogArticleCardComponent'
-
-export default BlogArticleCard

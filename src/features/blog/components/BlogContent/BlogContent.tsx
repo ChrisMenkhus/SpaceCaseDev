@@ -2,14 +2,9 @@ import {
   Options,
   documentToReactComponents,
 } from '@contentful/rich-text-react-renderer'
-import {
-  BLOCKS,
-  Document,
-  EntryLinkBlock,
-  MARKS,
-} from '@contentful/rich-text-types'
+import { BLOCKS, Document, MARKS } from '@contentful/rich-text-types'
 
-function BlogContent({
+export function BlogContent({
   document,
   className = '',
 }: {
@@ -67,5 +62,3 @@ const options: Options = {
 const styles = {
   header: 'pt-8 pb-2 text-4xl font-medium',
 }
-
-export default BlogContent

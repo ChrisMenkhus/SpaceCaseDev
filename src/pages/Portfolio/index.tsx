@@ -1,7 +1,7 @@
-import Layout from '@components/templates/Layout'
+import { Layout } from '@components/templates'
 import queryContentful from '@utils/queryContentful'
 import { NextPage } from 'next'
-import ProjectList from 'src/features/Portfolio/ProjectList'
+import ProjectList from 'src/features/portfolio/routes/ProjectList'
 import Project from 'src/types/Project'
 
 type PageProps = {

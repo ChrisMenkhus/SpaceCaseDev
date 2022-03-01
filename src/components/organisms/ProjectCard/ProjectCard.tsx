@@ -1,5 +1,4 @@
-import Button from '@components/atoms/Button'
-import Link from '@components/atoms/Link'
+import { Link } from '@components/atoms/index-old'
 import { GlobeIcon, SparklesIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 
@@ -15,7 +14,7 @@ interface Props {
   github: string
 }
 
-function ProjectCard({ ...props }: Props) {
+export function ProjectCard({ ...props }: Props) {
   return (
     <article className="overflow-hidden mb-16 last:mb-8 w-screen h-full dark:text-white bg-gradient-to-b from-[#E0E0E0] dark:from-dark to-white dark:to-[#111] rounded shadow-lg">
       <div className="flex flex-row flex-wrap justify-center items-center pt-10 mx-auto w-full">
@@ -72,5 +71,3 @@ function ProjectCard({ ...props }: Props) {
     </article>
   )
 }
-
-export default ProjectCard

@@ -1,5 +1,5 @@
-import { NavItem, NavItemProps } from './components/NavItem'
-import { NavWrapper } from './components/NavWrapper'
+import NavItem, { NavItemProps } from './components/NavItem'
+import NavWrapper from './components/NavWrapper'
 
 import { MailIcon } from '@heroicons/react/outline'
 import React from 'react'
