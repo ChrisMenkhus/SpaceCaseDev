@@ -2,14 +2,9 @@ import {
   Options,
   documentToReactComponents,
 } from '@contentful/rich-text-react-renderer'
-import {
-  BLOCKS,
-  Document,
-  EntryLinkBlock,
-  MARKS,
-} from '@contentful/rich-text-types'
+import { BLOCKS, Document, MARKS } from '@contentful/rich-text-types'
 
-function BlogContent({
+export function BlogContent({
   document,
   className = '',
 }: {
@@ -25,10 +20,6 @@ function BlogContent({
 
 const options: Options = {
   renderNode: {
-    [BLOCKS.EMBEDDED_ASSET]: (node, children) => {
-      console.log(node.data.target)
-      return <div className="">{children}</div>
-    },
     [BLOCKS.PARAGRAPH]: (node, children) => <div className="">{children}</div>,
     [BLOCKS.HEADING_1]: (node, children) => (
       <h1 className={styles.header}>{children}</h1>
@@ -67,5 +58,3 @@ const options: Options = {
 const styles = {
   header: 'pt-8 pb-2 text-4xl font-medium',
 }
-
-export default BlogContent

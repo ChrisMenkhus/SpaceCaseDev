@@ -1,7 +1,7 @@
-import Layout from '@components/templates/Layout'
+import { Layout } from '@components/templates/Layout/Layout'
+import ProjectsList from '@features/portfolio/routes/ProjectsList'
 import queryContentful from '@utils/queryContentful'
 import { NextPage } from 'next'
-import ProjectList from 'src/features/Portfolio/ProjectList'
 import Project from 'src/types/Project'
 
 type PageProps = {
@@ -10,8 +10,8 @@ type PageProps = {
 
 const Page: NextPage<PageProps> = ({ projects }) => {
   return (
-    <Layout className="pt-20" seo={pageSeo}>
-      <ProjectList projects={projects} />
+    <Layout seo={pageSeo}>
+      <ProjectsList projects={projects} />
     </Layout>
   )
 }

@@ -1,7 +1,7 @@
-import Layout from '@components/templates/Layout'
+import { Layout } from '@components/templates'
+import { BlogsList } from '@features/blog/routes'
 import queryContentful from '@utils/queryContentful'
 import type { NextPage } from 'next'
-import BlogList from 'src/features/Blog/BlogList'
 import Post from 'src/types/Post'
 
 export async function getStaticProps() {
@@ -19,8 +19,8 @@ type PageProps = { posts: Post[] }
 
 const Page: NextPage<PageProps> = ({ posts }) => {
   return (
-    <Layout className="pt-20" seo={pageSeo}>
-      <BlogList posts={posts} />
+    <Layout seo={pageSeo}>
+      <BlogsList posts={posts} />
     </Layout>
   )
 }
@@ -29,5 +29,6 @@ const pageSeo = {
   title: 'Insights',
   description: 'Collection of articles and guides about web development',
 }
+
 Page.displayName = 'InsightsPage'
 export default Page

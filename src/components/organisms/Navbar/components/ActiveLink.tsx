@@ -8,7 +8,7 @@ type ActiveLinkProps = {
   className?: string
 }
 
-export const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
+const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
   const router = useRouter()
 
   let currentPathName = router.pathname.split('/')[1]
@@ -27,3 +27,6 @@ export const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
     </Link>
   )
 }
+
+ActiveLink.displayName = 'ActiveLinkComponent'
+export default ActiveLink

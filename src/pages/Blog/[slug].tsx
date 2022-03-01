@@ -1,9 +1,9 @@
 import Post from '../../types/Post'
 
-import Layout from '@components/templates/Layout'
+import { Layout } from '@components/templates'
+import { BlogArticle } from '@features/blog/routes'
 import queryContentful from '@utils/queryContentful'
 import type { GetStaticProps, NextPage } from 'next'
-import BlogArticle from 'src/features/Blog/BlogArticle'
 
 export async function getStaticPaths() {
   const slugsData = await queryContentful('slugs')
@@ -39,7 +39,7 @@ type PageProps = {
 
 const Page: NextPage<PageProps> = ({ post }) => {
   return (
-    <Layout className="pt-20" seo={pageSeo}>
+    <Layout seo={pageSeo}>
       <BlogArticle post={post} />
     </Layout>
   )

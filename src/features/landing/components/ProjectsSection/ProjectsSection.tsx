@@ -1,6 +1,6 @@
-import Link from '@components/atoms/Link'
-import ProjectCard from '@components/organisms/ProjectCard'
-import Section from '@components/templates/Section'
+import { Link } from '@components/atoms'
+import { ProjectCard } from '@components/organisms'
+import { Section } from '@components/templates/Section'
 import { CollectionIcon } from '@heroicons/react/outline'
 import { forwardRef } from 'react'
 import Project from 'src/types/Project'
@@ -10,7 +10,7 @@ type ProjectsInterface = React.HTMLAttributes<HTMLDivElement> & {
   projects: Project[]
 }
 
-const ProjectsSection = forwardRef<HTMLDivElement, ProjectsInterface>(
+export const ProjectsSection = forwardRef<HTMLDivElement, ProjectsInterface>(
   ({ projects }, ref?) => {
     return (
       <Section.Container name="Projects">
@@ -48,5 +48,3 @@ const ProjectsSection = forwardRef<HTMLDivElement, ProjectsInterface>(
 )
 
 ProjectsSection.displayName = 'ProjectsSection'
-
-export default ProjectsSection

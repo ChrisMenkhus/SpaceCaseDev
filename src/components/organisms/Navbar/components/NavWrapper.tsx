@@ -1,42 +1,24 @@
 import DarkModeToggleButton from './DarkModeToggleButton'
 
-import { MenuIcon, MoonIcon, SunIcon, XIcon } from '@heroicons/react/outline'
+import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import makeStyles from '@utils/makeStyles'
 import useScrollPosition from '@utils/useScrollPosition'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
-import Router from 'next/router'
 import { useState } from 'react'
 
-const styles = {
-  container:
-    'fixed top-0 z-50 bg-white w-full  sm:shadow-md text-black bg-transparent sm:bg-white dark:sm:bg-dark dark:text-white hidden',
-  container_hasScrolled: 'block',
-  container_mobileIsActive:
-    'bg-light dark:bg-dark pb-12 border-b-8 border-secondary',
-  layout:
-    'max-w-screen-lg mx-auto flex flex-wrap md:flex-nowrap px-4 py-2 md:py-4 ',
-  layout_top: 'flex flex-row items-center w-full h-auto md:w-auto',
-  logoButton: 'relative w-12 h-12 hidden sm:flex',
-  menuButton:
-    'relative ml-auto p-1 w-10 h-10 mt-4 bg-white shadow-lg dark:bg-dark rounded-full sm:mt-auto md:hidden',
-  links: 'flex flex-col w-auto text-center m-auto md:mr-0 md:flex-row',
-  darkModeSwitch:
-    'relative m-auto mt-8 md:mt-auto md:ml-8 md:mr-0 grid place-items-center',
-}
-
-export const NavWrapper = ({
+function NavWrapper({
   children,
   showOnScroll = false,
-}: React.BaseHTMLAttributes<HTMLElement> & { showOnScroll?: boolean }) => {
+}: React.BaseHTMLAttributes<HTMLElement> & { showOnScroll?: boolean }) {
   const [mobileNavMenuToggled, setMobileNavMenuToggled] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [hasScrolled, setHasScrolled] = useState(false)
 
   function ToggleMobileNavMenu() {
     setMobileNavMenuToggled(!mobileNavMenuToggled)
   }
-
-  const { theme, setTheme } = useTheme()
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
@@ -44,7 +26,6 @@ export const NavWrapper = ({
 
   let isDark = Boolean(theme === 'dark')
 
-  const [hasScrolled, setHasScrolled] = useState(false)
   let scrollPosition = useScrollPosition()
 
   if (showOnScroll) {
@@ -100,3 +81,23 @@ export const NavWrapper = ({
     </nav>
   )
 }
+
+const styles = {
+  container:
+    'fixed top-0 z-50 bg-white w-full  sm:shadow-md text-black bg-transparent sm:bg-white dark:sm:bg-dark dark:text-white hidden',
+  container_hasScrolled: 'block',
+  container_mobileIsActive:
+    'bg-light dark:bg-dark pb-12 border-b-8 border-secondary',
+  layout:
+    'max-w-screen-lg mx-auto flex flex-wrap md:flex-nowrap px-4 py-2 md:py-4 ',
+  layout_top: 'flex flex-row items-center w-full h-auto md:w-auto',
+  logoButton: 'relative w-12 h-12 hidden sm:flex',
+  menuButton:
+    'relative ml-auto p-1 w-10 h-10 mt-4 bg-white shadow-lg dark:bg-dark rounded-full sm:mt-auto md:hidden',
+  links: 'flex flex-col w-auto text-center m-auto md:mr-0 md:flex-row',
+  darkModeSwitch:
+    'relative m-auto mt-8 md:mt-auto md:ml-8 md:mr-0 grid place-items-center',
+}
+
+NavWrapper.displayName = 'NavWrapperComponent'
+export default NavWrapper

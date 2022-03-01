@@ -60,12 +60,10 @@ const Footer = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   return <footer className="max-w-screen-lg flexcenter ">{children}</footer>
 }
 
-const Section = {
+export const Section = {
   Container,
   Header,
   Content,
   Article,
   Footer,
 }
-
-export default Section

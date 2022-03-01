@@ -1,6 +1,6 @@
-import { ActiveLink } from './ActiveLink'
+import ActiveLink from './ActiveLink'
 
-import Button from '@components/atoms/Button'
+import { Button } from '@components/atoms'
 import Router from 'next/router'
 import { ElementType } from 'react'
 
@@ -16,7 +16,7 @@ export type NavItemProps = React.BaseHTMLAttributes<HTMLElement> & {
   variant: keyof typeof variants
 }
 
-export const NavItem = ({ name, to, icon, variant }: NavItemProps) => {
+const NavItem = ({ name, to, icon, variant }: NavItemProps) => {
   switch (variant) {
     case 'link':
       return <ActiveLink name={name} to={to} className={variants.link} />
@@ -37,3 +37,5 @@ export const NavItem = ({ name, to, icon, variant }: NavItemProps) => {
       )
   }
 }
+
+export default NavItem

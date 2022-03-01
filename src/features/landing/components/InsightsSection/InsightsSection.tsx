@@ -1,9 +1,7 @@
-import Button from '@components/atoms/Button'
-import Link from '@components/atoms/Link'
-import BlogArticleCard from '@components/organisms/BlogArticleCard'
-import Section from '@components/templates/Section'
+import { Link } from '@components/atoms'
+import { BlogArticleCard } from '@components/organisms'
+import { Section } from '@components/templates'
 import { CollectionIcon } from '@heroicons/react/outline'
-import Router from 'next/router'
 import { forwardRef } from 'react'
 import Post from 'src/types/Post'
 
@@ -11,7 +9,7 @@ type InsightsInterface = {
   posts: Post[]
 }
 
-const InsightsSection = forwardRef<HTMLDivElement, InsightsInterface>(
+export const InsightsSection = forwardRef<HTMLDivElement, InsightsInterface>(
   ({ posts }, ref?) => {
     return (
       <Section.Container name="Insights">
@@ -51,5 +49,3 @@ const InsightsSection = forwardRef<HTMLDivElement, InsightsInterface>(
 )
 
 InsightsSection.displayName = 'InsightsSection'
-
-export default InsightsSection

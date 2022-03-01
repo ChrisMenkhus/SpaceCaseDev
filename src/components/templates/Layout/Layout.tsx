@@ -12,12 +12,13 @@ type PageInterface = {
   showNavOnScroll?: boolean
 }
 
-export default function Layout({ ...props }: PageInterface) {
+export function Layout({ ...props }: PageInterface) {
   return (
     <div
       className={makeStyles([
-        'flex flex-col justify-center items-center  m-auto',
+        'flex flex-col justify-center items-center m-auto',
         'bg-light text-black dark:bg-[#111] dark:text-white',
+        'md:pt-20',
         props.className || '',
       ])}
     >

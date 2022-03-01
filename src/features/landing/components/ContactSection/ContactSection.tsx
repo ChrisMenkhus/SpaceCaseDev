@@ -1,15 +1,15 @@
 import Card from './components/Card'
 import EmailForm from './components/EmailForm'
 
-import Button from '@components/atoms/Button'
-import Section from '@components/templates/Section'
-import { CalendarIcon, MailIcon } from '@heroicons/react/outline'
+import { Button } from '@components/atoms'
+import { Section } from '@components/templates'
+import { CalendarIcon } from '@heroicons/react/outline'
 import OpenCalendlyPopup from '@utils/openCalendlyPopup'
 import { forwardRef } from 'react'
 
 type ContactInterface = {}
 
-const ContactSection = forwardRef<HTMLDivElement, ContactInterface>(
+export const ContactSection = forwardRef<HTMLDivElement, ContactInterface>(
   ({}, ref?) => {
     return (
       <div className="w-screen">
@@ -41,5 +41,3 @@ const ContactSection = forwardRef<HTMLDivElement, ContactInterface>(
 )
 
 ContactSection.displayName = 'ContactSection'
-
-export default ContactSection
