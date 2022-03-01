@@ -6,16 +6,15 @@ module.exports = {
       ibm: ['IBM Plex Sans', 'sans-serif'],
     },
     colors: {
-      primary: '#0276FF',
-      secondary: '#8002FF',
-      dark: '#252525',
-      light: '#F5F5F5',
+      primary: '#FB4D3D',
+      secondary: '#FB4D3D',
+      dark: '#292F36',
+      light: '#FBFCFF',
       black: '#000',
       white: '#fff',
       transparent: 'transparent',
       current: 'currentColor',
     },
-
     extend: {},
   },
   variants: {
@@ -25,3 +24,14 @@ module.exports = {
   },
   plugins: [],
 }
+
+// colors: {
+//   primary: '#0276FF',
+//   secondary: '#8002FF',
+//   dark: '#252525',
+//   light: '#F5F5F5',
+//   black: '#000',
+//   white: '#fff',
+//   transparent: 'transparent',
+//   current: 'currentColor',
+// },

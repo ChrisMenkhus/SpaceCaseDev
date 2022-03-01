@@ -1,12 +1,13 @@
 import Post from '../../types/Post'
 
-import { Layout } from '@components/templates'
+import { Header } from '@components/atoms'
 import { BlogArticle } from '@features/blog/routes'
-import queryContentful from '@utils/queryContentful'
+import { queryForPost, queryForSlugs } from '@utils/queryContentful'
+import truncateString from '@utils/truncateString'
 import type { GetStaticProps, NextPage } from 'next'
 
 export async function getStaticPaths() {
-  const slugsData = await queryContentful('slugs')
+  const slugsData = await queryForSlugs()
   const slugs: { slug: string }[] = slugsData.blogPostCollection.items
 
   const paths = slugs.map((element, index) => {
@@ -23,7 +24,7 @@ export async function getStaticPaths() {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const slug = params && params.slug?.toString()
-  const postData = await queryContentful('post', slug)
+  const postData = await queryForPost(slug)
   const post: Post = postData.blogPostCollection.items[0]
 
   return {
@@ -39,13 +40,16 @@ type PageProps = {
 
 const Page: NextPage<PageProps> = ({ post }) => {
   return (
-    <Layout seo={pageSeo}>
+    <>
+      <Header
+        title={truncateString(post.title, 20)}
+        description={post.description}
+      />
       <BlogArticle post={post} />
-    </Layout>
+    </>
   )
 }
 
-const pageSeo = { title: 'Insights', description: 'Insights' }
 Page.displayName = 'BlogArticlePage'
 
 export default Page

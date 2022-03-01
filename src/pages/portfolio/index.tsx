@@ -1,6 +1,6 @@
-import { Layout } from '@components/templates/Layout/Layout'
+import { Header } from '@components/atoms/Header'
 import ProjectsList from '@features/portfolio/routes/ProjectsList'
-import queryContentful from '@utils/queryContentful'
+import { queryForProjects } from '@utils/queryContentful'
 import { NextPage } from 'next'
 import Project from 'src/types/Project'
 
@@ -10,14 +10,15 @@ type PageProps = {
 
 const Page: NextPage<PageProps> = ({ projects }) => {
   return (
-    <Layout seo={pageSeo}>
+    <>
+      <Header {...pageSeo} />
       <ProjectsList projects={projects} />
-    </Layout>
+    </>
   )
 }
 
 export async function getStaticProps() {
-  const projectsData = await queryContentful('projects')
+  const projectsData = await queryForProjects()
   const projects: Project[] = projectsData.projectCollection.items
 
   return {

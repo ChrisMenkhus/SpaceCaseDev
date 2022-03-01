@@ -1,7 +1,6 @@
 import makeStyles from '@utils/makeStyles'
 import classNames from 'classnames'
-import React from 'react'
-import { overrideTailwindClasses } from 'tailwind-override'
+import { forwardRef } from 'react'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant: keyof typeof variants
@@ -9,7 +8,7 @@ type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: React.ElementType
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       type = 'button',

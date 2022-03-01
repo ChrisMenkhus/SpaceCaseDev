@@ -2,19 +2,14 @@ import DarkModeToggleButton from './DarkModeToggleButton'
 
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import makeStyles from '@utils/makeStyles'
-import useScrollPosition from '@utils/useScrollPosition'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
-function NavWrapper({
-  children,
-  showOnScroll = false,
-}: React.BaseHTMLAttributes<HTMLElement> & { showOnScroll?: boolean }) {
+function NavWrapper({ children }: React.BaseHTMLAttributes<HTMLElement>) {
   const [mobileNavMenuToggled, setMobileNavMenuToggled] = useState(false)
   const { theme, setTheme } = useTheme()
-  const [hasScrolled, setHasScrolled] = useState(false)
 
   function ToggleMobileNavMenu() {
     setMobileNavMenuToggled(!mobileNavMenuToggled)
@@ -26,28 +21,12 @@ function NavWrapper({
 
   let isDark = Boolean(theme === 'dark')
 
-  let scrollPosition = useScrollPosition()
-
-  if (showOnScroll) {
-    if (!hasScrolled) {
-      if (scrollPosition > 10) {
-        setHasScrolled(true)
-      }
-    } else {
-      if (scrollPosition < 10) {
-        setHasScrolled(false)
-      }
-    }
-  } else {
-    if (!hasScrolled) setHasScrolled(true)
-  }
-
   return (
     <nav
       className={makeStyles([
         styles.container,
         mobileNavMenuToggled && styles.container_mobileIsActive,
-        hasScrolled && styles.container_hasScrolled,
+        styles.container_hasScrolled,
       ])}
     >
       <div className={styles.layout}>

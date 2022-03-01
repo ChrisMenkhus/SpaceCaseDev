@@ -10,7 +10,7 @@ export function BlogsList({ posts }: BlogsListInterface) {
   return (
     <Section.Container name="Insights" className="min-h-screen">
       <Section.Content>
-        <div className="flex flex-row flex-wrap m-auto w-full">
+        <div className="flex flex-row flex-wrap justify-center m-auto w-full">
           {posts.map((element, i) => {
             return (
               <BlogArticleCard
@@ -20,6 +20,7 @@ export function BlogsList({ posts }: BlogsListInterface) {
                 imgSrc={element.image.url}
                 key={element.title + i}
                 variant="large"
+                date={element.date}
               />
             )
           })}

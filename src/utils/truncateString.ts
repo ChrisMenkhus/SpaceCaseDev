@@ -1,8 +1,8 @@
-const truncateString = (str: String, limit: number): String => {
+const truncateString = (str: string, limit: number): string => {
   if (limit > str.length) {
     return str
   } else {
-    str = String(str).substring(0, limit)
+    str = str.substring(0, limit)
     return str + '...'
   }
 }

@@ -36,7 +36,7 @@ export const ProjectsSection = forwardRef<HTMLDivElement, ProjectsInterface>(
               size="xl"
               icon={CollectionIcon}
               className="mx-auto mt-4 sm:mr-8"
-              href="/Portfolio"
+              href="/portfolio"
             >
               More Projects
             </Link>

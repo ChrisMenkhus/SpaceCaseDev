@@ -1,28 +1,79 @@
 const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`
 
-async function queryContentful(
-  queryItem: 'projects' | 'posts' | 'project' | 'post' | 'slugs',
-  slug?: string
-): Promise<any> {
-  let query: string = ''
+export async function queryForPosts(limit?: number) {
+  return queryContentful(` query {
+    blogPostCollection (limit: ${limit || 99}) {
+      items {
+        title
+        description
+        date
+        slug
+        post {
+          json
+        }
+        image {
+          url 
+        }
+      }
+    }
+  }`)
+}
 
-  switch (queryItem) {
-    case 'projects':
-      query = queryForProjects
-      break
-    case 'project':
-      break
-    case 'posts':
-      query = queryForBlogPosts
-      break
-    case 'post':
-      query = queryForPost(slug!)
-      break
-    case 'slugs':
-      query = queryForSlugs
-      break
-  }
+export async function queryForProjects(limit?: number) {
+  return queryContentful(` query {
+    projectCollection (limit: ${limit || 99}) {
+      items {
+        title
+        description
+        slug
+        desktopImage {
+          url
+        }
+        mobileImage {
+          url
+        }
+        websiteUrl
+        githubUrl
+        colors
+      }
+    }
+  }`)
+}
 
+export async function queryForSlugs(limit?: number) {
+  return queryContentful(` query {
+    blogPostCollection{
+      items {
+        slug
+      }
+    }
+  }`)
+}
+
+export async function queryForPost(slug?: string) {
+  return queryContentful(`query {
+    blogPostCollection(where: {
+      slug: "${slug}"
+    },
+    limit: 1
+    ) {
+      items {
+        title
+        description
+        slug
+        post {
+          json
+        }
+        date
+        image {
+          url
+        }
+      }
+    }
+  }`)
+}
+
+async function queryContentful(query: string): Promise<any> {
   const result = await fetch(fetchUrl, {
     method: 'POST',
     headers: {
@@ -41,72 +92,5 @@ async function queryContentful(
     return null
   }
 }
-
-const queryForBlogPosts = ` query {
-  blogPostCollection{
-    items {
-      title
-      description
-      date
-      slug
-      post {
-        json
-      }
-      image {
-        url 
-      }
-    }
-  }
-}`
-
-const queryForProjects = ` query {
-	projectCollection {
-    items {
-      title
-      description
-      slug
-      desktopImage {
-        url
-      }
-      mobileImage {
-        url
-      }
-      websiteUrl
-      githubUrl
-      colors
-    }
-  }
-}`
-
-const queryForSlugs = ` query {
-  blogPostCollection{
-    items {
-      slug
-    }
-  }
-}`
-
-const queryForPost = (slug: string) => ` query {
-  blogPostCollection(where: {
-    slug: "${slug}"
-  },
-  limit: 1
-  ) {
-    items {
-      title
-      description
-      slug
-      post {
-        json
-      }
-      date
-      image {
-        url
-      }
-    }
-  }
-}
-
-`
 
 export default queryContentful

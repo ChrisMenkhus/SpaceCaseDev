@@ -1,11 +1,11 @@
-import { Layout } from '@components/templates'
+import { Header } from '@components/atoms'
 import { BlogsList } from '@features/blog/routes'
-import queryContentful from '@utils/queryContentful'
+import { queryForPosts } from '@utils/queryContentful'
 import type { NextPage } from 'next'
 import Post from 'src/types/Post'
 
 export async function getStaticProps() {
-  const postsData = await queryContentful('posts')
+  const postsData = await queryForPosts()
   const posts: Post[] = postsData.blogPostCollection.items
 
   return {
@@ -19,9 +19,10 @@ type PageProps = { posts: Post[] }
 
 const Page: NextPage<PageProps> = ({ posts }) => {
   return (
-    <Layout seo={pageSeo}>
+    <>
+      <Header {...pageSeo} />
       <BlogsList posts={posts} />
-    </Layout>
+    </>
   )
 }
 
