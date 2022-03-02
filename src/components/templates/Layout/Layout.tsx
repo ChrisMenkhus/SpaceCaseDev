@@ -11,7 +11,7 @@ export function Layout({ ...props }: PageInterface) {
       className={makeStyles([
         'flex flex-col justify-center items-center m-auto',
         'bg-light text-black dark:bg-[#111] dark:text-white',
-        'md:pt-24',
+        'sm:pt-24',
       ])}
     >
       <Navbar />
