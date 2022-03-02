@@ -20,7 +20,9 @@ export function BlogContent({
 
 const options: Options = {
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => <div className="">{children}</div>,
+    [BLOCKS.PARAGRAPH]: (node, children) => (
+      <div className={styles.paragraph}>{children}</div>
+    ),
     [BLOCKS.HEADING_1]: (node, children) => (
       <h1 className={styles.header}>{children}</h1>
     ),
@@ -40,21 +42,21 @@ const options: Options = {
       <h6 className={styles.header}>{children}</h6>
     ),
     [BLOCKS.UL_LIST]: (node, children) => (
-      <ul className="pl-8 list-decimal">{children}</ul>
+      <ul className={styles.ul}>{children}</ul>
     ),
     [BLOCKS.LIST_ITEM]: (node, children) => (
-      <li className="list-item indent-2">{children}</li>
+      <li className={styles.li}>{children}</li>
     ),
   },
   renderMark: {
-    [MARKS.CODE]: (text) => (
-      <pre className="py-2 px-1 my-2 w-full text-white whitespace-pre-wrap bg-dark">
-        {text}
-      </pre>
-    ),
+    [MARKS.CODE]: (text) => <pre className={styles.pre}>{text}</pre>,
   },
 }
 
 const styles = {
-  header: 'pt-8 pb-2 text-4xl font-medium',
+  paragraph: 'whitespace-pre-wrap leading-relaxed text-lg',
+  header: 'my-8 leading-none text-4xl font-medium',
+  pre: 'my-0 py-2 px-1 w-full text-white whitespace-pre-wrap bg-dark',
+  ul: 'pl-8 list-decimal',
+  li: 'list-item indent-2',
 }
