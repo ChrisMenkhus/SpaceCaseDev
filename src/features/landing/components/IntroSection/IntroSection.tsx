@@ -12,13 +12,14 @@ type IntroInterface = React.HTMLAttributes<HTMLDivElement> & {
 export const IntroSection = forwardRef<HTMLDivElement, IntroInterface>(
   ({}, ref?) => {
     return (
-      <Section.Container
-        name="Intro"
-        className={'relative h-screen md:h-[calc(100vh-8rem)]'}
-      >
+      <Section.Container name="Intro" className={styles.main}>
         <div className={styles.background.main}>
           <div className={styles.background.left} />
-          <div className={styles.background.right} />
+          <div className={styles.background.right.main}>
+            <div className="relative w-8 h-8">
+              <Image alt="resume logo" src="/resume.svg" layout="fill" />
+            </div>
+          </div>
         </div>
         <div className={styles.content.main}>
           <div className={styles.content.textContainer.main}>
@@ -50,25 +51,32 @@ export const IntroSection = forwardRef<HTMLDivElement, IntroInterface>(
                 <a
                   href="https://github.com/ChrisMenkhus"
                   className={styles.content.textContainer.ellipseButton}
+                  aria-label="link to GitHub"
                 >
                   <div className="relative w-8 h-8">
-                    <Image alt="lol" src="/github.svg" layout="fill" />
+                    <Image alt="github logo" src="/github.svg" layout="fill" />
                   </div>
                 </a>
                 <a
                   href="https://www.linkedin.com/in/solonaut/"
                   className={styles.content.textContainer.ellipseButton}
+                  aria-label="link to LinkedIn"
                 >
                   <div className="relative w-8 h-8">
-                    <Image alt="lol" src="/linkedin.svg" layout="fill" />
+                    <Image
+                      alt="linkedin logo"
+                      src="/linkedin.svg"
+                      layout="fill"
+                    />
                   </div>
                 </a>
                 <a
                   href="https://docs.google.com/document/d/1oDRiRERHm9KubdwktoU7MtR5XTMyZr6Y5Rp2a7SrsHM/edit?usp=sharing"
                   className={styles.content.textContainer.ellipseButton}
+                  aria-label="link to resume"
                 >
                   <div className="relative w-8 h-8">
-                    <Image alt="lol" src="/resume.svg" layout="fill" />
+                    <Image alt="resume logo" src="/resume.svg" layout="fill" />
                   </div>
                 </a>
               </div>
@@ -92,10 +100,13 @@ export const IntroSection = forwardRef<HTMLDivElement, IntroInterface>(
 )
 
 const styles = {
+  main: 'relative h-screen md:h-[calc(100vh-8rem)]',
   background: {
     main: 'flex w-full h-full max-h-[1050px] flex-col md:flex-row max-w-screen-lg ',
     left: 'w-1/2 h-full ',
-    right: 'bg-secondary h-full h-4/6 md:h-5/6 md:m-auto md:w-1/2 ',
+    right: {
+      main: 'bg-secondary h-full h-4/6 md:h-5/6 md:m-auto md:w-1/2 md:rounded',
+    },
   },
   content: {
     main: 'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-full md:flex-row overflow-hidden',
