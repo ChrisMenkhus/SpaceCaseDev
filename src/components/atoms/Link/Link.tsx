@@ -25,7 +25,7 @@ export const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(
 const styles = {
   container:
     'flex justify-center items-center py-2 pb-0 text-md border-b-2 border-transparent hover:border-primary dark:hover:border-primary transition-all',
-  text: 'mx-1  text-primary dark:text-primary ',
+  text: 'mx-1 text-primary dark:text-primary ',
   icon: {
     main: 'h-4 w-4 mx-1 my-auto text-primary',
     large: 'h-14 w-16',

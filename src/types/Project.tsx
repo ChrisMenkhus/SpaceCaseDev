@@ -1,7 +1,7 @@
 type Project = {
   title: string
   description: string
-  slug: string
+  stackTags: string[]
   desktopImage: {
     url: string
   }
@@ -11,6 +11,7 @@ type Project = {
   websiteUrl: string
   githubUrl: string
   colors: string[]
+  slug: string
 }
 
 export default Project
