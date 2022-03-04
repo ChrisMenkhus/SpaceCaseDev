@@ -2,15 +2,17 @@ import { BlogArticleCard } from '@components/organisms'
 import { Section } from '@components/templates/Section'
 import Post from 'src/types/Post'
 
-type BlogsListInterface = {
+// static props provided by './pages/portfolio/index.ts'
+
+type BlogInterface = {
   posts: Post[]
 }
 
-export function BlogsList({ posts }: BlogsListInterface) {
+export function Blog({ posts }: BlogInterface) {
   return (
     <Section.Container name="Insights" className="min-h-screen">
       <Section.Content>
-        <div className="flex flex-row flex-wrap justify-center m-auto w-full">
+        <div className="flex flex-row flex-wrap justify-center m-auto w-screen border-2">
           {posts.map((element, i) => {
             return (
               <BlogArticleCard
@@ -30,4 +32,4 @@ export function BlogsList({ posts }: BlogsListInterface) {
   )
 }
 
-BlogsList.displayName = 'ArticleListComponent'
+Blog.displayName = 'ArticleListComponent'

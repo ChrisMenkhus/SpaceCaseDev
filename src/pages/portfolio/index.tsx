@@ -1,5 +1,5 @@
 import { Header } from '@components/atoms/Header'
-import ProjectsList from '@features/portfolio/routes/ProjectsList'
+import Portfolio from '@features/portfolio/routes/Portfolio'
 import { queryForProjects } from '@utils/queryContentful'
 import { NextPage } from 'next'
 import Project from 'src/types/Project'
@@ -12,7 +12,7 @@ const Page: NextPage<PageProps> = ({ projects }) => {
   return (
     <>
       <Header {...pageSeo} />
-      <ProjectsList projects={projects} />
+      <Portfolio projects={projects} />
     </>
   )
 }

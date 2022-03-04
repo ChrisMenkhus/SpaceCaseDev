@@ -25,7 +25,7 @@ export async function queryForProjects(limit?: number) {
       items {
         title
         description
-        slug
+        stackTags
         desktopImage {
           url
         }
@@ -35,6 +35,7 @@ export async function queryForProjects(limit?: number) {
         websiteUrl
         githubUrl
         colors
+        slug
       }
     }
   }`)

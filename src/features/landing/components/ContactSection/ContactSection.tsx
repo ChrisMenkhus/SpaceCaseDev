@@ -34,7 +34,7 @@ export const ContactSection = forwardRef<HTMLDivElement, ContactInterface>(
             </Card>
           </Section.Content>
         </Section.Container>
-        <div className="-mt-24 w-full h-56 gradientbg " />
+        <div className="-mt-24 w-screen h-56 gradientbg " />
       </div>
     )
   }

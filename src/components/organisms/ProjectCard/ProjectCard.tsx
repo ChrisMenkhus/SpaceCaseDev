@@ -1,83 +1,95 @@
+import Project from '!types/Project'
 import { Link } from '@components/atoms'
 import { GlobeIcon, SparklesIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 
-interface Props {
+type ProjectCardProps = {
   variant?: 'primary' | 'featured'
-  title: string
-  text: string
-  slug: string
-  desktopImage: string
-  mobileImage: string
-  colors: string[]
-  website: string
-  github: string
-}
+} & Project
 
-export function ProjectCard({ ...props }: Props) {
+export function ProjectCard({ ...project }: ProjectCardProps) {
+  const [tagColor, setTagColor] = useState(project.colors[1])
+
   return (
-    <article className={styles.main}>
-      <div className={styles.flexContainer}>
-        {/* textbox */}
-        <div className={styles.textBox.main}>
-          <div className={styles.textBox.tags}>Figma, Inkscape, Photoshop</div>
-          <div className={styles.textBox.title}>{props.title}</div>
-          <p className={styles.textBox.description}>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus quia, nulla! Maiores et perferendis eaque,
-            exercitationem praesentium nihil. Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et.
-          </p>
-          <ul className={styles.textBox.colorList}>
-            {props.colors.map((e) => (
-              <li
-                key={e}
-                className={styles.textBox.colorItem}
-                style={{ backgroundColor: e }}
+    <div className="relative my-12 last:mb-8 max-w-screen-lg md:my-8">
+      <div
+        className={styles.block}
+        style={{ backgroundColor: tagColor.toString() }}
+      />
+      <article className={styles.main}>
+        <div className={styles.flexContainer}>
+          <div className={styles.textBox.main}>
+            <div className={styles.textBox.tags.tagsGroup}>
+              {project.stackTags.map((tag, i) => (
+                <span
+                  className={styles.textBox.tags.tag}
+                  style={{ backgroundColor: tagColor.toString() }}
+                  key={tag + i}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+
+            <div className={styles.textBox.title}>{project.title}</div>
+            <p className={styles.textBox.description}>{project.description}</p>
+            <ul className={styles.textBox.colorList}>
+              {project.colors.map((e) => (
+                <li
+                  key={e}
+                  className={styles.textBox.colorItem}
+                  style={{ backgroundColor: e }}
+                />
+              ))}
+            </ul>
+            <div className={styles.textBox.linkBox}>
+              <Link icon={GlobeIcon} href={project.websiteUrl}>
+                Website
+              </Link>
+              <Link icon={SparklesIcon} href={project.githubUrl}>
+                Github
+              </Link>
+            </div>
+          </div>
+          <div className={styles.imageBox.main}>
+            <div className={styles.imageBox.desktopImage.main}>
+              <Image
+                src={project.desktopImage.url}
+                alt={'desktop image of ' + project.title}
+                layout="fill"
+                objectFit="cover"
+                className={styles.imageBox.desktopImage.image}
               />
-            ))}
-          </ul>
-          <div className={styles.textBox.linkBox}>
-            <Link icon={GlobeIcon} href={props.website}>
-              Website
-            </Link>
-            <Link icon={SparklesIcon} href={props.github}>
-              Github
-            </Link>
+            </div>
+            <div className={styles.imageBox.mobileImage.main}>
+              <Image
+                src={project.mobileImage.url}
+                alt={'mobile image of ' + project.title}
+                layout="fill"
+                objectFit="cover"
+                className={styles.imageBox.mobileImage.image}
+              />
+            </div>
           </div>
         </div>
-        <div className={styles.imageBox.main}>
-          <div className={styles.imageBox.desktopImage.main}>
-            <Image
-              src={props.desktopImage}
-              alt="generic blog image"
-              layout="fill"
-              objectFit="cover"
-              className=""
-            />
-          </div>
-          <div className={styles.imageBox.mobileImage.main}>
-            <Image
-              src={props.mobileImage}
-              alt="generic blog image"
-              layout="fill"
-              objectFit="cover"
-              className={styles.imageBox.mobileImage.image}
-            />
-          </div>
-        </div>
-      </div>
-    </article>
+      </article>
+    </div>
   )
 }
 
 const styles = {
-  main: 'overflow-hidden mb-16 last:mb-8 w-screen h-full dark:text-white bg-gradient-to-b from-[#FFF] dark:from-dark to-white dark:to-[#111] rounded shadow-lg',
+  block:
+    'bg-primary h-40 w-screen lg:w-40 absolute lg:-left-8 -top-8 lg:-top-8 rounded-xl lg:rounded-md shadow-md',
+  main: 'overflow-hidden w-screen max-w-screen-lg h-full dark:text-white bg-gradient-to-b from-[#FFF] dark:from-dark to-white dark:to-[#111] rounded shadow-lg relative ',
   flexContainer:
-    'flex flex-row flex-wrap justify-center items-center pt-10 mx-auto w-full',
+    'flex flex-row flex-wrap justify-center items-center pt-10 mx-auto w-full ',
   textBox: {
     main: 'py-4 px-6 max-w-sm',
-    tags: 'pb-2 text-sm font-light text-dark',
+    tags: {
+      tagsGroup: 'flex flex-wrap pb-2',
+      tag: 'px-2 mr-2 my-1 text-white bg-secondary rounded',
+    },
     title: 'text-3xl font-bold leading-none',
     description: 'py-2 text-base',
     colorList: 'flex flex-row mt-2 w-auto',

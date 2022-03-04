@@ -81,7 +81,7 @@ export function BlogArticleCard({
 }
 
 const styles = {
-  main: 'mx-4 my-8 flex flex-col w-full h-full md:min-h-[14rem] max-w-sm bg-white dark:bg-dark dark:text-white text-black shadow-lg sm:flex-row md:my-4 rounded overflow-hidden',
+  main: 'my-8 flex flex-col w-full h-full md:min-h-[14rem] max-w-sm bg-white dark:bg-dark dark:text-white text-black shadow-lg sm:flex-row md:my-4 rounded overflow-hidden',
   imageBox: 'w-full h-56 bg-gray-300 sm:h-auto relative',
   textBox: {
     main: 'p-4 w-full max-w-md h-full',

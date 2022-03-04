@@ -16,18 +16,8 @@ export const ProjectsSection = forwardRef<HTMLDivElement, ProjectsInterface>(
       <Section.Container name="Projects">
         <Section.Header title="Projects" subtitle="Projects & Case Studies" />
         <Section.Content>
-          {projects.map((element, i) => (
-            <ProjectCard
-              key={element.title + i}
-              title={element.title}
-              desktopImage={element.desktopImage.url}
-              mobileImage={element.mobileImage.url}
-              colors={element.colors}
-              slug={element.slug}
-              text={element.description}
-              github={element.githubUrl}
-              website={element.websiteUrl}
-            />
+          {projects.map((project, i) => (
+            <ProjectCard key={project.title + i} {...project} />
           ))}
         </Section.Content>
         <Section.Footer>
