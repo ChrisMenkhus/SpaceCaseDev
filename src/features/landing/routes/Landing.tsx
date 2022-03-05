@@ -9,6 +9,8 @@ import {
 import Post from 'src/types/Post'
 import Project from 'src/types/Project'
 
+// static props provided by './pages/index.ts'
+
 type LandingInterface = {
   posts: Post[]
   projects: Project[]

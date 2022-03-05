@@ -15,11 +15,7 @@ export const IntroSection = forwardRef<HTMLDivElement, IntroInterface>(
       <Section.Container name="Intro" className={styles.main}>
         <div className={styles.background.main}>
           <div className={styles.background.left} />
-          <div className={styles.background.right.main}>
-            <div className="relative w-8 h-8">
-              <Image alt="resume logo" src="/resume.svg" layout="fill" />
-            </div>
-          </div>
+          <div className={styles.background.right.main}></div>
         </div>
         <div className={styles.content.main}>
           <div className={styles.content.textContainer.main}>

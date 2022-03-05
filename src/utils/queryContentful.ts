@@ -93,5 +93,3 @@ async function queryContentful(query: string): Promise<any> {
     return null
   }
 }
-
-export default queryContentful

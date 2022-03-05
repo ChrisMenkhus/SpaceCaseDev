@@ -1,5 +1,5 @@
 const truncateString = (str: string, limit: number): string => {
-  if (limit > str.length) {
+  if (str.length <= limit) {
     return str
   } else {
     str = str.substring(0, limit)

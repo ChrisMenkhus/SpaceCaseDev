@@ -91,9 +91,9 @@ const styles = {
 
 const copytext = {
   aboutMeTechnicalParagraph:
-    'I’m Chris Menkhus a Colorado based web developer and designer. I develop real-world web applications through modern web design concepts, web development technologies, and search engine optimization practices. I craft custom web solutions that are tailored specifically to the clients needs.',
+    'I’m Chris Menkhus a Colorado based web developer and designer. I develop real-world web applications through modern web design concepts, web development technologies, and search engine optimization practices. I strive to write clean, maintainable, and reusable code that I can be proud of.',
   aboutMePersonalParagraph:
-    'When im not programming or spending time with my girlfriend im dreaming of space, comic book movies, and my next crazy adventure. Every weekend I go on an adventure wether that be finding a beautiful new view of Colorado or slaying monsters and gaining EXP in Dungeons & Dragons.',
+    'When im not programming im dreaming of space, comic book movies, and my next crazy adventure. Every weekend I go on an adventure wether that be finding a beautiful new view of Colorado or slaying monsters and gaining EXP in Dungeons & Dragons or God of War. I keep up to date with the newest web technologies while at the same time obsessing over SpaceX`s Starship spacecraft development. 🌌',
 
   currentSkills: [
     'Typescript',

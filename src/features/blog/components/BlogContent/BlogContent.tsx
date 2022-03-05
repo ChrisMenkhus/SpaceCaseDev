@@ -60,3 +60,5 @@ const styles = {
   ul: 'pl-8 list-decimal',
   li: 'list-item indent-2',
 }
+
+BlogContent.displayName = 'BlogContentComponent'
