@@ -12,7 +12,7 @@ export function Blog({ posts }: BlogInterface) {
   return (
     <Section.Container name="Insights" className="min-h-screen">
       <Section.Content>
-        <div className="flex flex-row flex-wrap justify-center m-auto w-screen border-2">
+        <div className="flex flex-row flex-wrap justify-center m-auto w-screen">
           {posts.map((element, i) => {
             return (
               <BlogArticleCard

@@ -2,9 +2,15 @@ import NavItem, { NavItemProps } from './components/NavItem'
 import NavWrapper from './components/NavWrapper'
 
 import { MailIcon } from '@heroicons/react/outline'
+import RouteToContactSectionRef from '@utils/routeToContactSectionRef'
+import Router from 'next/router'
 import React from 'react'
+import { useContext } from 'react'
+import { Context } from 'src/stores/Context'
 
 export const Navbar = ({}: {}) => {
+  const context = useContext(Context)
+
   const navItemsInfo: NavItemProps[] = [
     {
       name: 'Home',
@@ -26,6 +32,11 @@ export const Navbar = ({}: {}) => {
       variant: 'button',
       to: '/#contact',
       icon: MailIcon,
+      onClick: () => {
+        Router.push('/').then(() => {
+          context?.contactRef.current?.scrollIntoView()
+        })
+      },
     },
   ]
 

@@ -4,6 +4,12 @@ import { Header } from '@components/atoms'
 import { Landing } from '@features/landing/routes'
 import { queryForPosts, queryForProjects } from '@utils/queryContentful'
 import type { NextPage } from 'next'
+import dynamic from 'next/dynamic'
+
+// const Landing = dynamic(async () => {
+//   const module = await import('@features/landing/routes')
+//   return module.Landing
+// })
 
 export async function getStaticProps() {
   const postsData = await queryForPosts(3)

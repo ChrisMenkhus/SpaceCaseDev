@@ -1,22 +1,20 @@
 import Project from '!types/Project'
 import { Link } from '@components/atoms'
 import { GlobeIcon, SparklesIcon } from '@heroicons/react/outline'
+import isDark from '@utils/isDark'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 
 type ProjectCardProps = {
   variant?: 'primary' | 'featured'
 } & Project
 
 export function ProjectCard({ ...project }: ProjectCardProps) {
-  const [tagColor, setTagColor] = useState(project.colors[1])
+  const mainColor: string = project.colors[1]
+  const textColor: string = isDark(mainColor) ? 'white' : 'black'
 
   return (
     <div className="relative my-12 last:mb-8 max-w-screen-lg md:my-8">
-      <div
-        className={styles.block}
-        style={{ backgroundColor: tagColor.toString() }}
-      />
+      <div className={styles.block} style={{ backgroundColor: mainColor }} />
       <article className={styles.main}>
         <div className={styles.flexContainer}>
           <div className={styles.textBox.main}>
@@ -24,7 +22,7 @@ export function ProjectCard({ ...project }: ProjectCardProps) {
               {project.stackTags.map((tag, i) => (
                 <span
                   className={styles.textBox.tags.tag}
-                  style={{ backgroundColor: tagColor.toString() }}
+                  style={{ backgroundColor: mainColor, color: textColor }}
                   key={tag + i}
                 >
                   {tag}
@@ -80,7 +78,7 @@ export function ProjectCard({ ...project }: ProjectCardProps) {
 
 const styles = {
   block:
-    'bg-primary h-40 w-screen lg:w-40 absolute lg:-left-8 -top-8 lg:-top-8 rounded-xl lg:rounded-md shadow-md',
+    'bg-primary h-40 w-screen sm:w-40 absolute sm:-left-8 -top-8 sm:-top-8 rounded-xl sm:rounded-md shadow-md',
   main: 'overflow-hidden w-screen max-w-screen-lg h-full dark:text-white bg-gradient-to-b from-[#FFF] dark:from-dark to-white dark:to-[#111] rounded shadow-lg relative ',
   flexContainer:
     'flex flex-row flex-wrap justify-center items-center pt-10 mx-auto w-full ',
@@ -88,7 +86,7 @@ const styles = {
     main: 'py-4 px-6 max-w-sm',
     tags: {
       tagsGroup: 'flex flex-wrap pb-2',
-      tag: 'px-2 mr-2 my-1 text-white bg-secondary rounded',
+      tag: 'px-2 mr-2 my-1 text-black bg-secondary rounded',
     },
     title: 'text-3xl font-bold leading-none',
     description: 'py-2 text-base',
