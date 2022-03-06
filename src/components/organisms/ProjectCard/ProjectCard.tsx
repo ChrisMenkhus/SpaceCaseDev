@@ -1,6 +1,7 @@
 import Project from '!types/Project'
 import { Link } from '@components/atoms'
 import { GlobeIcon, SparklesIcon } from '@heroicons/react/outline'
+import isDark from '@utils/isDark'
 import Image from 'next/image'
 
 type ProjectCardProps = {
@@ -9,6 +10,7 @@ type ProjectCardProps = {
 
 export function ProjectCard({ ...project }: ProjectCardProps) {
   const mainColor: string = project.colors[1]
+  const textColor: string = isDark(mainColor) ? 'white' : 'black'
 
   return (
     <div className="relative my-12 last:mb-8 max-w-screen-lg md:my-8">
@@ -20,7 +22,7 @@ export function ProjectCard({ ...project }: ProjectCardProps) {
               {project.stackTags.map((tag, i) => (
                 <span
                   className={styles.textBox.tags.tag}
-                  style={{ backgroundColor: mainColor }}
+                  style={{ backgroundColor: mainColor, color: textColor }}
                   key={tag + i}
                 >
                   {tag}
@@ -84,7 +86,7 @@ const styles = {
     main: 'py-4 px-6 max-w-sm',
     tags: {
       tagsGroup: 'flex flex-wrap pb-2',
-      tag: 'px-2 mr-2 my-1 text-white bg-secondary rounded',
+      tag: 'px-2 mr-2 my-1 text-black bg-secondary rounded',
     },
     title: 'text-3xl font-bold leading-none',
     description: 'py-2 text-base',

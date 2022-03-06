@@ -12,6 +12,10 @@ const nextConfig = {
   images: {
     domains: ['res.cloudinary.com', 'images.ctfassets.net'],
   },
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
 }
 
 module.exports = nextConfig

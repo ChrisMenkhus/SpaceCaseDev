@@ -41,7 +41,11 @@ function NavWrapper({ children }: React.BaseHTMLAttributes<HTMLElement>) {
               />
             </a>
           </Link>
-          <button className={styles.menuButton} onClick={ToggleMobileNavMenu}>
+          <button
+            className={styles.menuButton}
+            onClick={ToggleMobileNavMenu}
+            aria-label="Toggle Navigation Menu Button"
+          >
             {mobileNavMenuToggled ? <XIcon /> : <MenuIcon />}
           </button>
         </div>

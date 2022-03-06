@@ -3,8 +3,8 @@ import classNames from 'classnames'
 import { forwardRef } from 'react'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant: keyof typeof variants
-  size: keyof typeof sizes
+  variant?: keyof typeof variants
+  size?: keyof typeof sizes
   icon?: React.ElementType
 }
 
