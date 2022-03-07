@@ -6,9 +6,15 @@ type ActiveLinkProps = {
   name: string
   to: string
   className?: string
+  callback: () => void
 }
 
-const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
+const ActiveLink = ({
+  name,
+  to,
+  className = '',
+  callback,
+}: ActiveLinkProps) => {
   const router = useRouter()
 
   let currentPathName = router.pathname.split('/')[1]
@@ -23,7 +29,14 @@ const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
 
   return (
     <Link href={to} passHref>
-      <a className={styles}>{name}</a>
+      <a
+        className={styles}
+        onClick={() => {
+          callback()
+        }}
+      >
+        {name}
+      </a>
     </Link>
   )
 }

@@ -5,10 +5,16 @@ import makeStyles from '@utils/makeStyles'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 
-function NavWrapper({ children }: React.BaseHTMLAttributes<HTMLElement>) {
-  const [mobileNavMenuToggled, setMobileNavMenuToggled] = useState(false)
+function NavWrapper({
+  mobileNavMenuToggled,
+  setMobileNavMenuToggled,
+  children,
+}: React.BaseHTMLAttributes<HTMLElement> & {
+  mobileNavMenuToggled: boolean
+  setMobileNavMenuToggled: Dispatch<SetStateAction<boolean>>
+}) {
   const { theme, setTheme } = useTheme()
 
   function ToggleMobileNavMenu() {

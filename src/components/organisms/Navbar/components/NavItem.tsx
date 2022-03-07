@@ -14,12 +14,20 @@ export type NavItemProps = React.BaseHTMLAttributes<HTMLElement> & {
   to: string
   icon?: ElementType
   variant: keyof typeof variants
+  callback?: () => void
 }
 
 const NavItem = ({ name, to, icon, variant, ...props }: NavItemProps) => {
   switch (variant) {
     case 'link':
-      return <ActiveLink name={name} to={to} className={variants.link} />
+      return (
+        <ActiveLink
+          name={name}
+          to={to}
+          callback={() => props.callback && props.callback()}
+          className={variants.link}
+        />
+      )
     case 'button':
       return (
         <Button
@@ -31,6 +39,7 @@ const NavItem = ({ name, to, icon, variant, ...props }: NavItemProps) => {
             if (props.onClick) {
               e.preventDefault()
               props.onClick(e)
+              props.callback && props.callback()
             } else {
               e.preventDefault()
               Router.push(to)

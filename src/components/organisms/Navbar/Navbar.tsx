@@ -2,13 +2,13 @@ import NavItem, { NavItemProps } from './components/NavItem'
 import NavWrapper from './components/NavWrapper'
 
 import { MailIcon } from '@heroicons/react/outline'
-import RouteToContactSectionRef from '@utils/routeToContactSectionRef'
 import Router from 'next/router'
-import React from 'react'
+import React, { useState } from 'react'
 import { useContext } from 'react'
 import { Context } from 'src/stores/Context'
 
 export const Navbar = ({}: {}) => {
+  const [mobileNavMenuToggled, setMobileNavMenuToggled] = useState(false)
   const context = useContext(Context)
 
   const navItemsInfo: NavItemProps[] = [
@@ -41,10 +41,21 @@ export const Navbar = ({}: {}) => {
   ]
 
   const NavItems = navItemsInfo.map((item, index) => (
-    <NavItem {...item} key={item.name + index} />
+    <NavItem
+      {...item}
+      key={item.name + index}
+      callback={() => setMobileNavMenuToggled(false)}
+    />
   ))
 
-  return <NavWrapper>{NavItems}</NavWrapper>
+  return (
+    <NavWrapper
+      mobileNavMenuToggled={mobileNavMenuToggled}
+      setMobileNavMenuToggled={setMobileNavMenuToggled}
+    >
+      {NavItems}
+    </NavWrapper>
+  )
 }
 
 Navbar.displayName = 'Navbar'
