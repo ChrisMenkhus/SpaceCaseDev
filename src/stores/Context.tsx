@@ -1,23 +1,47 @@
-import React, { MutableRefObject, createContext, useRef } from 'react'
+import React, { MutableRefObject, createContext, useRef, useState } from 'react'
 
 interface ContextInterface {
-  contactRef: MutableRefObject<HTMLDivElement | null>
+  store: {
+    contactRef: MutableRefObject<HTMLDivElement | null>
+    aboutRef: MutableRefObject<HTMLDivElement | null>
+    blockLazyLoading: boolean
+  }
+  actions: {
+    setBlockLazyLoading: (callback: () => void) => void
+  }
 }
 
 export const Context = createContext<ContextInterface | null>(null)
 
-type ContextStoreProps = React.HTMLAttributes<HTMLDivElement>
-
-export const ContextStore = ({ ...props }: ContextStoreProps) => {
+export const ContextStore = ({
+  children,
+}: {
+  children: JSX.Element | JSX.Element[]
+}) => {
   const contactRef = useRef<HTMLDivElement | null>(null)
+  const aboutRef = useRef<HTMLDivElement | null>(null)
+
+  const [store, setStore] = useState({
+    contactRef: contactRef,
+    aboutRef: aboutRef,
+    blockLazyLoading: false,
+  })
+
+  const [actions] = useState({
+    setBlockLazyLoading: (callback: () => void) => {
+      setStore({ ...store, blockLazyLoading: true })
+      callback()
+    },
+  })
 
   return (
     <Context.Provider
       value={{
-        contactRef,
+        store,
+        actions,
       }}
     >
-      {props.children}
+      {children}
     </Context.Provider>
   )
 }

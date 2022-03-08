@@ -15,7 +15,7 @@ export const InsightsSection = forwardRef<HTMLDivElement, InsightsInterface>(
       <Section.Container name="Insights">
         <Section.Header title="Insights" subtitle="Blog Articles" />
         <Section.Content>
-          <div className="flex flex-row flex-wrap justify-center items-center pb-8 sm:justify-start">
+          <div className="flex flex-row flex-wrap justify-center items-center pb-8 w-full sm:justify-start">
             {posts.map((element, i) => {
               return (
                 <BlogArticleCard

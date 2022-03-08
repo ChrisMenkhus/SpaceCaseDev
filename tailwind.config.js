@@ -6,10 +6,10 @@ module.exports = {
       ibm: ['IBM Plex Sans', 'sans-serif'],
     },
     colors: {
-      primary: '#FB4D3D',
-      secondary: '#FB4D3D',
-      dark: '#292F36',
-      light: '#FBFCFF',
+      primary: '#0276FF',
+      secondary: '#8002FF',
+      dark: '#252525',
+      light: '#F5F5F5',
       black: '#000',
       white: '#fff',
       transparent: 'transparent',
@@ -17,8 +17,8 @@ module.exports = {
     },
     extend: {
       fontSize: {
-        dynamic: 'clamp(6rem, 10vw, 10rem)',
-        dynamicMd: 'clamp(4rem, 10vw, 9rem)',
+        dynamic: 'clamp(5.4rem, 10vw, 10rem)',
+        dynamicMd: 'clamp(4rem, 10vw, 7rem)',
       },
     },
   },
@@ -40,3 +40,8 @@ module.exports = {
 //   transparent: 'transparent',
 //   current: 'currentColor',
 // },
+
+// primary: '#FB4D3D',
+// secondary: '#FB4D3D',
+// dark: '#292F36',
+// light: '#FBFCFF',

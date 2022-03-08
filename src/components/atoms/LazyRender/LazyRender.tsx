@@ -5,19 +5,26 @@ type LazyRenderProps = {
   children: JSX.Element | JSX.Element[] | null
   threshold?: number
   rootMargin?: string
+  blockLazy?: boolean
 }
 
 export function LazyRender({
   children,
   threshold,
   rootMargin,
+  blockLazy,
 }: LazyRenderProps) {
   // const ref = useMemo(() => createRef<HTMLDivElement>(), [])
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    if (!ref.current) {
+    if (blockLazy) {
+      setIsVisible(true)
+      return
+    }
+
+    if (!ref.current || blockLazy) {
       return
     }
 
@@ -39,7 +46,7 @@ export function LazyRender({
     return () => {
       observer.disconnect()
     }
-  }, [threshold, rootMargin, ref])
+  }, [threshold, rootMargin, ref, blockLazy])
 
   return (
     <div ref={ref} className={makeStyles([!isVisible && 'my-16 min-h-[30vh]'])}>

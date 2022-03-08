@@ -11,10 +11,8 @@ import { Context } from 'src/stores/Context'
 type ContactProps = React.HTMLAttributes<HTMLDivElement>
 
 export const ContactSection = ({ ...props }: ContactProps) => {
-  const context = useContext(Context)
-
   return (
-    <div className="w-screen" ref={context?.contactRef}>
+    <div className="w-screen">
       <Section.Container id="Contact" name="Contact">
         <Section.Header title="Contact" subtitle="Get In Touch" />
         <Section.Content>
