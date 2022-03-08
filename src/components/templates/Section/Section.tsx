@@ -14,7 +14,7 @@ const Container = forwardRef<HTMLDivElement, ContainerInterface>(
         ref={ref}
         id={name}
         className={makeStyles([
-          'flex items-center justify-center flex-col px-0 pb-0 w-full',
+          'flex items-center justify-center flex-col w-full mb-16',
           className,
         ])}
       >
@@ -38,7 +38,7 @@ const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
       <h2 className="px-8 pt-4 font-light leading-none whitespace-normal md:px-0">
         {subtitle}
       </h2>
-      <h1 className="pt-2 pb-4 text-dynamic font-bold leading-none text-center md:pl-0 md:m-0 md:text-left">
+      <h1 className="pt-2 pb-4 font-ibm text-dynamic font-medium leading-none text-center md:pl-0 md:m-0 md:text-left">
         {title}
       </h1>
     </header>
@@ -47,7 +47,7 @@ const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
 
 const Content = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   return (
-    <div className=" flex-row flex-wrap mt-4 max-w-screen-lg flexcenter">
+    <div className="flex-row flex-wrap mt-4 max-w-screen-lg flexcenter">
       {children}
     </div>
   )

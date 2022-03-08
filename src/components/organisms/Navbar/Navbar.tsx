@@ -35,9 +35,16 @@ export const Navbar = ({}: {}) => {
       to: '/#contact',
       icon: MailIcon,
       onClick: () => {
-        Router.push('/').then(() => {
-          context?.contactRef.current?.scrollIntoView()
-        })
+        context?.actions.setBlockLazyLoading(() =>
+          Router.push({ pathname: '/' }, undefined, { scroll: false }).then(
+            () => {
+              setTimeout(
+                () => context?.store.contactRef.current?.scrollIntoView(),
+                100
+              )
+            }
+          )
+        )
       },
     },
   ]
