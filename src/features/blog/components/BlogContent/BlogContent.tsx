@@ -56,7 +56,7 @@ const options: Options = {
 const styles = {
   paragraph: 'whitespace-pre-wrap leading-relaxed text-lg',
   header: 'my-8 leading-none text-4xl font-medium',
-  pre: 'my-0 py-2 px-1 w-full text-white whitespace-pre-wrap bg-dark',
+  pre: 'my-0 py-2 pl-4 pr-1 w-full text-white whitespace-pre-wrap bg-dark rounded-lg',
   ul: 'pl-8 list-decimal',
   li: 'list-item indent-2',
 }

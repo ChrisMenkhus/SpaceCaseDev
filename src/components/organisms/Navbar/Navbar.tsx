@@ -11,6 +11,8 @@ export const Navbar = ({}: {}) => {
   const [mobileNavMenuToggled, setMobileNavMenuToggled] = useState(false)
   const context = useContext(Context)
 
+  //UPDATE CONTEXT HERE ITS MESSY
+
   const navItemsInfo: NavItemProps[] = [
     {
       name: 'Home',

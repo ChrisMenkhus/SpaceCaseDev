@@ -1,9 +1,12 @@
 {
+  "plugins": ["react-hooks"],
   "extends": ["next/core-web-vitals", "plugin:tailwindcss/recommended"],
   "rules": {
     "semi": [2, "never"],
     "quotes": [2, "single", { "avoidEscape": true }],
     "semi-spacing": 2,
-    "next/link-passhref": 0
+    "next/link-passhref": 0,
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
   }
 }
