@@ -96,23 +96,23 @@ export const IntroSection = forwardRef<HTMLDivElement, IntroInterface>(
 )
 
 const styles = {
-  main: 'relative h-screen md:h-[calc(100vh-8rem)]',
+  main: 'relative h-screen w-screen md:-mt-16', //
   background: {
-    main: 'flex w-full h-full max-h-[1050px] flex-col md:flex-row max-w-screen-lg ',
+    main: 'flex w-full h-full max-h-[1050px] flex-col md:flex-row max-w-screen-xl',
     left: 'w-1/2 h-full ',
     right: {
       main: 'bg-secondary h-full h-4/6 md:h-5/6 md:m-auto md:w-1/2 md:rounded',
     },
   },
   content: {
-    main: 'flex absolute inset-y-0 flex-col w-full max-w-screen-lg h-full md:flex-row overflow-hidden',
+    main: 'flex absolute inset-y-0 flex-col w-full max-w-screen-xl h-full md:flex-row overflow-hidden',
     textContainer: {
       main: 'flex justify-center items-center m-auto w-full h-full md:pt-0 md:w-1/2 bg-transparent ',
       header1:
         'p-4 w-full max-w-fit text-2xl mt-16 sm:m-auto sm:text-3xl md:pt-0 md:pb-16 h-full flex flex-col justify-center items-center',
       span1: 'block text-left',
       span2:
-        'block text-6xl text-left text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary sm:text-6xl ',
+        'block text-left text-transparent bg-clip-text bg-gradient-to-br from-primary to-secondary text-dynamicMd leading-none',
       span3: 'block text-right',
       button: 'm-auto my-8 md:mt-16 md:flex',
       ellipseButton:

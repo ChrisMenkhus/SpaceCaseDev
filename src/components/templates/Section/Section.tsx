@@ -32,12 +32,13 @@ const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
       className={makeStyles([
         'z-10 flex-col pl-0 mt-0 mb-auto md:pl-4 md:max-w-screen-lg flexcenter',
         'md:justify-start md:items-start',
+        // im here doing dynamic text
       ])}
     >
       <h2 className="px-8 pt-4 font-light leading-none whitespace-normal md:px-0">
         {subtitle}
       </h2>
-      <h1 className="pt-2 pb-4 text-6xl font-bold leading-none text-center md:pl-0 md:m-0 md:text-8xl md:text-left">
+      <h1 className="pt-2 pb-4 text-dynamic font-bold leading-none text-center md:pl-0 md:m-0 md:text-left">
         {title}
       </h1>
     </header>

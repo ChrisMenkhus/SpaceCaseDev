@@ -15,7 +15,12 @@ module.exports = {
       transparent: 'transparent',
       current: 'currentColor',
     },
-    extend: {},
+    extend: {
+      fontSize: {
+        dynamic: 'clamp(6rem, 10vw, 10rem)',
+        dynamicMd: 'clamp(4rem, 10vw, 9rem)',
+      },
+    },
   },
   variants: {
     extend: {

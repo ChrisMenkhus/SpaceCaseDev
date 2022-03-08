@@ -1,8 +1,8 @@
-import { Link } from '@components/atoms'
+import { LazyRender, Link } from '@components/atoms'
 import { BlogArticleCard } from '@components/organisms'
 import { Section } from '@components/templates'
 import { CollectionIcon } from '@heroicons/react/outline'
-import { forwardRef } from 'react'
+import { forwardRef, useCallback, useState } from 'react'
 import Post from 'src/types/Post'
 
 type InsightsInterface = {
@@ -15,7 +15,7 @@ export const InsightsSection = forwardRef<HTMLDivElement, InsightsInterface>(
       <Section.Container name="Insights">
         <Section.Header title="Insights" subtitle="Blog Articles" />
         <Section.Content>
-          <div className="flex-row flex-wrap pb-8 flexleft">
+          <div className="flex flex-row flex-wrap justify-center items-center pb-8 sm:justify-start">
             {posts.map((element, i) => {
               return (
                 <BlogArticleCard
