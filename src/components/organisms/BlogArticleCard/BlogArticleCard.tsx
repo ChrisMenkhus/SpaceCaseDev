@@ -26,7 +26,7 @@ export function BlogArticleCard({
       className={makeStyles([
         styles.main,
         variant === 'regular' && 'sm:max-w-sm sm:flex-col',
-        variant === 'large' && 'sm:max-w-screen-lg',
+        variant === 'large' && 'sm:max-w-screen-md',
         className,
       ])}
     >
@@ -49,15 +49,10 @@ export function BlogArticleCard({
         <h1 className={styles.textBox.title}>
           {truncateString(title as string, variant === 'large' ? 100 : 70)}
         </h1>
+        <p className={styles.textBox.description}>
+          {truncateString(text as string, variant === 'large' ? 212 : 138)}
+        </p>
         <div className={styles.textBox.credits.main}>
-          {/* <div className={styles.textBox.credits.logo}>
-            <Image
-              src="/profile.svg"
-              alt="profile image"
-              layout="fill"
-              objectFit="cover"
-            />
-          </div> */}
           <small className={styles.textBox.credits.textBox.main}>
             <h2 className={styles.textBox.credits.textBox.name}>
               Chris Menkhus
@@ -66,14 +61,11 @@ export function BlogArticleCard({
               {date || '0/0/0000'}
             </h3>
           </small>
-        </div>
-        <p className={styles.textBox.description}>
-          {truncateString(text as string, variant === 'large' ? 212 : 112)}
-        </p>
-        <div className={styles.textBox.link}>
-          <Link icon={BookOpenIcon} href={'/blog/' + slug}>
-            Read More
-          </Link>
+          <div className={styles.textBox.credits.link}>
+            <Link icon={BookOpenIcon} href={'/blog/' + slug}>
+              Read Article
+            </Link>
+          </div>
         </div>
       </div>
     </article>
@@ -86,18 +78,18 @@ const styles = {
   textBox: {
     main: 'p-4 w-full max-w-md h-full',
     line: 'w-32 h-1 gradientbg',
-    title: 'py-2 text-2xl font-bold',
+    title: 'py-2 text-2xl font-medium leading-none',
     credits: {
-      main: 'flex justify-start items-center',
+      main: 'flex justify-start items-center pt-2',
       logo: 'relative w-6 h-6',
       textBox: {
-        main: 'flex flex-col justify-center items-center pl-0 leading-none',
+        main: 'flex flex-col justify-center items-center leading-none',
         name: 'h-full text-sm leading-none',
         date: 'mr-auto ml-0 h-full text-sm leading-none',
       },
+      link: 'ml-auto mr-0 flex',
     },
-    description: 'my-2',
-    link: 'flex',
+    description: 'pb-2',
   },
 }
 

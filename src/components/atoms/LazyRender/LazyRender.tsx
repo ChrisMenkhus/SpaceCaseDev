@@ -14,7 +14,6 @@ export function LazyRender({
   rootMargin,
   blockLazy,
 }: LazyRenderProps) {
-  // const ref = useMemo(() => createRef<HTMLDivElement>(), [])
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 

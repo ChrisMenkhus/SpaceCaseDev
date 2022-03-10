@@ -1,9 +1,13 @@
 import { Button } from '@components/atoms'
+import { SocialButtonGroup } from '@components/organisms'
 import { Section } from '@components/templates'
 import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 import Router from 'next/router'
 import { forwardRef, useContext } from 'react'
+import { FaGithubAlt } from 'react-icons/fa'
+import { FaLinkedin } from 'react-icons/fa'
+import { HiDocument } from 'react-icons/hi'
 import { Context } from 'src/stores/Context'
 
 type IntroInterface = React.HTMLAttributes<HTMLDivElement> & {
@@ -54,38 +58,8 @@ export const IntroSection = forwardRef<HTMLDivElement, IntroInterface>(
               >
                 Learn More About Me
               </Button>
-              <div className="flex justify-center items-center md:mt-8">
-                <a
-                  href="https://github.com/ChrisMenkhus"
-                  className={styles.content.textContainer.ellipseButton}
-                  aria-label="link to GitHub"
-                >
-                  <div className="relative w-8 h-8">
-                    <Image alt="github logo" src="/github.svg" layout="fill" />
-                  </div>
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/solonaut/"
-                  className={styles.content.textContainer.ellipseButton}
-                  aria-label="link to LinkedIn"
-                >
-                  <div className="relative w-8 h-8">
-                    <Image
-                      alt="linkedin logo"
-                      src="/linkedin.svg"
-                      layout="fill"
-                    />
-                  </div>
-                </a>
-                <a
-                  href="https://docs.google.com/document/d/1oDRiRERHm9KubdwktoU7MtR5XTMyZr6Y5Rp2a7SrsHM/edit?usp=sharing"
-                  className={styles.content.textContainer.ellipseButton}
-                  aria-label="link to resume"
-                >
-                  <div className="relative w-8 h-8">
-                    <Image alt="resume logo" src="/resume.svg" layout="fill" />
-                  </div>
-                </a>
+              <div className={styles.content.textContainer.socialButtonGroup}>
+                <SocialButtonGroup />
               </div>
             </div>
           </div>
@@ -126,8 +100,7 @@ const styles = {
         'block text-left text-transparent bg-clip-text font-ibm bg-gradient-to-br from-primary to-secondary text-dynamicMd leading-none',
       span3: 'block text-right',
       button: 'm-auto my-8 md:mt-16 md:flex',
-      ellipseButton:
-        'grid place-items-center p-4 mx-4 my-auto w-16 h-16 bg-white rounded-full shadow-md hover:scale-110 transition-all',
+      socialButtonGroup: '',
     },
     imageContainer: {
       main: 'flex relative justify-center items-center w-full h-full md:h-full md:w-1/2 ',

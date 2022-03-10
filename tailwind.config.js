@@ -17,8 +17,8 @@ module.exports = {
     },
     extend: {
       fontSize: {
-        dynamic: 'clamp(5.4rem, 10vw, 10rem)',
-        dynamicMd: 'clamp(4rem, 10vw, 7rem)',
+        dynamic: 'clamp(5.4rem, 10vw, 8rem)',
+        dynamicMd: 'clamp(4rem, 10vw, 5rem)',
       },
     },
   },

@@ -35,7 +35,7 @@ const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
         // im here doing dynamic text
       ])}
     >
-      <h2 className="px-8 pt-4 font-light leading-none whitespace-normal md:px-0">
+      <h2 className="px-8 pt-4 text-lg font-light tracking-widest leading-none whitespace-normal md:px-0">
         {subtitle}
       </h2>
       <h1 className="pt-2 pb-4 font-ibm text-dynamic font-medium leading-none text-center md:pl-0 md:m-0 md:text-left">

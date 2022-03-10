@@ -46,7 +46,7 @@ export function ProjectCard({ ...project }: ProjectCardProps) {
                 Website
               </Link>
               <Link icon={SparklesIcon} href={project.githubUrl}>
-                Github
+                GitHub
               </Link>
             </div>
           </div>
@@ -81,14 +81,14 @@ const styles = {
     'bg-primary h-40 w-screen sm:w-40 absolute sm:-left-8 -top-8 sm:-top-8 rounded-xl sm:rounded-md shadow-md',
   main: 'overflow-hidden w-screen max-w-screen-lg h-full dark:text-white bg-gradient-to-b from-[#FFF] dark:from-dark to-white dark:to-[#111] rounded shadow-lg relative ',
   flexContainer:
-    'flex flex-row flex-wrap justify-center items-center pt-10 mx-auto w-full ',
+    'flex flex-row flex-wrap justify-center items-center mx-auto w-full ',
   textBox: {
-    main: 'py-4 px-6 max-w-sm',
+    main: 'py-4 px-4 max-w-sm',
     tags: {
       tagsGroup: 'flex flex-wrap pb-2',
       tag: 'px-2 mr-2 my-1 text-black bg-secondary rounded',
     },
-    title: 'text-3xl font-bold leading-none',
+    title: 'text-2xl font-medium leading-none',
     description: 'py-2 text-base',
     colorList: 'flex flex-row mt-2 w-auto',
     colorItem:
