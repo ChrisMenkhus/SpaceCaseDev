@@ -2,6 +2,7 @@ import Card from './components/Card'
 import EmailForm from './components/EmailForm'
 
 import { Button } from '@components/atoms'
+import { SocialButtonGroup } from '@components/organisms'
 import { Section } from '@components/templates'
 import { CalendarIcon } from '@heroicons/react/outline'
 import OpenCalendlyPopup from '@utils/openCalendlyPopup'
@@ -21,7 +22,7 @@ export const ContactSection = ({ ...props }: ContactProps) => {
           </Card>
           <Card title="Schedule a Meeting" variant="secondary">
             <div className="py-8 m-auto h-full text-xl text-center">
-              Lets schedule a time to get to know each other.
+              Lets schedule a time to get to know eachother.
             </div>
             <Button
               size="lg"
@@ -34,7 +35,11 @@ export const ContactSection = ({ ...props }: ContactProps) => {
           </Card>
         </Section.Content>
       </Section.Container>
-      <div className="flex -mt-24 w-screen h-56 gradientbg"></div>
+      <div className="grid place-items-center -mt-24 w-screen h-full min-h-[20rem] gradientbg">
+        <div className="py-24">
+          <SocialButtonGroup className="text-white" />
+        </div>
+      </div>
     </div>
   )
 }
