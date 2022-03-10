@@ -42,10 +42,10 @@ export function ProjectCard({ ...project }: ProjectCardProps) {
               ))}
             </ul>
             <div className={styles.textBox.linkBox}>
-              <Link icon={GlobeIcon} href={project.websiteUrl}>
+              <Link Icon={GlobeIcon} href={project.websiteUrl}>
                 Website
               </Link>
-              <Link icon={SparklesIcon} href={project.githubUrl}>
+              <Link Icon={SparklesIcon} href={project.githubUrl}>
                 GitHub
               </Link>
             </div>

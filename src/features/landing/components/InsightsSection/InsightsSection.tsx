@@ -35,7 +35,7 @@ export const InsightsSection = forwardRef<HTMLDivElement, InsightsInterface>(
           <div className="flex w-full max-w-screen-lg">
             <Link
               size="xl"
-              icon={CollectionIcon}
+              Icon={CollectionIcon}
               className="mx-auto sm:mr-8"
               href="/blog"
             >

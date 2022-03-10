@@ -1,21 +1,24 @@
-import makeStyles from '@utils/makeStyles'
-import { useEffect, useRef, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
+import { Context } from 'src/stores/Context'
 
 type LazyRenderProps = {
   children: JSX.Element | JSX.Element[] | null
   threshold?: number
   rootMargin?: string
-  blockLazy?: boolean
+  name?: string
 }
 
-export function LazyRender({
+export const LazyRender = ({
   children,
-  threshold,
-  rootMargin,
-  blockLazy,
-}: LazyRenderProps) {
+  threshold = 0,
+  rootMargin = '200px',
+}: LazyRenderProps) => {
+  const context = useContext(Context)
+
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
+
+  const blockLazy = Boolean(context?.store.blockLazyLoading)
 
   useEffect(() => {
     if (blockLazy) {
@@ -23,18 +26,18 @@ export function LazyRender({
       return
     }
 
-    if (!ref.current || blockLazy) {
+    if (!ref.current) {
       return
     }
 
     const options = {
-      rootMargin: rootMargin,
-      threshold: threshold,
+      rootMargin,
+      threshold,
     }
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+        if (entry.intersectionRatio > 0) {
           setIsVisible(true)
         }
       })
@@ -48,7 +51,7 @@ export function LazyRender({
   }, [threshold, rootMargin, ref, blockLazy])
 
   return (
-    <div ref={ref} className={makeStyles([!isVisible && 'my-16 min-h-[30vh]'])}>
+    <div ref={ref} className="min-h-[400px]">
       {isVisible && children}
     </div>
   )

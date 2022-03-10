@@ -2,77 +2,82 @@ import { Button } from '@components/atoms'
 import { Section } from '@components/templates'
 import { CalendarIcon } from '@heroicons/react/outline'
 import OpenCalendlyPopup from '@utils/openCalendlyPopup'
-import { forwardRef } from 'react'
+import { forwardRef, useContext } from 'react'
+import { Context } from 'src/stores/Context'
 
 type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
 }
 
-export const AboutSection = forwardRef<HTMLDivElement, AboutInterface>(
-  ({}, ref?) => {
-    return (
-      <Section.Container name="About" className="h-full " ref={ref}>
-        <Section.Header
-          title="About"
-          subtitle="Did I mention im obsessed with space? 🚀"
-        />
-        <div className={styles.main}>
-          <div className={styles.leftContainer.main}>
-            <h1 className={styles.titleText}>Technical</h1>
-            <p className={styles.leftContainer.paragraph}>
-              {copytext.aboutMeTechnicalParagraph}
-            </p>
-            <h2 className={styles.titleText}>Personal</h2>
-            <p className={styles.leftContainer.paragraph}>
-              {copytext.aboutMePersonalParagraph}
-            </p>
+export const AboutSection = ({ ...props }: AboutInterface) => {
+  const context = useContext(Context)
+
+  return (
+    <Section.Container
+      name="About"
+      className="h-full "
+      ref={context?.store.aboutRef}
+    >
+      <Section.Header
+        title="About"
+        subtitle="Did I mention im obsessed with space? 🚀"
+      />
+      <div className={styles.main}>
+        <div className={styles.leftContainer.main}>
+          <h1 className={styles.titleText}>Technical</h1>
+          <p className={styles.leftContainer.paragraph}>
+            {copytext.aboutMeTechnicalParagraph}
+          </p>
+          <h2 className={styles.titleText}>Personal</h2>
+          <p className={styles.leftContainer.paragraph}>
+            {copytext.aboutMePersonalParagraph}
+          </p>
+        </div>
+        <div className={styles.rightContainer.main}>
+          <div className="mr-auto">
+            <h3 className={styles.titleText}>Current Tech Stack</h3>
+            <ul className={styles.rightContainer.tagsGroup}>
+              {copytext.currentSkills.map((e, i) => (
+                <li className={styles.rightContainer.tag} key={e + i}>
+                  {e}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className={styles.rightContainer.main}>
-            <div className="mr-auto">
-              <h3 className={styles.titleText}>Current Tech Stack</h3>
-              <ul className={styles.rightContainer.tagsGroup}>
-                {copytext.currentSkills.map((e, i) => (
-                  <li className={styles.rightContainer.tag} key={e + i}>
-                    {e}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="mr-auto">
-              <h4 className={styles.titleText}>Other Skills</h4>
-              <ul className={styles.rightContainer.tagsGroup}>
-                {copytext.otherSkills.map((e, i) => (
-                  <li className={styles.rightContainer.tag} key={e + i}>
-                    {e}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="mr-auto">
-              <h5 className={styles.titleText}>Tools</h5>
-              <ul className={styles.rightContainer.tagsGroup}>
-                {copytext.tools.map((e, i) => (
-                  <li className={styles.rightContainer.tag2} key={e + i}>
-                    {e}
-                  </li>
-                ))}
-              </ul>
-            </div>
+          <div className="mr-auto">
+            <h4 className={styles.titleText}>Other Skills</h4>
+            <ul className={styles.rightContainer.tagsGroup}>
+              {copytext.otherSkills.map((e, i) => (
+                <li className={styles.rightContainer.tag} key={e + i}>
+                  {e}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mr-auto">
+            <h5 className={styles.titleText}>Tools</h5>
+            <ul className={styles.rightContainer.tagsGroup}>
+              {copytext.tools.map((e, i) => (
+                <li className={styles.rightContainer.tag2} key={e + i}>
+                  {e}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-        <Button
-          size="lg"
-          variant="secondary"
-          className="my-4"
-          icon={CalendarIcon}
-          onClick={() => OpenCalendlyPopup()}
-        >
-          Schedule a Meeting
-        </Button>
-      </Section.Container>
-    )
-  }
-)
+      </div>
+      <Button
+        size="lg"
+        variant="secondary"
+        className="my-4"
+        icon={CalendarIcon}
+        onClick={() => OpenCalendlyPopup()}
+      >
+        Schedule a Meeting
+      </Button>
+    </Section.Container>
+  )
+}
 
 const styles = {
   main: 'flex flex-col w-full max-w-screen-lg h-full md:flex-row',

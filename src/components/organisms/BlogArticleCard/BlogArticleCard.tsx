@@ -62,7 +62,7 @@ export function BlogArticleCard({
             </h3>
           </small>
           <div className={styles.textBox.credits.link}>
-            <Link icon={BookOpenIcon} href={'/blog/' + slug}>
+            <Link Icon={BookOpenIcon} href={'/blog/' + slug}>
               Read Article
             </Link>
           </div>

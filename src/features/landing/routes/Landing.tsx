@@ -1,8 +1,5 @@
 import { LazyRender } from '@components/atoms'
-import useTimeout from '@utils/useTimeout'
 import dynamic from 'next/dynamic'
-import { useContext, useState } from 'react'
-import { Context } from 'src/stores/Context'
 import Post from 'src/types/Post'
 import Project from 'src/types/Project'
 
@@ -35,31 +32,23 @@ type LandingInterface = {
 }
 
 export function Landing({ posts, projects }: LandingInterface) {
-  const [showContactSection, setShowContactSection] = useState(false)
-  const show = () => setShowContactSection(true)
-  useTimeout(show, 500)
-  const context = useContext(Context)
-
   return (
     <>
       <IntroSection />
-      <div ref={context?.store.aboutRef}>
-        <LazyRender blockLazy={context?.store.blockLazyLoading}>
-          <AboutSection />
-        </LazyRender>
-      </div>
-      <LazyRender blockLazy={context?.store.blockLazyLoading}>
+
+      <AboutSection />
+
+      <LazyRender>
         <InsightsSection posts={posts} />
       </LazyRender>
-      <LazyRender blockLazy={context?.store.blockLazyLoading}>
+
+      <LazyRender>
         <ProjectsSection projects={projects} />
       </LazyRender>
-      <div ref={context?.store.contactRef}>
-        <LazyRender blockLazy={context?.store.blockLazyLoading}>
-          <ContactSection />
-        </LazyRender>
-      </div>
-      {/* {showContactSection && <ContactSection />} */}
+
+      <LazyRender>
+        <ContactSection />
+      </LazyRender>
     </>
   )
 }
