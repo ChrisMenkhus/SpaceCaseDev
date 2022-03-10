@@ -3,82 +3,75 @@ import { SocialButtonGroup } from '@components/organisms'
 import { Section } from '@components/templates'
 import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
-import Router from 'next/router'
-import { forwardRef, useContext } from 'react'
-import { FaGithubAlt } from 'react-icons/fa'
-import { FaLinkedin } from 'react-icons/fa'
-import { HiDocument } from 'react-icons/hi'
+import { MutableRefObject, forwardRef, useContext } from 'react'
 import { Context } from 'src/stores/Context'
 
 type IntroInterface = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
 }
 
-export const IntroSection = forwardRef<HTMLDivElement, IntroInterface>(
-  ({}, ref?) => {
-    const context = useContext(Context)
+export const IntroSection = ({ ...props }: IntroInterface) => {
+  const context = useContext(Context)
 
-    const ScrollToAboutSection = () => {
-      context?.actions.setBlockLazyLoading(() =>
-        Router.push('/').then(() => {
-          context?.store.aboutRef.current?.scrollIntoView()
-        })
-      )
-    }
+  const scrollToAboutSection = () => {
+    context?.store.aboutRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'center',
+    })
+  }
 
-    return (
-      <Section.Container name="Intro" className={styles.main}>
-        <div className={styles.background.main}>
-          <div className={styles.background.left} />
-          <div className={styles.background.right.main}></div>
-        </div>
-        <div className={styles.content.main}>
-          <div className={styles.content.textContainer.main}>
-            <div className={styles.content.textContainer.header1}>
-              <h1>
-                <span className={styles.content.textContainer.span1}>
-                  Hey, I am
-                </span>
-                <span className={styles.content.textContainer.span2}>
-                  Chris Menkhus
-                </span>
-                <span className={styles.content.textContainer.span3}>
-                  Front End Web-Stronaut
-                </span>
-              </h1>
-              <Button
-                variant="primary"
-                size="lg"
-                className={styles.content.textContainer.button}
-                icon={ChevronDoubleDownIcon}
-                onClick={(e) => {
-                  e.preventDefault()
-                  ScrollToAboutSection()
-                }}
-              >
-                Learn More About Me
-              </Button>
-              <div className={styles.content.textContainer.socialButtonGroup}>
-                <SocialButtonGroup />
-              </div>
+  return (
+    <Section.Container name="Intro" className={styles.main}>
+      <div className={styles.background.main}>
+        <div className={styles.background.left} />
+        <div className={styles.background.right.main}></div>
+      </div>
+      <div className={styles.content.main}>
+        <div className={styles.content.textContainer.main}>
+          <div className={styles.content.textContainer.header1}>
+            <h1>
+              <span className={styles.content.textContainer.span1}>
+                Hey, I am
+              </span>
+              <span className={styles.content.textContainer.span2}>
+                Chris Menkhus
+              </span>
+              <span className={styles.content.textContainer.span3}>
+                Front End Web-Stronaut
+              </span>
+            </h1>
+            <Button
+              variant="primary"
+              size="lg"
+              className={styles.content.textContainer.button}
+              icon={ChevronDoubleDownIcon}
+              onClick={(e) => {
+                e.preventDefault()
+                scrollToAboutSection()
+              }}
+            >
+              Learn More About Me
+            </Button>
+            <div className={styles.content.textContainer.socialButtonGroup}>
+              <SocialButtonGroup />
             </div>
           </div>
-          <div className={styles.content.imageContainer.main}>
-            <figure className={styles.content.imageContainer.figure}>
-              <Image
-                src="https://res.cloudinary.com/spacecaser/image/upload/v1645042060/chris-illustration_qbzyoa.svg"
-                width="222"
-                height="670"
-                alt="no shadow flat anime image of Chris"
-                className={styles.content.imageContainer.image}
-              />
-            </figure>
-          </div>
         </div>
-      </Section.Container>
-    )
-  }
-)
+        <div className={styles.content.imageContainer.main}>
+          <figure className={styles.content.imageContainer.figure}>
+            <Image
+              src="https://res.cloudinary.com/spacecaser/image/upload/v1645042060/chris-illustration_qbzyoa.svg"
+              width="222"
+              height="670"
+              alt="no shadow flat anime image of Chris"
+              className={styles.content.imageContainer.image}
+            />
+          </figure>
+        </div>
+      </div>
+    </Section.Container>
+  )
+}
 
 const styles = {
   main: 'relative h-screen w-screen md:-mt-16', //

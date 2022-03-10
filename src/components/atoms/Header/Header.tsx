@@ -5,7 +5,7 @@ type HeaderInterface = {
   description: string
 }
 
-export function Header({ ...props }: HeaderInterface) {
+export const Header = ({ ...props }: HeaderInterface) => {
   return (
     <Head>
       <title>{props.title} - spacecase.dev</title>

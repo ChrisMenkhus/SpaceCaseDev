@@ -1,17 +1,19 @@
 import NavItem, { NavItemProps } from './components/NavItem'
 import NavWrapper from './components/NavWrapper'
 
-import { MailIcon } from '@heroicons/react/outline'
-import Router from 'next/router'
-import React, { useState } from 'react'
-import { useContext } from 'react'
-import { Context } from 'src/stores/Context'
+import React, { HTMLAttributes, useState } from 'react'
 
-export const Navbar = ({}: {}) => {
+type NavbarProps = HTMLAttributes<HTMLElement>
+
+export const Navbar = ({ ...props }: NavbarProps) => {
   const [mobileNavMenuToggled, setMobileNavMenuToggled] = useState(false)
-  const context = useContext(Context)
 
-  //UPDATE CONTEXT HERE ITS MESSY
+  const options = {
+    mobileNavMenuToggled,
+    toggleMobileNavMenu: () => {
+      setMobileNavMenuToggled(!mobileNavMenuToggled)
+    },
+  }
 
   const navItemsInfo: NavItemProps[] = [
     {
@@ -29,42 +31,13 @@ export const Navbar = ({}: {}) => {
       variant: 'link',
       to: '/blog',
     },
-    {
-      name: 'Contact',
-      variant: 'button',
-      to: '/#contact',
-      icon: MailIcon,
-      onClick: () => {
-        context?.actions.setBlockLazyLoading(() =>
-          Router.push({ pathname: '/' }, undefined, { scroll: false }).then(
-            () => {
-              setTimeout(
-                () => context?.store.contactRef.current?.scrollIntoView(),
-                100
-              )
-            }
-          )
-        )
-      },
-    },
   ]
 
   const NavItems = navItemsInfo.map((item, index) => (
-    <NavItem
-      {...item}
-      key={item.name + index}
-      callback={() => setMobileNavMenuToggled(false)}
-    />
+    <NavItem {...item} key={item.name + index} />
   ))
 
-  return (
-    <NavWrapper
-      mobileNavMenuToggled={mobileNavMenuToggled}
-      setMobileNavMenuToggled={setMobileNavMenuToggled}
-    >
-      {NavItems}
-    </NavWrapper>
-  )
+  return <NavWrapper {...options}>{NavItems}</NavWrapper>
 }
 
 Navbar.displayName = 'Navbar'

@@ -6,8 +6,6 @@ import { SocialButtonGroup } from '@components/organisms'
 import { Section } from '@components/templates'
 import { CalendarIcon } from '@heroicons/react/outline'
 import OpenCalendlyPopup from '@utils/openCalendlyPopup'
-import { useContext } from 'react'
-import { Context } from 'src/stores/Context'
 
 type ContactProps = React.HTMLAttributes<HTMLDivElement>
 

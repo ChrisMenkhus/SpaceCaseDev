@@ -5,27 +5,26 @@ import makeStyles from '@utils/makeStyles'
 import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Dispatch, SetStateAction, useState } from 'react'
+import { HTMLAttributes, useContext } from 'react'
+import { Context } from 'src/stores/Context'
 
-function NavWrapper({
-  mobileNavMenuToggled,
-  setMobileNavMenuToggled,
-  children,
-}: React.BaseHTMLAttributes<HTMLElement> & {
-  mobileNavMenuToggled: boolean
-  setMobileNavMenuToggled: Dispatch<SetStateAction<boolean>>
-}) {
+type NavWrapperProps = HTMLAttributes<HTMLElement>
+
+export const NavWrapper = ({ ...props }: NavWrapperProps) => {
+  const context = useContext(Context)
   const { theme, setTheme } = useTheme()
-
-  function ToggleMobileNavMenu() {
-    setMobileNavMenuToggled(!mobileNavMenuToggled)
-  }
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
   let isDark = Boolean(theme === 'dark')
+
+  const mobileNavMenuToggled = Boolean(context?.store.showMobileNavMenu)
+
+  const toggleMobileNavMenu = () => {
+    context?.actions.setShowMobileNavMenu(!mobileNavMenuToggled)
+  }
 
   return (
     <nav
@@ -49,8 +48,8 @@ function NavWrapper({
           </Link>
           <button
             className={styles.menuButton}
-            onClick={ToggleMobileNavMenu}
-            aria-label="Toggle Navigation Menu Button"
+            onClick={toggleMobileNavMenu}
+            aria-label="Toggle Navigation Menu"
           >
             {mobileNavMenuToggled ? <XIcon /> : <MenuIcon />}
           </button>
@@ -61,7 +60,7 @@ function NavWrapper({
             !mobileNavMenuToggled && 'hidden md:flex',
           ])}
         >
-          {children}
+          {props.children}
           <div className={styles.darkModeSwitch}>
             <DarkModeToggleButton toggleTheme={toggleTheme} isDark={isDark} />
           </div>
