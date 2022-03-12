@@ -14,6 +14,7 @@ module.exports = {
       white: '#fff',
       transparent: 'transparent',
       current: 'currentColor',
+      gray: '#C5C5C5',
     },
     extend: {
       fontSize: {

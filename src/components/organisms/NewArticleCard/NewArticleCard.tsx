@@ -23,18 +23,17 @@ export function NewArticleCard({
   date,
   author,
   imgSrc,
-  slug,
   linkPaths,
+  slug,
 }: NewArticleCardProps) {
   const showCredits = date ? true : author ? true : false
 
   return (
-    // zindexing
-    <article className="relative z-10 my-12 last:mb-8 max-w-screen-lg md:my-8">
-      <div className="flex overflow-hidden z-50 flex-col my-8 w-full max-w-screen-xl h-full text-black dark:text-white bg-white dark:bg-dark rounded border-4 border-primary shadow-lg md:flex-row">
-        <section className="flex z-10 justify-start items-start p-8 pr-4 w-1/2">
+    <article className="relative before:absolute before:-top-8 before:sm:-left-8 before:-z-10 z-10 mt-8 before:w-40 max-w-screen-lg before:h-40 before:bg-primary before:rounded-md before:shadow-md ">
+      <div className="flex overflow-hidden flex-col w-full max-w-screen-xl h-full text-black dark:text-white bg-white dark:bg-dark rounded shadow-lg md:flex-row">
+        <section className="flex justify-start items-start p-8 w-full md:pr-4 md:w-1/2">
           <div className="flex p-8 w-full h-fit bg-light">
-            <picture className="relative w-full h-56 bg-[#222]">
+            <picture className="relative m-auto w-full max-w-xs h-56 bg-[#222]">
               <Image
                 src={imgSrc}
                 alt="generic blog image"
@@ -45,8 +44,8 @@ export function NewArticleCard({
             </picture>
           </div>
         </section>
-        <section className="z-10 p-8 pl-4 w-full max-w-md h-full md:w-1/2 md:max-w-none">
-          <ul className="flex flex-col gap-2">
+        <section className="p-8 pl-4 w-full max-w-md h-full md:w-1/2 md:max-w-none">
+          <ul className="flex flex-col gap-4">
             <li className="flex items-start w-full">
               <div className="w-32 h-1 bg-gradient-to-r from-black to-secondary" />
               <span className="-mt-2 mr-0 ml-auto leading-none">
@@ -58,6 +57,7 @@ export function NewArticleCard({
             </li>
             <li>
               <TagsGroup
+                className="gap-2"
                 tags={[
                   'React',
                   'Javascript',
@@ -98,30 +98,8 @@ export function NewArticleCard({
           </ul>
         </section>
       </div>
-      <div className="absolute -top-8 z-10 w-screen h-40 bg-primary rounded-xl shadow-md sm:-top-8 sm:-left-8 sm:w-40 sm:rounded-md" />
     </article>
   )
-}
-
-const styles = {
-  main: '',
-  imageBox: '',
-  textBox: {
-    main: '',
-    line: 'w-32 h-1 gradientbg',
-    title: '',
-    credits: {
-      main: 'flex justify-start items-center pt-2',
-      logo: 'relative w-6 h-6',
-      textBox: {
-        main: '',
-        name: '',
-        date: '',
-      },
-      link: '',
-    },
-    description: 'pb-2',
-  },
 }
 
 NewArticleCard.displayName = 'NewArticleCardComponent'

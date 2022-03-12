@@ -18,18 +18,23 @@ type TagProps = HTMLAttributes<HTMLLIElement> & {
 
 const Tag = ({ ...props }: TagProps) => {
   return (
-    <li className="flex flex-row items-center px-2 mr-2 mb-2 leading-snug text-white bg-secondary rounded">
+    <li className="flex flex-row items-center py-1 px-2 leading-snug text-white bg-secondary rounded">
       {props.children}
-      <CloseIcon {...props} />
+      <CloseIcon showCloseIcon={props.showCloseIcon} />
     </li>
   )
 }
 
 type TagsGroupProps = HTMLAttributes<HTMLUListElement> & {
   tags: string[]
+  showCloseIcon?: boolean
 }
 
-export const TagsGroup = ({ className = '', tags }: TagsGroupProps) => {
+export const TagsGroup = ({
+  className = '',
+  tags,
+  showCloseIcon = false,
+}: TagsGroupProps) => {
   return (
     <ul
       className={makeStyles([
@@ -38,7 +43,11 @@ export const TagsGroup = ({ className = '', tags }: TagsGroupProps) => {
       ])}
     >
       {tags.map((element, i) => {
-        return <Tag key={element + i}>{element}</Tag>
+        return (
+          <Tag key={element + i} showCloseIcon={showCloseIcon}>
+            {element}
+          </Tag>
+        )
       })}
     </ul>
   )
