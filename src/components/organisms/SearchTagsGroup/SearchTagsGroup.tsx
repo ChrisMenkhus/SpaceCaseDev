@@ -1,10 +1,8 @@
 import Tag from '!types/Tag'
 import { XIcon } from '@heroicons/react/outline'
-import addNewTag from '@utils/addNewTag'
 import makeStyles from '@utils/makeStyles'
 import setTagChecked from '@utils/setTagChecked'
 import truncateString from '@utils/truncateString'
-import { useRouter } from 'next/router'
 import { HTMLAttributes } from 'react'
 
 const CloseIcon = () => {
@@ -37,21 +35,16 @@ const Tag = ({ ...props }: TagProps) => {
   )
 }
 
-type TagsGroupProps = HTMLAttributes<HTMLUListElement> & {
-  searchTags?: Tag[]
-  stackTags: string[]
+type SearchTagsGroupProps = HTMLAttributes<HTMLUListElement> & {
+  tags: Tag[]
   updateTags?: (updatedTags: Tag[] | []) => void
 }
 
-export const TagsGroup = ({
+export const SearchTagsGroup = ({
   className = '',
-  searchTags,
-  stackTags,
+  tags,
   updateTags,
-}: TagsGroupProps) => {
-  const router = useRouter()
-
-
+}: SearchTagsGroupProps) => {
   return (
     <ul
       className={makeStyles([
@@ -59,25 +52,26 @@ export const TagsGroup = ({
         className,
       ])}
     >
-      {stackTags.map((element, i) => {
+      {tags.map((element, i) => {
+        if (element.checked) {
           return (
             <Tag
-              key={element}
-              addTag={() => {
-                if (router.pathname  === '/' || '') {
-                  router.push('/testing/?tag=' + element)
-                } else {
-                  searchTags && updateTags && updateTags(addNewTag(searchTags, { label: element, checked: true, isDefaultTag: false }))
+              key={element.label}
+              removeTag={() => {
+                if (updateTags) {
+                  updateTags(setTagChecked(tags, element, false))
+
                 }
               }
               }
             >
-              {truncateString(element, 7, true)}
+              {truncateString(element.label, 7, true)}
             </Tag>
           )
+        } else return
       })}
     </ul>
   )
 }
 
-TagsGroup.displayName = 'TagsGroupComponent'
+SearchTagsGroup.displayName = 'TagsGroupComponent'

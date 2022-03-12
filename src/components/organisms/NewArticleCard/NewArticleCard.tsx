@@ -1,5 +1,6 @@
 import { TagsGroup } from '../TagsGroup'
 
+import Tag from '!types/Tag'
 import { Link } from '@components/atoms'
 import { BookOpenIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
@@ -14,6 +15,11 @@ type NewArticleCardProps = HTMLAttributes<HTMLElement> & {
   imgSrc: string
   linkPaths?: { path: string; label: string }[]
   slug: string
+  tags: string[]
+  search?: {
+    searchTags: Tag[]
+    updateSearchTags: (updatedTags: Tag[] | []) => void
+  }
 }
 
 export function NewArticleCard({
@@ -25,6 +31,8 @@ export function NewArticleCard({
   imgSrc,
   linkPaths,
   slug,
+  tags,
+  search,
 }: NewArticleCardProps) {
   const showCredits = date ? true : author ? true : false
 
@@ -58,13 +66,9 @@ export function NewArticleCard({
             <li>
               <TagsGroup
                 className="gap-2"
-                tags={[
-                  'React',
-                  'Javascript',
-                  'Typescript',
-                  'ExpressJs',
-                  'Figma',
-                ]}
+                stackTags={tags}
+                searchTags={search?.searchTags}
+                updateTags={search?.updateSearchTags}
               />
             </li>
             <li className="flex items-center w-full leading-snug">
