@@ -1,0 +1,11 @@
+ create TagsList and TagsListItems
+
+    -- SearchBar HAS TAGS
+props:tags: Tag[]
+      setSearchTags 
+    -- SearchSideBar HAS TAGS 
+props:tags: Tag[]
+      setSearchTags
+    -- ArticleStyleCard HAS TAGS
+props:tags: string[]
+

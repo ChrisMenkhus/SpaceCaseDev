@@ -3,7 +3,7 @@ import Post from '!types/Post'
 import Tag from '!types/Tag'
 import { Header } from '@components/atoms/Header'
 import { NewArticleCard } from '@components/organisms'
-import { SearchBar } from '@components/organisms/SearchBar'
+import { SearchBar } from '@components/organisms/__old/SearchBar'
 import { Section } from '@components/templates'
 import addNewTag from '@utils/addNewTag'
 import makeStyles from '@utils/makeStyles'
@@ -97,13 +97,7 @@ const Page: NextPage<PageProps> = ({ posts, projects }) => {
             <ProjectsList
               className=""
               projects={[...projects].filter((e) => {
-                if (
-                  // SEARCH BY TITLE
-                  // e.title
-                  //   .toLowerCase()
-                  //   .indexOf(searchInputValue.toLowerCase()) !== -1
-                  false
-                ) {
+                if (false) {
                   // return e
                 } else {
                   // SEARCH BY TAGS

@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react'
-import { Context } from 'src/stores/Context'
+import { AppContext } from 'src/stores/AppContext'
 
 type LazyRenderProps = {
   children: JSX.Element | JSX.Element[] | null
@@ -13,7 +13,7 @@ export const LazyRender = ({
   threshold = 0,
   rootMargin = '200px',
 }: LazyRenderProps) => {
-  const context = useContext(Context)
+  const context = useContext(AppContext)
 
   const ref = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)

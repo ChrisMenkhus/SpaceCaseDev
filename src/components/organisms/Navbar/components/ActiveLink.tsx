@@ -2,7 +2,7 @@ import makeStyles from '@utils/makeStyles'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-import { Context } from 'src/stores/Context'
+import { AppContext } from 'src/stores/AppContext'
 
 type ActiveLinkProps = {
   name: string
@@ -13,7 +13,7 @@ type ActiveLinkProps = {
 const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
   const router = useRouter()
 
-  const context = useContext(Context)
+  const context = useContext(AppContext)
 
   const closeMobileNavMenu = () => {
     context?.actions.setShowMobileNavMenu(false)

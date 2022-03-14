@@ -4,23 +4,23 @@ import Post from 'src/types/Post'
 import Project from 'src/types/Project'
 
 const IntroSection = dynamic(async () => {
-  const module = await import('../components/IntroSection')
+  const module = await import('../components/pages/IntroSection')
   return module.IntroSection
 })
 const AboutSection = dynamic(async () => {
-  const module = await import('../components/AboutSection')
+  const module = await import('../components/pages/AboutSection')
   return module.AboutSection
 })
 const InsightsSection = dynamic(async () => {
-  const module = await import('../components/InsightsSection')
+  const module = await import('../components/pages/InsightsSection')
   return module.InsightsSection
 })
 const ProjectsSection = dynamic(async () => {
-  const module = await import('../components/ProjectsSection')
+  const module = await import('../components/pages/ProjectsSection')
   return module.ProjectsSection
 })
 const ContactSection = dynamic(async () => {
-  const module = await import('../components/ContactSection')
+  const module = await import('../components/pages/ContactSection')
   return module.ContactSection
 })
 

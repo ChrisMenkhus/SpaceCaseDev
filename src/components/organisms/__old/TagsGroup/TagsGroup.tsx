@@ -52,6 +52,7 @@ export const TagsGroup = ({
   const router = useRouter()
 
 
+
   return (
     <ul
       className={makeStyles([
@@ -76,6 +77,7 @@ export const TagsGroup = ({
             </Tag>
           )
       })}
+
     </ul>
   )
 }

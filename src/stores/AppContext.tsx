@@ -12,9 +12,9 @@ interface ContextInterface {
   }
 }
 
-export const Context = createContext<ContextInterface | null>(null)
+export const AppContext = createContext<ContextInterface | null>(null)
 
-export const ContextStore = ({
+export const AppContextStore = ({
   children,
 }: {
   children: JSX.Element | JSX.Element[]
@@ -40,13 +40,13 @@ export const ContextStore = ({
   })
 
   return (
-    <Context.Provider
+    <AppContext.Provider
       value={{
         store,
         actions,
       }}
     >
       {children}
-    </Context.Provider>
+    </AppContext.Provider>
   )
 }

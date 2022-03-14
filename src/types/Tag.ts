@@ -1,7 +1,7 @@
-type Tag = {
+type SearchTag = {
   label: string
   checked: boolean
   isDefaultTag: boolean
 }
 
-export default Tag
+export default SearchTag

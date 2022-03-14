@@ -6,12 +6,12 @@ import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
 import { HTMLAttributes, useContext } from 'react'
-import { Context } from 'src/stores/Context'
+import { AppContext } from 'src/stores/AppContext'
 
 type NavWrapperProps = HTMLAttributes<HTMLElement>
 
 export const NavWrapper = ({ ...props }: NavWrapperProps) => {
-  const context = useContext(Context)
+  const context = useContext(AppContext)
   const { theme, setTheme } = useTheme()
 
   const toggleTheme = () => {

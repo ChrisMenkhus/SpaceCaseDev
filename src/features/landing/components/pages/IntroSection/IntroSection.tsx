@@ -4,14 +4,14 @@ import { Section } from '@components/templates'
 import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 import { MutableRefObject, forwardRef, useContext } from 'react'
-import { Context } from 'src/stores/Context'
+import { AppContext } from 'src/stores/AppContext'
 
 type IntroInterface = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
 }
 
 export const IntroSection = ({ ...props }: IntroInterface) => {
-  const context = useContext(Context)
+  const context = useContext(AppContext)
 
   const scrollToAboutSection = () => {
     context?.store.aboutRef.current?.scrollIntoView({
