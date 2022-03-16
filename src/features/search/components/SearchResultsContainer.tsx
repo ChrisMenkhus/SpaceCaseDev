@@ -4,7 +4,7 @@ type SearchResultsContainerProps = HTMLAttributes<HTMLElement>
 
 const SearchResultsContainer = ({ ...props }: SearchResultsContainerProps) => {
   return (
-    <div className="flex relative flex-col col-span-2 gap-16">
+    <div className="container flex relative flex-col col-span-2 gap-16 w-screen max-w-full">
       <>{props.children}</>
     </div>
   )

@@ -27,9 +27,9 @@ const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
     <Link href={to} passHref>
       <a
         className={makeStyles([
-          'border-b-2 border-transparent hover:border-dark dark:hover:border-light transition-all',
+          'border-b-2 border-transparent hover:border-primary  transition-all',
           className,
-          isActiveLink && 'border-secondary text-secondary border-b-2 ',
+          isActiveLink && 'border-primary text-primary border-b-2 ',
         ])}
         onClick={() => {
           closeMobileNavMenu()

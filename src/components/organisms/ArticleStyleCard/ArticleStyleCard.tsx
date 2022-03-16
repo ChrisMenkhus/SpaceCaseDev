@@ -44,7 +44,7 @@ export function ArticleStyleCard({
           alt="generic blog image"
           layout="fill"
           objectFit="cover"
-          objectPosition="center"
+          objectPosition="top"
         />
       </CardImageSection>
       <CardInfoSection>
@@ -57,7 +57,7 @@ export function ArticleStyleCard({
             <h1 className="text-2xl font-medium leading-none">{title}</h1>
           </li>
           <li>
-            <TagsList>
+            <TagsList className="flex-wrap">
               {tags.map((element, i) => {
                 return (
                   <TagsListItem

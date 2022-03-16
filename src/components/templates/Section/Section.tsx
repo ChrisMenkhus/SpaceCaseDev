@@ -45,6 +45,30 @@ const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
   )
 }
 
+const HeaderForPages = ({
+  title,
+  subtitle,
+}: {
+  title: string
+  subtitle: string
+}) => {
+  return (
+    <header
+      className={makeStyles([
+        'z-10 flex-col pl-0 mt-0 mb-auto md:pl-4 md:max-w-screen-lg flexcenter',
+        '',
+      ])}
+    >
+      <h2 className="px-8 pt-4 text-xl font-normal tracking-widest leading-none whitespace-normal md:text-4xl">
+        {subtitle}
+      </h2>
+      <h1 className="pt-2 pb-4 font-ibm text-dynamic font-normal leading-none text-center">
+        {title}
+      </h1>
+    </header>
+  )
+}
+
 const Content = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
   return (
     <div className="flex-row flex-wrap mt-4 max-w-screen-lg flexcenter">
@@ -64,6 +88,7 @@ const Footer = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
 export const Section = {
   Container,
   Header,
+  HeaderForPages,
   Content,
   Article,
   Footer,

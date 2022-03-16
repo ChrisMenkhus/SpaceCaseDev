@@ -36,7 +36,7 @@ export const TagsListItem = ({
 
 const TagItemWrapper = ({ ...props }: HTMLAttributes<HTMLLIElement>) => {
   return (
-    <li className="flex flex-row flex-nowrap items-center py-1 px-2 leading-snug text-white whitespace-nowrap bg-primary rounded">
+    <li className="flex flex-row flex-nowrap items-center py-1 px-2 leading-snug text-white whitespace-nowrap bg-primary rounded transition-transform hover:scale-105">
       {props.children}
     </li>
   )
