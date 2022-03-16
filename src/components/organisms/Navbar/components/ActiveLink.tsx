@@ -2,7 +2,7 @@ import makeStyles from '@utils/makeStyles'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-import { AppContext } from 'src/stores/AppContext'
+import { AppContext } from 'src/stores/context/AppContext'
 
 type ActiveLinkProps = {
   name: string

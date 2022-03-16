@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ProjectCard } from '@components/organisms'
 import { ArticleStyleCard } from '@components/organisms/ArticleStyleCard'
 import { Section } from '@components/templates/Section'
+import { Search } from '@features/search/components/Search'
 import { SearchBar } from '@features/search/components/SearchBar'
-import SearchComponentsContainer from '@features/search/components/SearchComponentsContainer'
-import { SearchLayout } from '@features/search/components/SearchLayout'
+import SearchResultsContainer from '@features/search/components/SearchResultsContainer'
 import SearchSideBar from '@features/search/components/SearchSideBar'
-import { SearchContext } from '@features/search/stores/SearchContext'
+import { add, remove, toggle, update } from '@features/search/searchTagsSlice'
 import Tag from '@features/search/types/Tag'
-import useUrlQuery from '@utils/new/useUrlQuery'
-import { useContext, useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'src/stores/redux/store'
 import Project from 'src/types/Project'
 
 // static props provider: './pages/portfolio/index.ts'
@@ -20,100 +20,86 @@ type PortfolioInterface = {
 }
 
 function Portfolio({ projects }: PortfolioInterface) {
-  const context = useContext(SearchContext)
-  const urlTag: Tag = { label: useUrlQuery(), checked: false, default: false }
+  const searchInput = useSelector((state: RootState) => state.searchInput.value)
+  const tags = useSelector((state: RootState) => state.searchTags.value)
+  const defaultTags = tags.filter((element) => element.default === true)
+  const checkedTags = tags.filter((element) => element.checked === true)
+  const checkedTagsLabels = checkedTags.map(({ label }) => label)
 
-  let searchInput = context?.store.searchInput || ''
-  const handleSearchInput = (value: string) => {
-    context?.actions.setSearchInput(value)
-  }
+  const dispatch = useDispatch()
+  const isDefaultTag = (label: string) =>
+    defaultTags.filter((value) => value.label === label).length > 0
+  // const filteredProjects = projects.filter((element) => {
+  //   // stringTags = element.stackTags.toString
+  //   if (element.stackTags.includes(checkedTagsLabels)) {
+  //     return element
+  //   }
+  // })
 
-  const mutateSearchTags = (
-    actionType: 'create' | 'update' | 'delete',
-    tag: Tag
-  ) => {
-    console.log('mutating: ' + tag.label)
-    switch (actionType) {
-      case 'create':
-        {
-          const tagAlreadyExists =
-            [...(context?.store.searchTags || [])].filter((element: Tag) => {
-              if (element.label === tag.label) {
-                return tag
-              }
-            }).length > 0
-          const updatedTags = [...(context?.store.searchTags || []), tag]
-          if (!tagAlreadyExists) context?.actions.setSearchTags(updatedTags)
-        }
-        break
-      case 'update':
-        {
-          const updatedTags = [...(context?.store.searchTags || [])].map(
-            (element: Tag) => {
-              if (element.label === tag.label) {
-                return tag
-              }
-              return element
-            }
-          )
-          context?.actions.setSearchTags(updatedTags)
-        }
-        break
-      case 'delete':
-        {
-          const updatedTags = [...(context?.store.searchTags || [])].filter(
-            (element: Tag) => {
-              if (element.label !== tag.label) {
-                return tag
-              }
-            }
-          )
-          context?.actions.setSearchTags(updatedTags)
-        }
-        break
-    }
-  }
+  const [filteredProjects, setFilteredProjects] = useState<Project[] | []>([])
+  const [filters, setFilters] = useState('')
 
   useEffect(() => {
-    mutateSearchTags('create', urlTag)
-  }, [])
+    setFilters(
+      searchInput +
+        checkedTagsLabels.reduce((acc, curr) => {
+          return (acc = acc + ' ' + curr)
+        })
+    )
+
+    console.log('filters: ', filters)
+
+    const filtered = projects.filter((element) => {
+      if (
+        element.stackTags.some(
+          (value) => value.toLowerCase() === filters.toLowerCase()
+        )
+      ) {
+        return element
+      }
+    })
+
+    setFilteredProjects(searchInput.length > 0 ? filtered : projects)
+  }, [tags, searchInput])
 
   return (
-    <Section.Container name="Portfolio" className="min-h-screen">
+    <Section.Container name="Portfolio" className="justify-start min-h-screen">
       <Section.Content>
-        <SearchLayout className="flex flex-col">
-          <SearchBar
-            inputValue={searchInput}
-            setInputValue={handleSearchInput}
-            searchTags={context?.store.searchTags || []}
-            mutateSearchTags={mutateSearchTags}
-          />
-          <div className="flex flex-row flex-wrap justify-center items-start md:flex-nowrap">
-            <SearchSideBar
-              searchTags={context?.store.searchTags || []}
-              mutateSearchTags={mutateSearchTags}
-            />
-            <SearchComponentsContainer>
-              {projects.map((element, i) => {
-                return (
-                  <ArticleStyleCard
-                    cardType="Project"
-                    title={element.title}
-                    description={element.description}
-                    key={element.title + i}
-                    imgSrc={element.desktopImage.url}
-                    slug={element.slug}
-                    linkPaths={[
-                      { path: element.websiteUrl, label: 'Website' },
-                      { path: element.githubUrl, label: 'GitHub' },
-                    ]}
-                    tags={element.stackTags}
-                  />
-                )
-              })}
-            </SearchComponentsContainer>
-          </div>
-        </SearchLayout>
+        <Search className="grid grid-cols-3">
+          <SearchBar />
+          <SearchSideBar />
+          <SearchResultsContainer>
+            {filteredProjects.map((element, i) => {
+              return (
+                <ArticleStyleCard
+                  cardType="Project"
+                  {...element}
+                  key={element.title + i}
+                  imgSrc={element.desktopImage.url}
+                  linkPaths={[
+                    { path: element.websiteUrl, label: 'Website' },
+                    { path: element.githubUrl, label: 'GitHub' },
+                  ]}
+                  tags={element.stackTags}
+                  tagsCallback={(label: string) => {
+                    if (isDefaultTag(label)) {
+                      console.log('updating')
+
+                      dispatch(
+                        update({ label: label, checked: true, default: true })
+                      )
+                    } else {
+                      dispatch(
+                        add({ label: label, checked: true, default: true })
+                      )
+                      console.log('adding')
+                    }
+                  }}
+                />
+              )
+            })}
+          </SearchResultsContainer>
+        </Search>
       </Section.Content>
     </Section.Container>
   )

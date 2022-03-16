@@ -1,63 +1,51 @@
-import Tag from '../types/Tag'
+import { clear, update } from '../searchInputSlice'
+import { remove, toggle } from '../searchTagsSlice'
 
 import { TagsList } from '@components/organisms/Tags/TagsList'
 import { TagsListItem } from '@components/organisms/Tags/TagsListItem'
-import { SearchTagsGroup } from '@components/organisms/__old/SearchTagsGroup'
 import { SearchIcon, XIcon } from '@heroicons/react/outline'
 import makeStyles from '@utils/makeStyles'
-import { HTMLAttributes, useEffect, useState } from 'react'
+import { HTMLAttributes } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'src/stores/redux/store'
 
-type SearchBarProps = HTMLAttributes<HTMLInputElement> & {
-  inputValue: string
-  setInputValue: (value: string) => void
-  searchTags: Tag[]
-  mutateSearchTags: (
-    actionType: 'create' | 'update' | 'delete',
-    tag: Tag
-  ) => void
-}
+type SearchBarProps = HTMLAttributes<HTMLInputElement>
 
-export const SearchBar = ({
-  inputValue,
-  setInputValue,
-  searchTags,
-  mutateSearchTags,
-  ...props
-}: SearchBarProps) => {
-  const handleInput = (value: string) => setInputValue(value)
-  const clearInput = () => setInputValue('')
+export const SearchBar = ({ ...props }: SearchBarProps) => {
+  const inputValue = useSelector((state: RootState) => state.searchInput.value)
 
-  const SearchTags = searchTags.map((element, i) => {
-    if (element.checked)
-      return (
-        <TagsListItem
-          key={element.label}
-          Icon={XIcon}
-          callback={() => {
-            console.log('calling back')
-            mutateSearchTags('update', {
-              ...element,
-              checked: false,
-            })
-          }}
-        >
-          {element.label}
-        </TagsListItem>
-      )
-  })
+  const tags = useSelector((state: RootState) => state.searchTags.value)
+  const checkedTags = tags.filter(({ checked }) => checked === true)
+  const dispatch = useDispatch()
 
   return (
     <div
       className={makeStyles([
-        'mb-8 w-full max-w-screen-lg flex-shrink-0',
+        'mb-8 w-full max-w-screen-lg col-span-3 h-fit',
         props.className || '',
       ])}
     >
       <div className="flex relative gap-4 justify-center items-center py-1 mx-auto bg-white dark:bg-dark rounded-sm border-2 border-gray dark:border-primary">
         <div className="mr-auto ml-4">
-          <LeftIcon />
+          <div className="w-6 h-6 text-dark dark:text-white">
+            <SearchIcon />
+          </div>
         </div>
-        <TagsList>{SearchTags}</TagsList>
+        <TagsList>
+          {checkedTags.map((element, index) => {
+            return (
+              <TagsListItem
+                key={element.label + index}
+                Icon={XIcon}
+                callback={() => {
+                  dispatch(element.default ? toggle(element) : remove(element))
+                }}
+              >
+                {element.label}
+              </TagsListItem>
+            )
+          })}
+        </TagsList>
         <input
           className="w-full h-12 text-lg bg-white dark:bg-dark focus:outline-none"
           type="search"
@@ -65,33 +53,21 @@ export const SearchBar = ({
           placeholder={props.placeholder}
           value={inputValue}
           onChange={(e) => {
-            handleInput(e.target.value)
+            dispatch(update(e.target.value))
           }}
         />
         <button
           type="submit"
           className="mr-4 ml-auto"
-          onClick={() => clearInput()}
+          onClick={() => {
+            dispatch(clear())
+          }}
         >
-          <RightIcon />
+          <div className="w-6 h-6 text-primary">
+            <XIcon />
+          </div>
         </button>
       </div>
-    </div>
-  )
-}
-
-export const LeftIcon = () => {
-  return (
-    <div className="w-6 h-6 text-dark dark:text-white">
-      <SearchIcon />
-    </div>
-  )
-}
-
-export const RightIcon = () => {
-  return (
-    <div className="w-6 h-6 text-primary">
-      <XIcon />
     </div>
   )
 }

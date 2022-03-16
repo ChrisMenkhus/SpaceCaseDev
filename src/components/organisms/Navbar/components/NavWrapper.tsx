@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes'
 import Image from 'next/image'
 import Link from 'next/link'
 import { HTMLAttributes, useContext } from 'react'
-import { AppContext } from 'src/stores/AppContext'
+import { AppContext } from 'src/stores/context/AppContext'
 
 type NavWrapperProps = HTMLAttributes<HTMLElement>
 

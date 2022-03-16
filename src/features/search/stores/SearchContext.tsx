@@ -1,6 +1,6 @@
 import Tag from '../types/Tag'
 
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 
 interface ContextInterface {
   store: {
@@ -10,6 +10,9 @@ interface ContextInterface {
   actions: {
     setSearchInput: (value: string) => void
     setSearchTags: (value: Tag[]) => void
+    createTag: (value: Tag) => void
+    updateTag: (value: Tag) => void
+    deleteTag: (value: Tag) => void
   }
 }
 
@@ -29,10 +32,28 @@ export const SearchContextStore = ({
     { label: 'Typescript', checked: false, default: true },
   ]
 
-  const [store, setStore] = useState({
+  const [store, setStore] = useState<{
+    searchInput: string
+    searchTags: Tag[]
+  }>({
     searchInput: '',
     searchTags: defaultSearchTags,
   })
+
+  useEffect(() => {
+    console.log('\n' + 'STORE' + '\n' + '  ')
+    console.log(store.searchTags.filter((element: Tag) => element.checked))
+  }, [store])
+
+  // const getMatchingTagsFromStore = (tag: Tag) => {
+  //   return (
+  //     [...(store.searchTags || [])].filter((element: Tag) => {
+  //       if (element.label === tag.label) {
+  //         return tag
+  //       }
+  //     }) || []
+  //   )
+  // }
 
   const [actions] = useState({
     setSearchInput: (value: string) => {
@@ -40,6 +61,41 @@ export const SearchContextStore = ({
     },
     setSearchTags: (value: Tag[]) => {
       setStore({ ...store, searchTags: value })
+    },
+    createTag: (tag: Tag) => {
+      // if (getMatchingTagsFromStore(tag).length < 1) {
+      //   setStore({
+      //     ...store,
+      //     searchTags: [...store.searchTags],
+      //   })
+      // }
+    },
+    updateTag: (tag: Tag) => {
+      console.log('updating tag: ', tag)
+
+      const updatedTags = [...store.searchTags].map((element: Tag) => {
+        if (element.label === tag.label) {
+          return tag
+        }
+        return element
+      })
+
+      console.log('updated tags: ', updatedTags)
+
+      setStore({
+        ...store,
+        searchTags: updatedTags,
+      })
+    },
+    deleteTag: (tag: Tag) => {
+      setStore({
+        ...store,
+        searchTags: [...store.searchTags].filter((element: Tag) => {
+          if (element.label !== tag.label) {
+            return element
+          }
+        }),
+      })
     },
   })
 

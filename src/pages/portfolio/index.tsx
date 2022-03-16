@@ -1,5 +1,5 @@
 import { Header } from '@components/atoms/Header'
-import Portfolio from '@features/portfolio/routes/Portfolio_old'
+import Portfolio from '@features/portfolio/routes/Portfolio'
 import { queryForProjects } from '@utils/queryContentful'
 import { NextPage } from 'next'
 import Project from 'src/types/Project'

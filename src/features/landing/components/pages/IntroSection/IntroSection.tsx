@@ -4,22 +4,13 @@ import { Section } from '@components/templates'
 import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
 import { MutableRefObject, forwardRef, useContext } from 'react'
-import { AppContext } from 'src/stores/AppContext'
+import { AppContext } from 'src/stores/context/AppContext'
 
 type IntroInterface = React.HTMLAttributes<HTMLDivElement> & {
   className?: string
 }
 
 export const IntroSection = ({ ...props }: IntroInterface) => {
-  const context = useContext(AppContext)
-
-  const scrollToAboutSection = () => {
-    context?.store.aboutRef.current?.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-    })
-  }
-
   return (
     <Section.Container name="Intro" className={styles.main}>
       <div className={styles.background.main}>
@@ -47,7 +38,6 @@ export const IntroSection = ({ ...props }: IntroInterface) => {
               icon={ChevronDoubleDownIcon}
               onClick={(e) => {
                 e.preventDefault()
-                scrollToAboutSection()
               }}
             >
               Learn More About Me

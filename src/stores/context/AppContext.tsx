@@ -1,14 +1,11 @@
-import React, { MutableRefObject, createContext, useRef, useState } from 'react'
+import React, { createContext, useState } from 'react'
 
 interface ContextInterface {
   store: {
     showMobileNavMenu: boolean
-    blockLazyLoading: boolean
-    aboutRef: MutableRefObject<HTMLDivElement | null>
   }
   actions: {
     setShowMobileNavMenu: (state: boolean) => void
-    scrollToAboutRef: () => void
   }
 }
 
@@ -19,12 +16,8 @@ export const AppContextStore = ({
 }: {
   children: JSX.Element | JSX.Element[]
 }) => {
-  const aboutRef = useRef<HTMLDivElement | null>(null)
-
   const [store, setStore] = useState({
-    aboutRef: aboutRef,
     showMobileNavMenu: false,
-    blockLazyLoading: false,
   })
 
   const [actions] = useState({
@@ -33,9 +26,6 @@ export const AppContextStore = ({
         ...store,
         showMobileNavMenu: state,
       })
-    },
-    scrollToAboutRef: () => {
-      store.aboutRef.current?.scrollIntoView({ behavior: 'smooth' })
     },
   })
 
