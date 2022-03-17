@@ -14,6 +14,7 @@ export async function queryForPosts(limit?: number) {
         image {
           url 
         }
+        tags
       }
     }
   }`)
@@ -41,7 +42,7 @@ export async function queryForProjects(limit?: number) {
   }`)
 }
 
-export async function queryForSlugs(limit?: number) {
+export async function queryForSlugs() {
   return queryContentful(` query {
     blogPostCollection{
       items {

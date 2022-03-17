@@ -30,7 +30,7 @@ const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
   return (
     <header
       className={makeStyles([
-        'z-10 flex-col pl-0 mt-0 mb-auto md:pl-4 md:max-w-screen-lg flexcenter',
+        'z-10 flex-col pl-0 mt-0 md:pl-4 md:max-w-screen-lg flexcenter',
         'md:justify-start md:items-start',
         // im here doing dynamic text
       ])}
@@ -45,9 +45,44 @@ const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
   )
 }
 
-const Content = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
+const HeaderForPages = ({
+  title,
+  subtitle,
+}: {
+  title: string
+  subtitle: string
+}) => {
   return (
-    <div className="flex-row flex-wrap mt-4 max-w-screen-lg flexcenter">
+    <header
+      className={makeStyles([
+        'z-10 flex-col pl-0 mt-16 md:pl-4 md:max-w-screen-lg flexcenter md:mt-0',
+        '',
+      ])}
+    >
+      <h2 className="px-8 pt-4 text-xl font-normal tracking-widest leading-none whitespace-normal md:text-4xl">
+        {subtitle}
+      </h2>
+      <h1 className="pt-2 pb-4 font-ibm text-dynamic font-normal leading-none text-center">
+        {title}
+      </h1>
+    </header>
+  )
+}
+
+const Content = ({
+  children,
+  className = '',
+}: {
+  children: JSX.Element | JSX.Element[]
+  className?: string
+}) => {
+  return (
+    <div
+      className={makeStyles([
+        'flex-row flex-wrap mt-4 max-w-screen-lg flexcenter',
+        className,
+      ])}
+    >
       {children}
     </div>
   )
@@ -64,6 +99,7 @@ const Footer = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
 export const Section = {
   Container,
   Header,
+  HeaderForPages,
   Content,
   Article,
   Footer,

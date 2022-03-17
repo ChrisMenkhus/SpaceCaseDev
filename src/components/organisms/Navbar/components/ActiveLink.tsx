@@ -2,7 +2,7 @@ import makeStyles from '@utils/makeStyles'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
-import { Context } from 'src/stores/Context'
+import { AppContext } from 'src/stores/context/AppContext'
 
 type ActiveLinkProps = {
   name: string
@@ -13,7 +13,7 @@ type ActiveLinkProps = {
 const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
   const router = useRouter()
 
-  const context = useContext(Context)
+  const context = useContext(AppContext)
 
   const closeMobileNavMenu = () => {
     context?.actions.setShowMobileNavMenu(false)
@@ -27,9 +27,9 @@ const ActiveLink = ({ name, to, className = '' }: ActiveLinkProps) => {
     <Link href={to} passHref>
       <a
         className={makeStyles([
-          'border-b-2 border-transparent hover:border-dark dark:hover:border-light transition-all',
+          'border-b-2 border-transparent hover:border-primary  transition-all',
           className,
-          isActiveLink && 'border-secondary text-secondary border-b-2 ',
+          isActiveLink && 'border-primary text-primary border-b-2 ',
         ])}
         onClick={() => {
           closeMobileNavMenu()

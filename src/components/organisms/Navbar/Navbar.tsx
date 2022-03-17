@@ -6,15 +6,6 @@ import React, { HTMLAttributes, useState } from 'react'
 type NavbarProps = HTMLAttributes<HTMLElement>
 
 export const Navbar = ({ ...props }: NavbarProps) => {
-  const [mobileNavMenuToggled, setMobileNavMenuToggled] = useState(false)
-
-  const options = {
-    mobileNavMenuToggled,
-    toggleMobileNavMenu: () => {
-      setMobileNavMenuToggled(!mobileNavMenuToggled)
-    },
-  }
-
   const navItemsInfo: NavItemProps[] = [
     {
       name: 'Home',
@@ -37,7 +28,7 @@ export const Navbar = ({ ...props }: NavbarProps) => {
     <NavItem {...item} key={item.name + index} />
   ))
 
-  return <NavWrapper {...options}>{NavItems}</NavWrapper>
+  return <NavWrapper>{NavItems}</NavWrapper>
 }
 
 Navbar.displayName = 'Navbar'
