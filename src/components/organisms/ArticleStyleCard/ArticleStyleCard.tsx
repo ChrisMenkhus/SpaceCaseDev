@@ -50,7 +50,7 @@ export function ArticleStyleCard({
       <CardInfoSection>
         <ul className="flex flex-col gap-4">
           <li className="flex items-start w-full">
-            <div className="w-32 h-1 bg-gradient-to-r from-black to-secondary" />
+            <div className="w-32 h-1 bg-gradient-to-r from-secondary to-primary" />
             <span className="-mt-2 mr-0 ml-auto leading-none">{cardType}</span>
           </li>
           <li className="flex items-center w-full">

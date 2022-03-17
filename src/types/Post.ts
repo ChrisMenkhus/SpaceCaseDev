@@ -7,6 +7,7 @@ type Post = {
   image: {
     url: string
   }
+  tags: string[]
 }
 
 export default Post

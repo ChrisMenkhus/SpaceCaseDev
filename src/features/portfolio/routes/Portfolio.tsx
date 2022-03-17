@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { filterProjectsByTags } from '../utils/filterProjectsByTags'
 import { filterProjectsByTitle } from '../utils/filterProjectsByTitle'
-import { filterTagsByChecked } from '../utils/filterTagsByChecked'
-import { isDefaultTag } from '../utils/isDefaultTag'
 
 import { ArticleStyleCard } from '@components/organisms/ArticleStyleCard'
 import { Section } from '@components/templates/Section'
@@ -11,6 +9,8 @@ import { SearchBar } from '@features/search/components/SearchBar'
 import SearchResultsContainer from '@features/search/components/SearchResultsContainer'
 import SearchSideBar from '@features/search/components/SearchSideBar'
 import { add, update } from '@features/search/searchTagsSlice'
+import { filterTagsByChecked } from '@features/search/utils/filterTagsByChecked'
+import { isDefaultTag } from '@features/search/utils/isDefaultTag'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/stores/redux/store'
@@ -27,7 +27,9 @@ function Portfolio({ projects }: PortfolioInterface) {
   const searchInput = useSelector((state: RootState) => state.searchInput.value)
   const tags = useSelector((state: RootState) => state.searchTags.value)
 
-  const [filteredProjects, setFilteredProjects] = useState<Project[] | []>([])
+  const [filteredProjectsData, setFilteredProjectsData] = useState<
+    Project[] | []
+  >([])
 
   useEffect(() => {
     const projectsFilteredBySearchTags = filterProjectsByTags(
@@ -40,12 +42,12 @@ function Portfolio({ projects }: PortfolioInterface) {
       searchInput
     )
 
-    setFilteredProjects(projectsFilteredBySearchInput)
+    setFilteredProjectsData(projectsFilteredBySearchInput)
   }, [tags, searchInput])
 
   const FilteredProjects = () => (
     <>
-      {filteredProjects.map((element, i) => {
+      {filteredProjectsData.map((element, i) => {
         return (
           <ArticleStyleCard
             cardType="Project"

@@ -1,5 +1,5 @@
-import { clear, update } from '../searchInputSlice'
-import { remove, toggle } from '../searchTagsSlice'
+import { clearInput, update } from '../searchInputSlice'
+import { clearToggledTags, remove, toggle } from '../searchTagsSlice'
 
 import { TagsList } from '@components/organisms/Tags/TagsList'
 import { TagsListItem } from '@components/organisms/Tags/TagsListItem'
@@ -21,7 +21,7 @@ export const SearchBar = ({ ...props }: SearchBarProps) => {
   return (
     <div
       className={makeStyles([
-        'mb-8 w-full max-w-screen-lg col-span-3 h-fit',
+        'mb-8 mx-4 lg:mx-auto lg:w-full max-w-screen-lg col-span-3 h-fit',
         props.className || '',
       ])}
     >
@@ -60,13 +60,16 @@ export const SearchBar = ({ ...props }: SearchBarProps) => {
           type="submit"
           className="mr-4 ml-auto"
           onClick={() => {
-            dispatch(clear())
+            dispatch(clearInput())
+            dispatch(clearToggledTags())
           }}
         >
           <div className="w-6 h-6 text-primary">
             <XIcon />
           </div>
         </button>
+
+        {/* CLEAR BUTTON TO CLEAR INPUT AND CALL CLEAR ON TAGS MAKE CLEAR TAG FUNCTION ON REDUX */}
       </div>
     </div>
   )

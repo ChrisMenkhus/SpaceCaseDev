@@ -28,8 +28,8 @@ const SearchSideBar = ({}: {}) => {
   }
 
   return (
-    <ul className="flex flex-row flex-wrap col-span-1 gap-4 justify-center pl-4 mr-auto mb-8 ml-0 w-full sm:flex-col sm:justify-start sm:max-w-xs">
-      <li className="text-2xl font-semibold">Tags</li>
+    <ul className="flex flex-row flex-wrap col-span-3 gap-2 px-4 mr-auto mb-8 ml-0 w-full sm:flex-col sm:justify-start sm:max-w-xs md:col-span-1 md:gap-4 md:justify-start md:pl-4">
+      <li className="w-full text-2xl font-semibold md:w-auto">Tags</li>
       <Tags />
     </ul>
   )

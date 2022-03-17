@@ -7,7 +7,7 @@ export interface SearchTagsState {
 }
 
 const defaultSearchTags: Tag[] = [
-  { label: 'React', checked: true, default: true },
+  { label: 'React', checked: false, default: true },
   { label: 'NextJs', checked: false, default: true },
   { label: 'Javascript', checked: false, default: true },
   { label: 'NodeJs', checked: false, default: true },
@@ -45,10 +45,16 @@ export const searchTagsSlice = createSlice({
           : element
       })
     },
+    clearToggledTags: (state) => {
+      state.value = state.value.map((element) => {
+        return { ...element, checked: false }
+      })
+    },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { add, remove, toggle, update } = searchTagsSlice.actions
+export const { add, remove, toggle, update, clearToggledTags } =
+  searchTagsSlice.actions
 
 export default searchTagsSlice.reducer

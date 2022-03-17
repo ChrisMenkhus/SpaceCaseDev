@@ -30,7 +30,7 @@ const Header = ({ title, subtitle }: { title: string; subtitle: string }) => {
   return (
     <header
       className={makeStyles([
-        'z-10 flex-col pl-0 mt-0 mb-auto md:pl-4 md:max-w-screen-lg flexcenter',
+        'z-10 flex-col pl-0 mt-0 md:pl-4 md:max-w-screen-lg flexcenter',
         'md:justify-start md:items-start',
         // im here doing dynamic text
       ])}
@@ -55,7 +55,7 @@ const HeaderForPages = ({
   return (
     <header
       className={makeStyles([
-        'z-10 flex-col pl-0 mt-0 mb-auto md:pl-4 md:max-w-screen-lg flexcenter',
+        'z-10 flex-col pl-0 mt-16 md:pl-4 md:max-w-screen-lg flexcenter md:mt-0',
         '',
       ])}
     >
@@ -69,9 +69,20 @@ const HeaderForPages = ({
   )
 }
 
-const Content = ({ children }: { children: JSX.Element | JSX.Element[] }) => {
+const Content = ({
+  children,
+  className = '',
+}: {
+  children: JSX.Element | JSX.Element[]
+  className?: string
+}) => {
   return (
-    <div className="flex-row flex-wrap mt-4 max-w-screen-lg flexcenter">
+    <div
+      className={makeStyles([
+        'flex-row flex-wrap mt-4 max-w-screen-lg flexcenter',
+        className,
+      ])}
+    >
       {children}
     </div>
   )

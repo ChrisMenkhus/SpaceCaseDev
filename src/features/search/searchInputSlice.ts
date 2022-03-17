@@ -15,13 +15,13 @@ export const searchInputSlice = createSlice({
     update: (state, action: PayloadAction<string>) => {
       state.value = action.payload
     },
-    clear: (state) => {
+    clearInput: (state) => {
       state.value = ''
     },
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { update, clear } = searchInputSlice.actions
+export const { update, clearInput } = searchInputSlice.actions
 
 export default searchInputSlice.reducer

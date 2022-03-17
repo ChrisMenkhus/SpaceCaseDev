@@ -1,8 +1,12 @@
 import { Link } from '@components/atoms'
-import { NewArticleCard, ProjectCard } from '@components/organisms'
+import { ProjectCard } from '@components/organisms'
+import { ArticleStyleCard } from '@components/organisms/ArticleStyleCard'
 import { Section } from '@components/templates/Section'
+import { add, update } from '@features/search/searchTagsSlice'
+import { isDefaultTag } from '@features/search/utils/isDefaultTag'
 import { CollectionIcon } from '@heroicons/react/outline'
-import { forwardRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from 'src/stores/redux/store'
 import Project from 'src/types/Project'
 
 type ProjectsInterface = React.HTMLAttributes<HTMLElement> & {
@@ -10,30 +14,35 @@ type ProjectsInterface = React.HTMLAttributes<HTMLElement> & {
 }
 
 export const ProjectsSection = ({ projects, ...props }: ProjectsInterface) => {
+  const dispatch = useDispatch()
+  const tags = useSelector((state: RootState) => state.searchTags.value)
+
   return (
     <Section.Container name="Projects">
       <Section.Header title="Projects" subtitle="Projects & Case Studies" />
-      <Section.Content>
-        <>
-          {projects.map((project, i) => (
-            <ProjectCard key={project.title + i} {...project} />
-          ))}
-          {projects.map((project, i) => (
-            <NewArticleCard
-              cardType="Project"
-              title={project.title}
-              description={project.description}
-              key={project.title + i}
-              imgSrc={project.desktopImage.url}
-              slug={project.slug}
-              linkPaths={[
-                { path: project.websiteUrl, label: 'Website' },
-                { path: project.githubUrl, label: 'GitHub' },
-              ]}
-              tags={project.stackTags}
-            />
-          ))}
-        </>
+      <Section.Content className="gap-16 mt-8 mb-16">
+        {projects.map((project, i) => (
+          <ArticleStyleCard
+            cardType="Project"
+            title={project.title}
+            description={project.description}
+            key={project.title + i}
+            imgSrc={project.desktopImage.url}
+            slug={project.slug}
+            linkPaths={[
+              { path: project.websiteUrl, label: 'Website' },
+              { path: project.githubUrl, label: 'GitHub' },
+            ]}
+            tags={project.stackTags}
+            tagsCallback={(label: string) => {
+              if (isDefaultTag(tags, label)) {
+                dispatch(update({ label: label, checked: true, default: true }))
+              } else {
+                dispatch(add({ label: label, checked: true, default: true }))
+              }
+            }}
+          />
+        ))}
       </Section.Content>
       <Section.Footer>
         <div className="flex w-full max-w-screen-lg">
