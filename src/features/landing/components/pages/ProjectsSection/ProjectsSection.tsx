@@ -5,6 +5,7 @@ import { Section } from '@components/templates/Section'
 import { add, update } from '@features/search/searchTagsSlice'
 import { isDefaultTag } from '@features/search/utils/isDefaultTag'
 import { CollectionIcon } from '@heroicons/react/outline'
+import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/stores/redux/store'
 import Project from 'src/types/Project'
@@ -16,6 +17,7 @@ type ProjectsInterface = React.HTMLAttributes<HTMLElement> & {
 export const ProjectsSection = ({ projects, ...props }: ProjectsInterface) => {
   const dispatch = useDispatch()
   const tags = useSelector((state: RootState) => state.searchTags.value)
+  const router = useRouter()
 
   return (
     <Section.Container name="Projects">
@@ -40,7 +42,10 @@ export const ProjectsSection = ({ projects, ...props }: ProjectsInterface) => {
               } else {
                 dispatch(add({ label: label, checked: true, default: true }))
               }
+
+              router.push('/portfolio')
             }}
+            colors={project.colors}
           />
         ))}
       </Section.Content>

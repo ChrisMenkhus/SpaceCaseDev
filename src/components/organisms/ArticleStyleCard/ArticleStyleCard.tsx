@@ -22,6 +22,7 @@ type ArticleStyleCardProps = HTMLAttributes<HTMLElement> & {
   slug: string
   tags: string[]
   tagsCallback: (label: string) => void
+  colors?: string[]
 }
 
 export function ArticleStyleCard({
@@ -35,51 +36,74 @@ export function ArticleStyleCard({
   slug,
   tags,
   tagsCallback,
+  colors,
 }: ArticleStyleCardProps) {
+  const primaryColor = '#0276FF'
+  const mainColor = colors ? colors[1] : primaryColor
   return (
-    <CardWrapper className="relative before:absolute before:-top-8 before:sm:-left-8 before:-z-10 z-10 mt-8 before:w-40 max-w-screen-lg before:h-40 before:bg-primary before:rounded-md before:shadow-md ">
-      <CardImageSection>
-        <Image
-          src={imgSrc}
-          alt="generic blog image"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="top"
-        />
-      </CardImageSection>
-      <CardInfoSection>
-        <ul className="flex flex-col gap-4">
-          <li className="flex items-start w-full">
-            <div className="w-32 h-1 bg-gradient-to-r from-secondary to-primary" />
-            <span className="-mt-2 mr-0 ml-auto leading-none">{cardType}</span>
-          </li>
-          <li className="flex items-center w-full">
-            <h1 className="text-2xl font-medium leading-none">{title}</h1>
-          </li>
-          <li>
-            <TagsList className="flex-wrap">
-              {tags.map((element, i) => {
-                return (
-                  <TagsListItem
-                    callback={() => tagsCallback(element)}
-                    key={element + i}
-                  >
-                    {element}
-                  </TagsListItem>
-                )
-              })}
-            </TagsList>
-          </li>
-          <li className="flex items-center w-full leading-snug">
-            <p className="-mt-2">{description}</p>
-          </li>
-          <li className="flex items-center w-full text-sm leading-none">
-            <CardArticleCredits date={date} author={author} />
-            <CardLinks linkPaths={linkPaths} />
-          </li>
-        </ul>
-      </CardInfoSection>
-    </CardWrapper>
+    <div className="relative">
+      <div
+        className="absolute -top-1 w-40 h-40 bg-primary rounded-xl shadow-md sm:-left-8 sm:rounded-md"
+        style={{
+          backgroundImage: `linear-gradient(to right, ${mainColor}, ${
+            colors ? colors[0] : primaryColor
+          })`,
+        }}
+      />
+      <CardWrapper className="max-w-screen-lg">
+        <CardImageSection>
+          <Image
+            src={imgSrc}
+            alt="generic blog image"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="top"
+          />
+        </CardImageSection>
+        <CardInfoSection>
+          <ul className="flex flex-col gap-4">
+            <li className="flex items-start w-full">
+              <div
+                className="w-32 h-1 bg-gradient-to-r from-secondary to-primary"
+                style={{
+                  backgroundImage: `linear-gradient(to right, ${mainColor}, ${
+                    colors ? colors[0] : '#8002FF'
+                  })`,
+                }}
+              />
+              <span className="-mt-2 mr-0 ml-auto leading-none">
+                {cardType}
+              </span>
+            </li>
+            <li className="flex items-center w-full">
+              <h1 className="text-2xl font-medium leading-none">{title}</h1>
+            </li>
+            <li>
+              <TagsList className="flex-wrap">
+                {tags.map((element, i) => {
+                  return (
+                    <TagsListItem
+                      callback={() => tagsCallback(element)}
+                      key={element + i}
+                      color={mainColor}
+                    >
+                      {element}
+                    </TagsListItem>
+                  )
+                })}
+              </TagsList>
+            </li>
+            <li className="flex items-center w-full leading-snug">
+              <p className="-mt-2">{description}</p>
+            </li>
+            <li className="flex items-center w-full text-sm leading-none">
+              <CardArticleCredits date={date} author={author} />
+              <CardLinks linkPaths={linkPaths} />
+            </li>
+          </ul>
+        </CardInfoSection>
+      </CardWrapper>
+    </div>
   )
 }
 

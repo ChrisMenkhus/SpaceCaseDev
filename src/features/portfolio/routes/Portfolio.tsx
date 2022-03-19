@@ -66,6 +66,7 @@ function Portfolio({ projects }: PortfolioInterface) {
                 dispatch(add({ label: label, checked: true, default: true }))
               }
             }}
+            colors={element.colors}
           />
         )
       })}
