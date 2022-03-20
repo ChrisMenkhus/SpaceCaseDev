@@ -3,10 +3,19 @@ import { SocialButtonGroup } from '@components/organisms'
 import { Section } from '@components/templates'
 import { ChevronDoubleDownIcon } from '@heroicons/react/outline'
 import Image from 'next/image'
+import Router from 'next/router'
+import { useContext } from 'react'
+import { AppContext } from 'src/stores/context/AppContext'
 
 type IntroInterface = React.HTMLAttributes<HTMLDivElement>
 
 export const IntroSection = ({ ...props }: IntroInterface) => {
+  const context = useContext(AppContext)
+
+  const ScrollToAboutSection = () => {
+    context?.store.aboutRef.current?.scrollIntoView(true)
+  }
+
   return (
     <Section.Container name="Intro">
       <div className={styles.main}>
@@ -35,6 +44,7 @@ export const IntroSection = ({ ...props }: IntroInterface) => {
                 icon={ChevronDoubleDownIcon}
                 onClick={(e) => {
                   e.preventDefault()
+                  ScrollToAboutSection()
                 }}
               >
                 Learn More About Me
@@ -64,8 +74,8 @@ export const IntroSection = ({ ...props }: IntroInterface) => {
 const styles = {
   main: 'relative w-screen max-w-screen-xl h-auto',
   background: {
-    main: 'flex absolute w-full h-full md:max-h-[1050px] flex-col md:flex-row max-w-screen-xl',
-    left: 'w-1/2 h-full ',
+    main: 'flex absolute w-full h-full md:max-h-[1050px] flex-col md:flex-row max-w-screen-xl pointer-events-none',
+    left: 'w-1/2 h-full -z-10',
     right: {
       main: 'bg-secondary h-full border-white h-4/6 md:h-5/6 md:m-auto md:w-1/2 md:rounded',
     },

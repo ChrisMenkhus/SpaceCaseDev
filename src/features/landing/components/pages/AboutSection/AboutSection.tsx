@@ -2,7 +2,7 @@ import { Button } from '@components/atoms'
 import { Section } from '@components/templates'
 import { CalendarIcon } from '@heroicons/react/outline'
 import OpenCalendlyPopup from '@utils/openCalendlyPopup'
-import { forwardRef, useContext } from 'react'
+import { useContext } from 'react'
 import { AppContext } from 'src/stores/context/AppContext'
 
 type AboutInterface = React.HTMLAttributes<HTMLDivElement> & {
@@ -13,7 +13,11 @@ export const AboutSection = ({ ...props }: AboutInterface) => {
   const context = useContext(AppContext)
 
   return (
-    <Section.Container name="About" className="h-full ">
+    <Section.Container
+      name="About"
+      className="h-full"
+      ref={context?.store.aboutRef}
+    >
       <Section.Header
         title="About"
         subtitle="Did I mention im obsessed with space? 🚀"

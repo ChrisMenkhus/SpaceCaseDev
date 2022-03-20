@@ -1,11 +1,11 @@
-import { LazyRender, Link } from '@components/atoms'
-import { BlogArticleCard } from '@components/organisms'
+import { Link } from '@components/atoms'
 import { ArticleStyleCard } from '@components/organisms/ArticleStyleCard'
 import { Section } from '@components/templates'
 import { add, update } from '@features/search/searchTagsSlice'
 import { isDefaultTag } from '@features/search/utils/isDefaultTag'
 import { CollectionIcon } from '@heroicons/react/outline'
-import { forwardRef, useCallback, useState } from 'react'
+import { useRouter } from 'next/router'
+import { forwardRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'src/stores/redux/store'
 import Post from 'src/types/Post'
@@ -18,6 +18,7 @@ export const InsightsSection = forwardRef<HTMLDivElement, InsightsInterface>(
   ({ posts }, ref?) => {
     const dispatch = useDispatch()
     const tags = useSelector((state: RootState) => state.searchTags.value)
+    const router = useRouter()
 
     return (
       <Section.Container name="Insights">
@@ -47,6 +48,7 @@ export const InsightsSection = forwardRef<HTMLDivElement, InsightsInterface>(
                       add({ label: label, checked: true, default: true })
                     )
                   }
+                  router.push('/blog')
                 }}
               />
             )
