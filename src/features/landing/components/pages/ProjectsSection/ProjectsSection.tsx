@@ -1,5 +1,4 @@
 import { Link } from '@components/atoms'
-import { ProjectCard } from '@components/organisms'
 import { ArticleStyleCard } from '@components/organisms/ArticleStyleCard'
 import { Section } from '@components/templates/Section'
 import { add, update } from '@features/search/searchTagsSlice'
@@ -42,7 +41,6 @@ export const ProjectsSection = ({ projects, ...props }: ProjectsInterface) => {
               } else {
                 dispatch(add({ label: label, checked: true, default: true }))
               }
-
               router.push('/portfolio')
             }}
             colors={project.colors}

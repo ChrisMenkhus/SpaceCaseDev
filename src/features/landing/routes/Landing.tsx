@@ -1,5 +1,7 @@
 import { LazyRender } from '@components/atoms'
 import dynamic from 'next/dynamic'
+import { useContext } from 'react'
+import { AppContext } from 'src/stores/context/AppContext'
 import Post from 'src/types/Post'
 import Project from 'src/types/Project'
 
