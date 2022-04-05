@@ -30,7 +30,7 @@ export const SocialButtonGroup = ({
       />
 
       <SocialButton
-        href="https://docs.google.com/document/d/1oDRiRERHm9KubdwktoU7MtR5XTMyZr6Y5Rp2a7SrsHM/edit?usp=sharing"
+        href="https://docs.google.com/document/d/1raeQUTJWEO_oZCbnPIIPK8V6YyYmOk3v-e1DXViigsI/edit?usp=sharing"
         Icon={HiDocumentSearch}
         label="Resume"
       />
